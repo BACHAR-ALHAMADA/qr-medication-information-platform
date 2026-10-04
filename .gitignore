@@ -1,0 +1,29 @@
+# .NET
+**/bin/
+**/obj/
+*.user
+*.suo
+
+# Node
+node_modules/
+dist/
+build/
+.vite/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+secrets/
+*.pfx
+*.p12
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Test and coverage output
+TestResults/
+coverage/
