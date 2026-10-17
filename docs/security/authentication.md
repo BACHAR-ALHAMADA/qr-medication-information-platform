@@ -8,7 +8,7 @@ Authentication establishes identity; it does not by itself grant access to a ten
 
 ## Patient verification
 
-The MVP requires a simple verification step after scanning a patient-specific QR code, without requiring a full patient account. The factor, delivery method, retry/expiry policy, and assurance level are **Decision Required**. Avoid treating guessable personal facts alone as strong authentication. A successful challenge should grant only short-lived, narrow access to the intended assignment.
+Patient-specific functionality is future scope until the Product Owner explicitly approves MVP scope (F-006; HUM-001). Whenever introduced, scanning a patient-specific QR code must be followed by a separate verification step before private access. A flow without a full patient account remains a proposal, not an approved MVP requirement. The factor, delivery method, retry/expiry policy, and assurance level are **Decision Required** (HUM-004). Avoid treating guessable personal facts alone as strong authentication. A successful challenge should grant only short-lived, narrow access to the intended assignment. See the [feature catalogue](../feature-catalogue.md) and [Human TODO](../../tasks/HUMAN-TODO.md). This scope clarification preserves ADR-003 and its mandatory security principle.
 
 ## Operational requirements
 

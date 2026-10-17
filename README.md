@@ -26,7 +26,7 @@ These are planned technologies; application functionality has not been implement
 
 ## Development status
 
-**Phase 1 — project foundation and documentation.** This repository contains architectural and security/privacy guidance only. There is no implemented API, frontend, database schema, authentication, QR flow, or medication content yet.
+**Phase 1 — project foundation, discovery and documentation.** This repository contains product discovery, requirements, UX/UI planning, architecture, security, and privacy documentation. There is no implemented API, frontend, database schema, authentication, QR flow, or medication content yet.
 
 ## Planned modules
 
@@ -54,4 +54,15 @@ tests/                          Planned unit, integration, security, architectur
 infrastructure/                 Planned environment-specific infrastructure space
 ```
 
-See [project status](docs/project-status.md) for current progress and unresolved decisions.
+## Product discovery
+
+The current work is brainstorming, requirements analysis, and UX/UI planning within Phase 1. The initial target market is Manitoba, Canada. Calm mobile-first design, simple UX with progressive disclosure, multilingual accessibility, and RTL support are core product principles. Patient-specific instructions remain a future capability until MVP scope is explicitly approved; existing security requirements remain mandatory whenever introduced.
+
+Start with the [product vision](docs/product-vision.md), [requirements and documentation standard](docs/product-requirements.md), [feature catalogue](docs/feature-catalogue.md), and [roadmap](docs/project-roadmap.md).
+
+- Experience: [personas](docs/user-personas.md), [journeys](docs/user-journeys.md), [UX blueprint and research](docs/ui-ux-blueprint.md), [design system](docs/design-system.md), [accessibility/localization](docs/accessibility-and-localization.md).
+- Governance: [medication content](docs/medication-content-governance.md), [privacy/security overview](docs/privacy-security.md), [regulatory research](docs/regulatory-research.md), [business discovery](docs/business-model.md).
+- Engineering direction: [technical architecture](docs/technical-architecture.md), [accepted ADRs](docs/decisions/), [testing strategy](docs/testing-strategy.md).
+- Tracking: [AI tasks](tasks/AI-TODO.md), [human decisions](tasks/HUMAN-TODO.md), [bugs](tasks/BUGS.md), [fixes](tasks/FIXES.md).
+
+See [project status](docs/project-status.md) for current progress and unresolved decisions. Proposed features and planned tests are not approved MVP scope or implemented functionality.

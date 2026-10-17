@@ -44,6 +44,11 @@ QR Medication Information Platform is intended to let a patient scan a medicatio
 ## Documentation expectations
 - Update architecture, security, privacy, and decision records when decisions change. Mark unresolved matters `TODO` or `Decision Required` rather than guessing.
 - README and status documentation must distinguish implemented functionality from plans.
+- Follow the feature record and status conventions in `docs/product-requirements.md`. Separate approved decisions/principles, proposals awaiting Product Owner approval, assumptions, research questions, release priority, and implementation status.
+- Preserve accepted ADRs; flag conflicts and propose resolutions rather than silently changing accepted architecture or security decisions.
+- Use stable F-/REQ-/J-/REG-/T-/ADR- and HUM-/AI-/BUG-/FIX- identifiers with cross-links, following `docs/product-requirements.md`; never renumber or reuse identifiers. Planned test records do not mean executable tests exist or have passed.
+- Treat simple mobile-first UX, progressive disclosure, multilingual accessibility, and RTL as core product principles. Patient-specific functionality remains future scope until explicit MVP approval; mandatory security principles still apply whenever introduced.
+- Use synthetic patient data only, including in research and design materials. Regulatory and medical accuracy questions require evidence and qualified review; do not present them as verified conclusions.
 
 ## Task and issue tracking
 - If the AI discovers a bug, record it in `tasks/BUGS.md`.
