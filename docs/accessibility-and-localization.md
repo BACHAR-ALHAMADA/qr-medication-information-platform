@@ -19,3 +19,9 @@ Translations require qualified medical/language review, source-version linkage, 
 T-003 combines manual accessibility checks, assisted technology sessions, fluent RTL review, and participant testing from the [UX blueprint](ui-ux-blueprint.md). Automated checks alone are insufficient.
 
 Decision Required: initial languages, reviewer availability, accessibility standard/version and level, supported browsers/devices/assistive tools, acceptance targets, and fallback behavior (HUM-002, HUM-003). Any legal accessibility obligations require research under REG-003; no standard is asserted here as a verified legal requirement.
+
+## Phase 1B inclusion and evaluation
+
+Include newcomers alongside older adults, RTL users and people with disabilities in the research lenses; do not infer literacy, preferred language, disability or immigration status. Use accessible synthetic tasks without collecting immigration or health histories. The [impact plan](pilot-and-impact-evaluation.md) separates comprehension, language access and assistive-technology findings from unproven clinical benefits (REQ-012, T-010).
+
+The proposed first demonstration includes one LTR and one RTL language fixture with visible language names, semantic direction and preserved source/revision context. Exact languages and review arrangements await HUM-002/HUM-003. Structural fixture validation is not medical translation approval. Maintain paper alternatives when needed or required; sustainability targets must not undermine accessibility or hide essential safety information.

@@ -58,6 +58,8 @@ infrastructure/                 Planned environment-specific infrastructure spac
 
 The current work is brainstorming, requirements analysis, and UX/UI planning within Phase 1. The initial target market is Manitoba, Canada. Calm mobile-first design, simple UX with progressive disclosure, multilingual accessibility, and RTL support are core product principles. Patient-specific instructions remain a future capability until MVP scope is explicitly approved; existing security requirements remain mandatory whenever introduced.
 
+Phase 1B documents a standalone central reviewed catalogue, pharmacist information finding without full-description authoring, and no-account public QR reads. Patient understanding, inclusion, avoidable-paper reduction where permitted, and future digital healthcare efficiency are objectives to evaluate, not demonstrated benefits. See [integration strategy](docs/integration-strategy.md), [pilot and impact evaluation](docs/pilot-and-impact-evaluation.md), and the [proposed public demonstration](docs/project-roadmap.md#proposed-next-milestone--public-catalogue-to-qr-demonstration). No implementation, PMS connection or real-world pilot is authorized by these plans.
+
 Start with the [product vision](docs/product-vision.md), [requirements and documentation standard](docs/product-requirements.md), [feature catalogue](docs/feature-catalogue.md), and [roadmap](docs/project-roadmap.md).
 
 - Experience: [personas](docs/user-personas.md), [journeys](docs/user-journeys.md), [UX blueprint and research](docs/ui-ux-blueprint.md), [design system](docs/design-system.md), [accessibility/localization](docs/accessibility-and-localization.md).

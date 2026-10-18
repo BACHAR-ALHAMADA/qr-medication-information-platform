@@ -16,6 +16,8 @@ Design multilingual and RTL behavior with the initial layouts, including text ex
 
 Exact content hierarchy, labels, navigation, and dashboard actions require research (HUM-001, AI-001). See [journeys](user-journeys.md).
 
+Phase 1B prioritizes finding existing central reviewed information rather than full-description authoring. A public-only finder and public medication page are the [proposed first demonstration](project-roadmap.md#proposed-next-milestone--public-catalogue-to-qr-demonstration); this does not approve a protected dashboard or PMS workflow. Public reading requires no patient account. Keep integration mechanics out of patient navigation and maintain essential safety visibility through progressive disclosure.
+
 ## UX research and usability testing
 
 Recruit older adults, people with limited English proficiency including RTL language users, pharmacists, and people with accessibility needs or assistive technology experience. Include overlapping needs rather than treating groups as mutually exclusive. Recruitment channels, languages, accessibility accommodations, consent materials, and participant support need HUM-009 and HUM-002.
@@ -27,3 +29,5 @@ Next use low-fidelity concepts and moderated task sessions with synthetic medica
 Observe task completion, misunderstandings, assistance needed, navigation errors, safety-information comprehension, and participant confidence. Agree success thresholds before summative validation; do not invent targets now. Combine screen reader, keyboard, text enlargement, RTL and mobile checks with participant feedback (T-002, T-003).
 
 Minimize research records, avoid health histories and secret-bearing links, agree consent/retention before collection, and do not record sessions by default. Synthesize findings into linked F/REQ/T records, identify severity and uncertainty, revise concepts, and retest significant failures. AI-001 tracks synthesis; HUM-009 tracks human arrangements.
+
+Include newcomers among the limited-English-proficiency research lenses without collecting immigration status. The [impact plan](pilot-and-impact-evaluation.md) adds comparable comprehension, pharmacist timing, paper accounting and satisfaction measures, with HUM-012 approval gates; these measures do not approve participant activities or establish benefits.

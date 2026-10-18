@@ -25,6 +25,9 @@ Approval status, release priority, and implementation status are separate fields
 | REQ-007 | Collect and expose only purpose-bound data; avoid sensitive telemetry | Mandatory existing privacy guidance | All applicable features / T-005 |
 | REQ-008 | Keep modular monolith boundaries and the planned PostgreSQL stack | Accepted ADR-001 and ADR-002 | All future implementation / T-007 |
 | REQ-009 | Use synthetic patient data only in design, research materials, and testing | Approved project constraint | All / T-008 |
+| REQ-010 | Standalone central reviewed catalogue; pharmacist information selection without full-description authoring; no patient account for public QR reads | Phase 1B Product Owner operating-model direction, 2026-10-17; delivery scope awaits HUM-001/HUM-003 | F-001/F-002/F-004 / T-001/T-004 |
+| REQ-011 | Preserve future PMS interoperability through explicit boundaries, minimum authorized data and provider-independent adapters; no assumed API access | Phase 1B strategy direction; actual integration is future proposal awaiting HUM-011 | F-007 / T-009 |
+| REQ-012 | Evaluate comprehension, inclusion, workflow, avoidable paper, content integrity and satisfaction without claiming unmeasured benefits | Phase 1B evaluation direction; protocol, targets and activities await HUM-009/HUM-012 | F-008 and existing public workflow / T-010 |
 
 ## Feature record standard
 

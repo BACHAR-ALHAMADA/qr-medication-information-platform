@@ -20,6 +20,8 @@ Research invalid references, unavailable content/translations, small screens, sl
 
 The task set, publication powers, and QR handling are Decision Required (HUM-001, HUM-003, HUM-005). Test permission denial, tenant boundaries, interruption, and error recovery through T-002, T-005, T-006.
 
+Phase 1B adds a public-only variant of this pharmacist discovery journey: find an item in the central reviewed catalogue, confirm identity/language availability and open its public QR. It needs no full-description authoring, patient data or PMS connection. The [proposed demonstration](project-roadmap.md#proposed-next-milestone--public-catalogue-to-qr-demonstration) uses synthetic public fixtures and grants no protected workspace capability. The protected J-002 flow above remains subject to its authorization decisions.
+
 ## J-003 — Future private instructions (F-006)
 
 A patient-specific reference is presented, a separate verification step is completed, and only then may narrowly authorized private instructions be returned. Before authorization, public information uses its own path and no private fields are fetched into the browser. Failed, expired, revoked, or invalid access receives non-enumerating feedback.

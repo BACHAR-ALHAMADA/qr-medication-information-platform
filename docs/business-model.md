@@ -17,3 +17,9 @@ The initial geographic focus is Manitoba. Pharmacies are a candidate workflow an
 - What evidence would establish useful outcomes without collecting unnecessary health information?
 
 Do not assume patient data monetization, advertising, a subscription, or an integration is required. Discovery evidence should inform HUM-001 scope and HUM-008 operating model before commercial commitments.
+
+## Phase 1B operating and impact assumptions
+
+The intended central catalogue concentrates editorial, medical and translation review work rather than requiring pharmacists to write full descriptions. Determine who funds and operates that work under HUM-003/HUM-010; central management does not establish a viable business or lower costs. Standalone operation should deliver the public workflow without paid PMS connectivity; future vendor licensing, partner fees, testing and ongoing adapter maintenance require HUM-011 evidence before commitments.
+
+Patient understanding, multilingual inclusion, measurable avoidable-paper reduction and digital workflow efficiency are strategic objectives, not proven returns. Use the [impact plan](pilot-and-impact-evaluation.md) to establish baselines and limitations. Do not assume carbon savings, faster pharmacy work, reduced clinical risk or return on investment. Preserve paper where required or needed and include fallback/rework costs when assessing efficiency.

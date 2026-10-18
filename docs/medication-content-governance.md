@@ -2,6 +2,10 @@
 
 Status: Proposed governance model; sources, reviewers, rights, publication authority and timing require HUM-003. No medication content has been supplied, medically reviewed, or published.
 
+Phase 1B establishes a central reviewed catalogue as the intended operating model (REQ-010). Pharmacists select appropriate existing public information rather than authoring full drug descriptions for each use. Central editorial responsibility is distinct from pharmacy selection and from the pharmacy's clinical record; exact publication permissions remain HUM-003/HUM-005 decisions.
+
+Proposed review states include draft, in review, approved for publication, published, superseded and withdrawn. These are discussion states, not an implemented schema or permission model. Each translation must be tied to its reviewed source revision and its own review outcome. Synthetic demonstrator fixtures must be clearly labelled as nonclinical and must never be presented as medically reviewed real medication guidance. Real publication requires qualified review and confirmed reuse rights; a DIN, terminology entry or PMS match does not supply that approval.
+
 ## Intended quality foundations (F-004 / REQ-004)
 
 Distinguish general public medication information from private patient-specific instructions. Preserve source provenance and revision identity; do not represent generated, translated, simplified, or audio material as medically approved without qualified review.

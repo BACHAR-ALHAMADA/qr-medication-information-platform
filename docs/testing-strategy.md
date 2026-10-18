@@ -12,6 +12,8 @@ Status: Planned coverage only. No executable tests exist and none were run durin
 | T-006 | Future private access boundaries, tenant isolation, failed verification, copied/expired/revoked tokens, no premature browser data | F-006 and protected F-002 operations, REQ-005/REQ-006; adversarial integration/security tests |
 | T-007 | Dependency direction, module ownership and explicit contracts | REQ-008, ADR-001/ADR-002; future architecture checks and review |
 | T-008 | Synthetic fixtures/materials and absence of real patient data or production secrets | REQ-009; review of research materials and future fixtures |
+| T-009 | Future approved connector contracts, identifier mapping/version drift, ambiguous/unknown products, external input validation, authorization revocation, tenant boundaries and outage fallback | F-007, REQ-011; vendor-supported synthetic contract tests only after HUM-011; no API access or conformance claim assumed |
+| T-010 | Stage-specific impact protocol, comprehension/translation checks, accessible tasks, comparable workflow timing, paper baseline/denominators/fallback accounting and minimized research records | F-008, REQ-012; [evaluation plan](pilot-and-impact-evaluation.md); no outcome or participant collection implied |
 
 ## Discovery validation
 
@@ -24,3 +26,5 @@ Record each result with the test ID, scenario, artifact/version, configuration/l
 Add deterministic xUnit tests for Domain/Application behavior and integration tests for API/persistence boundaries. Include authorization, tenant isolation, QR access, input validation, and leakage tests. Verify isolation against the chosen persistence mechanism, not only mocked services. Keep medical correctness review distinct from software correctness.
 
 Before any pilot, resolve applicable content, privacy/security, accessibility, and operations decisions; revisit the threat model and document actual results and residual issues. Tooling and exact checks will follow approved implementation scope; no dependencies are installed now.
+
+The proposed first public demonstration uses T-001/T-003/T-004/T-005/T-007/T-008 for technical and fixture checks; T-002 participant sessions require HUM-009 authorization. T-010 at demonstration stage checks measurement readiness and simulated counts only, not real-world impact. Acceptance scenarios are in the [roadmap](project-roadmap.md#proposed-next-milestone--public-catalogue-to-qr-demonstration). No test IDs denote implemented or passed tests.

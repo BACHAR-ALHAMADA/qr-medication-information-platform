@@ -4,6 +4,23 @@ Status: Product direction approved for discovery; MVP scope not approved. Update
 
 The QR Medication Information Platform aims to help people reach trusted medication information by scanning a QR code. The initial target market is Manitoba, Canada. Nothing described here is implemented.
 
+## Phase 1B strategic objectives
+
+The Product Owner's expanded direction, 2026-10-17, establishes four objectives for discovery and evaluation, not demonstrated benefits or an approved MVP feature list:
+
+1. Patient understanding and accessible medication information: help people find and understand relevant reviewed public guidance and safety information.
+2. Multilingual inclusion: design for older adults, newcomers, RTL users and people with disabilities, recognizing overlapping needs without assuming language or ability from identity.
+3. Environmental sustainability: measure reduction of avoidable paper use where legally permitted, while preserving paper access when required or needed. Paper counts alone do not establish net environmental benefit.
+4. Digital healthcare efficiency and future interoperability: reduce avoidable information-finding work and preserve a path to Canadian pharmacy/healthcare connections, without making external integration necessary to initial operation.
+
+The [evaluation plan](pilot-and-impact-evaluation.md) defines proposed measures and approval gates. No improvement in comprehension, time, inclusion, paper use or health outcomes has been measured.
+
+## Intended initial operating model
+
+Operate independently with a centrally managed, reviewed medication catalogue. Pharmacists find appropriate existing information rather than manually writing full drug descriptions. Public QR access requires no patient account and leads to calm, mobile-first, multilingual and accessible information. Content retains provenance, review states, version history and correction handling under [content governance](medication-content-governance.md).
+
+This is authorized product direction, not implementation approval. The precise catalogue, languages, roles, publication process and demonstrator scope still need HUM-001/HUM-002/HUM-003 decisions. [Integration strategy](integration-strategy.md) keeps future PMS access optional and separates pharmacy records from this platform's public content. Protected patient-specific instructions remain future capability.
+
 ## Approved product principles
 
 - A calm, minimal, mobile-first patient experience with simple language and clear medication safety information.

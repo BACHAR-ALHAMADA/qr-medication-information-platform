@@ -19,3 +19,9 @@ Use synthetic patient data only. Minimize research participant information and d
 Legal applicability, organizational responsibilities, notices, access/correction, retention/deletion, and breach workflows need qualified research (HUM-007; [research register](regulatory-research.md)). Hosting, recovery and security operations need HUM-008. No compliance or legal conclusion is established.
 
 Planned security coverage is T-005/T-006; revisit the threat model once approved workflows and deployment are concrete (AI-002).
+
+## Phase 1B boundaries
+
+Public catalogue reads need no patient account and no patient/dispensing data. Central editorial powers and any tenant-owned staff operations remain protected; central content management is not authority over pharmacy clinical records. Future [PMS adapters](integration-strategy.md) require explicit pharmacy/vendor authorization, verified tenant binding and least-privilege fields/actions. Do not log external payloads or expose credentials through connector errors. No external account/API connection is authorized now.
+
+The [impact plan](pilot-and-impact-evaluation.md) distinguishes synthetic demonstrations from participant research and a separately authorized future pharmacy pilot. Even optional feedback can be personal research data: HUM-009 controls consent/access/retention and HUM-012 the evaluation protocol. No real-patient collection, patient tracking or health-history gathering is approved by these strategies.

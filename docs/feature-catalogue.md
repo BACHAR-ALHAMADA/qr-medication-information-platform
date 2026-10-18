@@ -5,7 +5,7 @@ All features are unimplemented. Release priorities and MVP inclusion await HUM-0
 ## F-001 — Public QR medication information
 
 - **Purpose / users:** Help patients and supporting caregivers reach trusted general information.
-- **Functional requirements:** Proposed QR entry to the relevant public content; distinguish source and revision; handle unavailable or invalid references without exposing private records (REQ-001, REQ-004).
+- **Functional requirements:** Proposed QR entry to the relevant centrally reviewed public content without a patient account; distinguish source and revision; handle unavailable or invalid references without exposing private records (REQ-001, REQ-004, REQ-010).
 - **UX:** Essential information first, clear safety information, mobile layout, optional detail expansion (REQ-002, REQ-003).
 - **Privacy/security:** Public references grant no patient access; no sensitive QR payloads; minimized telemetry.
 - **Dependencies:** Content sources and review process (HUM-003), public QR semantics and scope (HUM-001); HUM-004 applies only to future private access, and ADR-003 remains binding for private tokens.
@@ -16,7 +16,7 @@ All features are unimplemented. Release priorities and MVP inclusion await HUM-0
 ## F-002 — Pharmacist dashboard
 
 - **Purpose / users:** Support pharmacists in relevant content and QR workflows with low cognitive burden.
-- **Functional requirements:** Candidate authorized staff workspace; actual actions and role permissions require workflow research and approval (REQ-006).
+- **Functional requirements:** Phase 1B direction is finding appropriate central catalogue information and its public QR without manually writing full drug descriptions or requiring PMS access (REQ-010). Protected workspace actions and permissions still require research and approval (REQ-006); a public-only catalogue finder does not imply access to staff or tenant data.
 - **UX:** Clear primary tasks, understandable status, progressive disclosure of secondary controls; validate with pharmacists rather than assume a workflow.
 - **Privacy/security:** Server-side authorization and verified tenant context for protected actions; no sensitive payloads in logs.
 - **Dependencies:** HUM-001 scope, HUM-005 identity/permissions, HUM-006 tenant design, AI-001 research synthesis.
@@ -38,7 +38,7 @@ All features are unimplemented. Release priorities and MVP inclusion await HUM-0
 ## F-004 — Reviewed and versioned medication content
 
 - **Purpose / users:** Help patients and pharmacists distinguish trustworthy current material from drafts or outdated information.
-- **Functional requirements:** Proposed provenance, revision identity, medical review, translation review, and correction workflow (REQ-004).
+- **Functional requirements:** Central catalogue with provenance, explicit review states, revision identity, medical review, translation review and correction workflow (REQ-004, REQ-010). Product direction is established; detailed publication workflow awaits HUM-003.
 - **UX:** Show understandable source/revision context without clutter; make safety-critical corrections clear.
 - **Privacy/security:** Controlled publication permissions and auditable changes; public content must not contain patient-specific instructions.
 - **Dependencies:** HUM-003 sources, licensing, reviewers, ownership and publication process; HUM-007 research.
@@ -67,3 +67,25 @@ All features are unimplemented. Release priorities and MVP inclusion await HUM-0
 - **Proposed acceptance:** No private data reaches the browser before successful separate identity verification and server authorization. Possession of a copied token alone must never authorize private patient-data access; a token cannot necessarily be detected as copied. Expired and revoked tokens must be rejected. Failed verification, unauthorized staff, and cross-tenant requests cannot disclose private data.
 - **Testing:** T-005, T-006, T-008; security review before any pilot.
 - **Priority / status:** Future capability; not approved MVP scope; unimplemented. Mandatory security rules apply whenever introduced.
+
+## F-007 — Future PMS interoperability
+
+- **Purpose / users:** Explore efficient access to appropriate public information from existing pharmacy workflows; pharmacists and authorized integration operators.
+- **Functional requirements:** Candidate vendor product-reference lookup through provider-independent adapters; standalone operation remains available (REQ-011). No clinical write-back or patient-record exchange is approved.
+- **UX:** Avoid connector-specific clutter; make unavailable or ambiguous matches explicit and retain standalone lookup.
+- **Privacy/security:** Explicit vendor/pharmacy authority, minimal product data, verified tenant binding for protected operations, safe telemetry and secrets. No patient data is needed for public lookup.
+- **Dependencies:** HUM-011 actual vendor access and commercial/technical terms, HUM-003 mappings/content, HUM-005/HUM-006 protected access, HUM-007 legal/privacy review; [integration strategy](integration-strategy.md).
+- **Proposed acceptance:** Once an integration contract is approved, supported synthetic product references map correctly; ambiguous mappings and cross-tenant/unauthorized messages are rejected; vendor outage does not prevent standalone public access.
+- **Testing:** Planned T-009 plus T-005/T-007/T-008.
+- **Priority / status:** Future proposal awaiting Product Owner approval; not an MVP dependency; unimplemented.
+
+## F-008 — Sustainability and impact evaluation
+
+- **Purpose / users:** Assess patient understanding, inclusion, pharmacy effort and avoidable paper; Product Owner, pharmacy partners and research participants.
+- **Functional requirements:** Proposed stage-specific protocol and aggregate measures, not a mandated in-product analytics dashboard (REQ-012).
+- **UX:** Accessible research materials and paper alternatives; participation does not require sharing health history.
+- **Privacy/security:** Synthetic tasks first; prior authorization for recruitment/data collection, minimized research records; no real-patient collection approved.
+- **Dependencies:** HUM-009 research arrangements, HUM-012 protocol/baselines/permissions, HUM-007 paper constraints and HUM-003 content review; [evaluation plan](pilot-and-impact-evaluation.md).
+- **Proposed acceptance:** An approved protocol distinguishes synthetic demonstration, usability research and any later pharmacy pilot; defines baseline/denominators and accounts for fallback/reprints without claiming unobserved outcomes.
+- **Testing:** Planned T-010; relevant T-002/T-003/T-004/T-008.
+- **Priority / status:** Evaluation strategy requested; research execution, tooling and real-world pilot await separate approvals; unimplemented.

@@ -16,6 +16,14 @@ API handles transport through Application/module contracts. Application coordina
 
 The existing module placeholders express architectural possibilities, not approved MVP scope. In particular, PatientMedication and Verification placeholders do not authorize F-006 implementation. Multilingual, RTL and accessible mobile design are initial product concerns; storage and client implementation details remain unchosen.
 
+## Phase 1B operating boundaries
+
+MedicationCatalogue remains responsible for central public content, review states, provenance and revisions. Initial public reads and pharmacist catalogue finding do not require PMS connectivity or patient accounts (REQ-010). Protected editorial/tenant actions still require server-side authorization; central content is not a tenant-data bypass. Publication responsibilities and central-versus-tenant permissions need HUM-003/HUM-005/HUM-006.
+
+The pharmacy's PMS remains its clinical system of record. PostgreSQL in ADR-002 is this platform's record store, not a replacement for pharmacy clinical records. A future approved adapter would implement a narrow Application contract in Infrastructure, validate external inputs and preserve module/tenant boundaries; do not create an integration framework in advance. [Integration strategy](integration-strategy.md) records identifier, vendor-access and standards research (F-007, REQ-011).
+
+The [proposed demonstration](project-roadmap.md#proposed-next-milestone--public-catalogue-to-qr-demonstration) can use deterministic synthetic fixtures behind an Application-facing read interface if approved. That temporary demonstration approach is not a replacement for ADR-002 or approval of a production persistence design. No schema, new module or infrastructure is introduced now.
+
 ## Decisions still needed
 
 HUM-004 covers QR/verification lifecycle; HUM-005 identity and permissions; HUM-006 tenant isolation and ownership; HUM-008 deployment, availability, capacity and recovery. Resolve isolation before persistence implementation. Do not add Redis, a broker, Kubernetes, or cloud-specific infrastructure without a concrete requirement.
