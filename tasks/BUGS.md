@@ -1,6 +1,6 @@
 ﻿# Bugs
 
-No open bugs are currently recorded. Documentation scope ambiguity BUG-001 was corrected; see [FIX-001](FIXES.md). No application behavior has been implemented or tested.
+No open bugs are currently recorded. Documentation scope ambiguity BUG-001 was corrected; see [FIX-001](FIXES.md). Phase 2A source-metadata implementation and test verification status are recorded in [backend documentation](../docs/phase2a-backend.md); an environment/package approval block is not an application bug.
 
 | ID | Finding | Status / trace |
 |---|---|---|

@@ -2,6 +2,8 @@
 
 IDs are stable. These are documentation/design follow-ups, not authorization to implement application features. All remain pending; no task is claimed complete.
 
+Phase 2A separately authorizes the minimal exact-DIN adapter and mocked tests; implementation status is in [backend documentation](../docs/phase2a-backend.md). The relevant AI-004 scope reconciliation is recorded there; the backend build and 53 mocked tests now pass. Broader scope, rights and operational follow-ups, including AI-007, remain open.
+
 | ID | Necessary follow-up | Dependency / trace |
 |---|---|---|
 | AI-001 | Prepare research materials and synthesize authorized UX findings into revised journeys, candidate workflows and measurable acceptance criteria; retain evidence limitations. | Preparatory desk research and draft materials may proceed before final Product Owner decisions, with assumptions labelled. Participant recruitment and data collection must wait for appropriate HUM-009 authorization and relevant HUM-002 language/accessibility arrangements; implementation requires separate approval. F-001/F-002/F-003, T-002/T-003; [UX plan](../docs/ui-ux-blueprint.md) |

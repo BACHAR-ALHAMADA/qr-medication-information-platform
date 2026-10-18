@@ -1,6 +1,6 @@
 # Technical architecture overview
 
-Status: Existing architecture direction preserved. No API, frontend, persistence model, deployment, or tests are implemented.
+Status: Existing architecture direction preserved. Phase 2A adds a read-only source-metadata API and mocked test projects in the working tree; validation status is in [backend documentation](phase2a-backend.md). No frontend, persistence model or deployment is implemented.
 
 ## Accepted decisions
 
@@ -29,3 +29,7 @@ The [proposed demonstration](project-roadmap.md#proposed-next-milestone--public-
 HUM-004 covers QR/verification lifecycle; HUM-005 identity and permissions; HUM-006 tenant isolation and ownership; HUM-008 deployment, availability, capacity and recovery. Resolve isolation before persistence implementation. Do not add Redis, a broker, Kubernetes, or cloud-specific infrastructure without a concrete requirement.
 
 No accepted ADR conflicts with the approved discovery principles. Existing patient-verification MVP wording is a scope ambiguity corrected in linked guidance; the underlying security decision is unchanged. Future conflicts must be flagged with a proposed resolution and owner decision rather than silently rewriting accepted ADRs. T-007 describes planned architecture verification.
+
+## Phase 2A implementation boundary
+
+Application owns the exact-DIN lookup contract and result records. Infrastructure owns the DPD adapter, configuration validation and HTTP normalization. The API endpoint invokes Application contracts; only the host composition root references Infrastructure for service registration. No Domain dependency is needed for this metadata-only slice and no persistence or business-rule layer is fabricated. [Backend details](phase2a-backend.md) describe the single endpoint, source/provenance contract and safe failure behavior. Tests use mocked HTTP and in-process hosting, not live API calls.

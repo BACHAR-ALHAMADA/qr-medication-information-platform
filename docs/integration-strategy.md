@@ -51,3 +51,5 @@ AI-005 will prepare a capability/mapping evidence matrix after the relevant use 
 ## Phase 1C DPD research evidence
 
 The Product Owner authorized real public medication data and read-only Health Canada API probes for Phase 1C. [DPD research results](health-canada-dpd-research.md) record successful product/ingredient/form/route/status requests for three DINs and monograph links separately verified through official product pages. This narrows the earlier access uncertainty for those public DPD endpoints only; it establishes no PMS access, API SLA, unrestricted monograph reuse or approved runtime integration. The source-lookup adapter is an unimplemented proposal under F-004, distinct from future PMS F-007.
+
+Phase 2A subsequently authorizes the minimal exact-DIN DPD metadata adapter and read-only endpoint. Its working-tree implementation, configuration and verification status are in [backend documentation](phase2a-backend.md); that is separate from PMS integration and clinical catalogue publication. There is no persisted import or monograph ingestion.

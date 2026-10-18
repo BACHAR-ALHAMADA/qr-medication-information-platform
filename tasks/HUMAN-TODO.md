@@ -30,3 +30,11 @@ All entries are open / Decision Required. Do not mark complete without human con
 - HUM-001: review the [DPD source-lookup implementation proposal](../docs/health-canada-dpd-research.md) before code; authorization for real public product research does not approve patient-facing publication or expand the synthetic prototype automatically.
 - HUM-003/HUM-007: confirm DPD metadata attribution/reuse and distinguish sponsor-monograph link-only use from reproduction, hosting, extraction, translation or audio rights. The dataset's licence listing is evidence, not blanket clearance for every linked document.
 - HUM-008: approve upstream request volume, revalidation/freshness, retained-snapshot and outage policy before a live dependency. HUM-011 remains the separate PMS/vendor decision; successful DPD research grants no PMS access.
+
+## Phase 2A scope authorization and remaining actions
+
+The Product Owner explicitly approved the first exact-DIN read-only DPD backend and automated mocked tests, plus committing/pushing the six Phase 1C documentation files. This confirms only that sub-scope of HUM-001; broader MVP/publication decisions remain open. Implementation must remain uncommitted for review. No private data, persistence, frontend, summaries or translations are authorized.
+
+- The Product Owner explicitly approved required test-only package restoration after the earlier automatic-review block. Restore/build succeeded and all 53 mocked tests passed (see [backend status](../docs/phase2a-backend.md)); this resolves only that restore authorization, not broader deployment/MVP decisions.
+- HUM-008: choose a current supported patched .NET runtime/SDK before deployment; installed development tools are SDK 8.0.100/runtime 8.0.0. Local verification does not establish production readiness.
+- HUM-003/HUM-007 reuse, medical publication and monograph rights decisions remain open. No human task is marked wholly complete by this implementation authorization.

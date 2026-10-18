@@ -1,6 +1,6 @@
 # Testing and validation strategy
 
-Status: Planned coverage only. No executable tests exist and none were run during documentation setup. Use synthetic patient data and no production secrets.
+Status: Phase 2A adds executable mocked HTTP unit/API integration tests for the DPD slice; 45 unit and 8 API integration tests passed after approved restoration. The remaining catalogue below describes planned coverage, not a claim that every test exists or passes. Use synthetic patient data and no production secrets. See [backend verification](phase2a-backend.md).
 
 | ID | Planned coverage | Trace / method |
 |---|---|---|
@@ -14,7 +14,7 @@ Status: Planned coverage only. No executable tests exist and none were run durin
 | T-008 | Synthetic fixtures/materials and absence of real patient data or production secrets | REQ-009; review of research materials and future fixtures |
 | T-009 | Future approved connector contracts, identifier mapping/version drift, ambiguous/unknown products, external input validation, authorization revocation, tenant boundaries and outage fallback | F-007, REQ-011; vendor-supported synthetic contract tests only after HUM-011; no API access or conformance claim assumed |
 | T-010 | Stage-specific impact protocol, comprehension/translation checks, accessible tasks, comparable workflow timing, paper baseline/denominators/fallback accounting and minimized research records | F-008, REQ-012; [evaluation plan](pilot-and-impact-evaluation.md); no outcome or participant collection implied |
-| T-011 | Proposed DPD source adapter: exact DIN/code association, English/French metadata, ingredient units, object/array/null/empty handling, multiple ingredients, no-match, partial failure, timeouts, throttling, malformed response and no automatic publication | F-001/F-004, REQ-001/REQ-004/REQ-010; [Phase 1C research and plan](health-canada-dpd-research.md). Manual read-only research requests succeeded; no application tests or adapter exist. Deterministic CI should use controlled responses, not depend on live API access. |
+| T-011 | DPD source adapter: exact DIN/code association, language forwarding, ingredient units, object/array/null/empty handling, multiple ingredients, no-match, partial failure, timeouts/cancellation, HTTP errors, malformed response and fixed nonpublication flags | F-001/F-004, REQ-001/REQ-004/REQ-010; mocked unit/API test projects exist under tests/Unit and tests/Integration. All 53 mocked tests passed; see [backend verification](phase2a-backend.md). No live dependency in deterministic tests. |
 
 ## Discovery validation
 
@@ -26,6 +26,8 @@ Record each result with the test ID, scenario, artifact/version, configuration/l
 
 Add deterministic xUnit tests for Domain/Application behavior and integration tests for API/persistence boundaries. Include authorization, tenant isolation, QR access, input validation, and leakage tests. Verify isolation against the chosen persistence mechanism, not only mocked services. Keep medical correctness review distinct from software correctness.
 
-Before any pilot, resolve applicable content, privacy/security, accessibility, and operations decisions; revisit the threat model and document actual results and residual issues. Tooling and exact checks will follow approved implementation scope; no dependencies are installed now.
+Before any pilot, resolve applicable content, privacy/security, accessibility, and operations decisions; revisit the threat model and document actual results and residual issues. Tooling and exact checks follow approved implementation scope. Phase 2A restored only required test-package dependencies; production projects use the shared .NET/ASP.NET framework without NuGet package dependencies.
 
-The proposed first public demonstration uses T-001/T-003/T-004/T-005/T-007/T-008 for technical and fixture checks; T-002 participant sessions require HUM-009 authorization. T-010 at demonstration stage checks measurement readiness and simulated counts only, not real-world impact. Acceptance scenarios are in the [roadmap](project-roadmap.md#proposed-next-milestone--public-catalogue-to-qr-demonstration). No test IDs denote implemented or passed tests.
+The proposed first public demonstration uses T-001/T-003/T-004/T-005/T-007/T-008 for technical and fixture checks; T-002 participant sessions require HUM-009 authorization. T-010 at demonstration stage checks measurement readiness and simulated counts only, not real-world impact. Acceptance scenarios are in the [roadmap](project-roadmap.md#proposed-next-milestone--public-catalogue-to-qr-demonstration). These demonstration checks remain planned; T-011 has the narrower implemented coverage described below.
+
+Phase 2A verification exception to the earlier planning context: T-011 has 53 passing mocked tests and a separate authorized live smoke check through the local API on 2026-10-17. DINs 00559407, 01933558 and 02099233 returned HTTP 200 with the expected associated metadata/provenance and fixed nonpublication flags; 00000000 returned safe HTTP 404. No code changed and the already-passing build/tests were not repeated. [Exact endpoint and observed results](phase2a-backend.md#live-verification-through-the-local-api) are recorded separately from planned UX/security/persistence coverage.

@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="../Modules/MedicationCatalogue/Application/MedicationCatalogue.Application.csproj" />
+    <ProjectReference Include="../Modules/MedicationCatalogue/Infrastructure/MedicationCatalogue.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

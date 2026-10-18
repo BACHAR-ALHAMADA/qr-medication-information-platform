@@ -1,6 +1,6 @@
 # Feature catalogue
 
-All features are unimplemented. Release priorities and MVP inclusion await HUM-001; product principles do not automatically approve individual features. Criteria below are proposed review criteria, not completed tests. REQ IDs are defined in [requirements](product-requirements.md); T IDs in [testing](testing-strategy.md).
+Full features below remain unimplemented. Phase 2A explicitly approves only a small exact-DIN source-metadata lookup supporting F-001/F-004; its implementation and test status are in [backend documentation](phase2a-backend.md). That approval does not approve QR flows, editorial publication or the full MVP. Release priorities and broader MVP inclusion await HUM-001; product principles do not automatically approve individual features. Criteria below remain proposed feature-level review criteria. REQ IDs are defined in [requirements](product-requirements.md); T IDs in [testing](testing-strategy.md).
 
 ## F-001 — Public QR medication information
 

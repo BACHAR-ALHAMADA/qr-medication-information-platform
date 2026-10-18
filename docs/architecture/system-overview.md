@@ -2,7 +2,7 @@
 
 ## Intended system
 
-The platform will serve a public medication information page and, after a patient verification step, private instructions for a specific patient-medication assignment. Staff workflows will support authorized professionals and organizations. This is planned behavior; none is implemented in Phase 1.
+The platform is intended to serve a public medication information page and, in future approved scope after a patient verification step, private instructions for a specific patient-medication assignment. Staff workflows will support authorized professionals and organizations. Those experiences remain planned. Phase 2A adds only a read-only DPD source-metadata lookup backend; see [implementation and verification status](../phase2a-backend.md).
 
 ## Shape
 
