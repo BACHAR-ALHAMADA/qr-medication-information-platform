@@ -47,3 +47,7 @@ HUM-011 must identify an actual vendor/use case and confirm supported interface/
 REG-007 tracks standards applicability, source terms and integration obligations. Technical risks include wrong-product matching, outdated terminology, vendor version drift, external outages, overbroad permissions and cross-tenant leakage. Commercial risks include unavailable access, fees, contracts, vendor lock-in and maintenance costs. Lack of access must leave the standalone workflow viable.
 
 AI-005 will prepare a capability/mapping evidence matrix after the relevant use case is clarified. Future T-009 coverage must include ambiguous mappings, revoked authorization, malformed messages, tenant boundaries, outage fallback and supported contract versions. No adapter implementation or conformance claim is approved.
+
+## Phase 1C DPD research evidence
+
+The Product Owner authorized real public medication data and read-only Health Canada API probes for Phase 1C. [DPD research results](health-canada-dpd-research.md) record successful product/ingredient/form/route/status requests for three DINs and monograph links separately verified through official product pages. This narrows the earlier access uncertainty for those public DPD endpoints only; it establishes no PMS access, API SLA, unrestricted monograph reuse or approved runtime integration. The source-lookup adapter is an unimplemented proposal under F-004, distinct from future PMS F-007.

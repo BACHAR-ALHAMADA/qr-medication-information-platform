@@ -4,7 +4,7 @@ Last updated: 2026-10-17
 
 ## Current phase
 
-**Phase 1B — connected healthcare, accessibility and sustainability strategy**, within Phase 1 documentation/discovery. Product direction now includes standalone central reviewed content, no-account public QR access, future optional interoperability and proposed impact evaluation. MVP and demonstration implementation scope are not approved; patient-specific functionality remains future scope. Existing accepted ADRs and security/privacy principles are preserved.
+**Phase 1C — Health Canada medication data research**, within Phase 1 documentation/discovery. Read-only DPD feasibility probes used real public medication product data and no patient data. Standalone central reviewed content, no-account public QR access, future optional interoperability and proposed impact evaluation remain product direction. Backend implementation and patient-facing use of imported content are not approved; patient-specific functionality remains future scope. Existing accepted ADRs and security/privacy principles are preserved.
 
 ## Implemented
 
@@ -41,4 +41,6 @@ Outstanding decisions above are tracked in [Human TODO](../tasks/HUMAN-TODO.md):
 
 The former verification-MVP wording has been clarified in authentication/minimization guidance; mandatory future private-access controls are unchanged. Older architecture descriptions describe intended eventual capabilities, not initial release approval. No accepted ADR conflict is currently identified; release scope and technical details remain unresolved.
 
-Phase 1B adds [integration strategy](integration-strategy.md) (HUM-011/AI-005) and [pilot/impact evaluation](pilot-and-impact-evaluation.md) (HUM-012/AI-006). No government/PMS API access, demonstrated sustainability/clinical benefit, real-patient collection or pilot is approved. The next proposed milestone is a synthetic public catalogue-to-QR demonstration with LTR/RTL fixtures; it awaits HUM-001/HUM-002/HUM-003 and separate implementation approval.
+Phase 1B added [integration strategy](integration-strategy.md) (HUM-011/AI-005) and [pilot/impact evaluation](pilot-and-impact-evaluation.md) (HUM-012/AI-006); it authorized no external API access or pilot. No sustainability/clinical benefit is demonstrated and no real-patient collection is approved. The proposed synthetic public catalogue-to-QR demonstration with LTR/RTL fixtures still awaits HUM-001/HUM-002/HUM-003 and separate implementation approval; Phase 1C research is a separate read-only activity.
+
+Phase 1C explicitly authorizes read-only public DPD research; it does not authorize an implemented government/PMS connection. [Research findings and proposed backend plan](health-canada-dpd-research.md) record three successful product-data lookups, official-page monograph references, response-shape and data gaps, and outstanding rights/operations questions. AI-007 and planned T-011 track follow-up; T-001 through T-011 remain planned application coverage, with no executable tests. No API client, imported patient-facing content, schema, dependency installation, commit or push was created during this research.

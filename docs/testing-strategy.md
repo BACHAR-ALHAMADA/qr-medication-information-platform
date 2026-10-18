@@ -14,6 +14,7 @@ Status: Planned coverage only. No executable tests exist and none were run durin
 | T-008 | Synthetic fixtures/materials and absence of real patient data or production secrets | REQ-009; review of research materials and future fixtures |
 | T-009 | Future approved connector contracts, identifier mapping/version drift, ambiguous/unknown products, external input validation, authorization revocation, tenant boundaries and outage fallback | F-007, REQ-011; vendor-supported synthetic contract tests only after HUM-011; no API access or conformance claim assumed |
 | T-010 | Stage-specific impact protocol, comprehension/translation checks, accessible tasks, comparable workflow timing, paper baseline/denominators/fallback accounting and minimized research records | F-008, REQ-012; [evaluation plan](pilot-and-impact-evaluation.md); no outcome or participant collection implied |
+| T-011 | Proposed DPD source adapter: exact DIN/code association, English/French metadata, ingredient units, object/array/null/empty handling, multiple ingredients, no-match, partial failure, timeouts, throttling, malformed response and no automatic publication | F-001/F-004, REQ-001/REQ-004/REQ-010; [Phase 1C research and plan](health-canada-dpd-research.md). Manual read-only research requests succeeded; no application tests or adapter exist. Deterministic CI should use controlled responses, not depend on live API access. |
 
 ## Discovery validation
 

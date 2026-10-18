@@ -24,3 +24,9 @@ All entries are open / Decision Required. Do not mark complete without human con
 - HUM-008 defines the operating model and operational responsibilities; HUM-007 investigates applicable legal/privacy constraints on that model. Neither substitutes for the other.
 - HUM-011 owns actual vendor feasibility/access/commercial decisions; HUM-007 owns qualified legal/privacy review and HUM-006 owns persistence/tenant design. Standards research does not grant vendor access.
 - HUM-012 owns evaluation design and future pilot go/no-go; HUM-009 owns participant/research-data arrangements, HUM-002 accessibility targets, and HUM-007 paper-use/privacy constraints. HUM-001 still approves development scope, including the [proposed public demonstration](../docs/project-roadmap.md#proposed-next-milestone--public-catalogue-to-qr-demonstration); none of these entries is complete.
+
+## Phase 1C decision inputs — all still open
+
+- HUM-001: review the [DPD source-lookup implementation proposal](../docs/health-canada-dpd-research.md) before code; authorization for real public product research does not approve patient-facing publication or expand the synthetic prototype automatically.
+- HUM-003/HUM-007: confirm DPD metadata attribution/reuse and distinguish sponsor-monograph link-only use from reproduction, hosting, extraction, translation or audio rights. The dataset's licence listing is evidence, not blanket clearance for every linked document.
+- HUM-008: approve upstream request volume, revalidation/freshness, retained-snapshot and outage policy before a live dependency. HUM-011 remains the separate PMS/vendor decision; successful DPD research grants no PMS access.
