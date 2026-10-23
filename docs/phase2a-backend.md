@@ -1,6 +1,6 @@
 # Phase 2A — Exact-DIN source metadata backend
 
-Status: Phase 2A was committed and pushed as `a4d2e29` after explicit Product Owner approval. The .NET 8 build succeeded with zero warnings/errors; all 53 mocked automated tests passed (45 unit, 8 API integration). This is a development source-lookup capability, not a reviewed public medication catalogue or patient guidance service. Phase 1C documentation was committed separately as `c31ac78`; subsequent uncommitted frontend work is documented in [Phase 2B](phase2b-frontend.md).
+Status: Phase 2A was committed and pushed as `a4d2e29` after explicit Product Owner approval. The historical .NET 8 build succeeded with zero warnings/errors; all 53 mocked automated tests passed (45 unit, 8 API integration). This is a development source-lookup capability, not a reviewed public medication catalogue or patient guidance service. Phase 1C documentation was committed separately as `c31ac78`; subsequent uncommitted frontend work is documented in [Phase 2B](phase2b-frontend.md).
 
 ## Scope and architecture
 
@@ -9,13 +9,13 @@ One read-only endpoint retrieves product, active ingredients, dosage forms, rout
 - MedicationCatalogue Application defines `IMedicationProductLookup`, input validation, source metadata records and explicit outcomes.
 - MedicationCatalogue Infrastructure implements outbound HTTP using `IHttpClientFactory`. API handlers reference only Application contracts; `Program.cs` is the composition root and calls the Infrastructure registration extension. No business rules or persistence implementations are in API handlers.
 - No Domain project was invented for this read-only transport/data-normalization slice. Future business rules belong in Domain; PostgreSQL/EF Core remain the accepted persistence direction but are not needed or configured here.
-- .NET 8 uses the locally installed SDK. Runtime code has no new NuGet package references; test-only references are xUnit, its test runner, Microsoft.NET.Test.Sdk and Microsoft.AspNetCore.Mvc.Testing.
+- Current builds use .NET 10 with the SDK pinned by root `global.json`; see the [runtime upgrade](phase2d-0-dotnet10-upgrade.md). Historical Phase 2A verification used .NET 8. Runtime code has no new NuGet package references; test-only references are xUnit, its test runner, Microsoft.NET.Test.Sdk and Microsoft.AspNetCore.Mvc.Testing.
 
 Trace: F-001/F-004, REQ-001/REQ-004/REQ-010 and T-011. Only source metadata lookup is authorized by the Phase 2A Product Owner instruction; public catalogue publication, QR workflows and private capability remain separate scope.
 
 ## Local startup
 
-Prerequisite: .NET 8 SDK. From the repository root, with the approved test-only package restore:
+Prerequisite: .NET SDK 10.0.402 as pinned by root `global.json`. From the repository root, with the approved test-only package restore:
 
 ```powershell
 dotnet restore MedicationInformationPlatform.sln
@@ -60,13 +60,13 @@ Caller cancellation propagates through all outbound requests and stream reads. I
 
 Automated fixtures use a fictional product and mocked HTTP; tests cover exact matching, association, multiple ingredients, denominator preservation, object/array handling, missing/null/malformed fields, duplicate product matches, invalid configuration, unknown products, HTTP/network errors, timeouts/cancellation, safe API errors and fixed publication flags. All 45 unit and 8 API integration tests passed using `dotnet test MedicationInformationPlatform.sln --no-build --no-restore --nologo -m:1`; none were skipped. Build completed with zero warnings/errors. See the test projects under `tests/Unit` and `tests/Integration`. No live smoke test was performed in this restoration/testing step.
 
-Limitations: no production availability/rate-limit policy or SLA is established; there is no cache, retry/backoff, publisher, monograph ingestion or clinical review. Status eligibility is a future catalogue-publication decision, not a filter on raw source metadata. Source reuse/monograph rights, accessibility and reviewed patient-language content remain HUM-003/HUM-007 decisions. AI-007 retains source coverage/operational follow-up. HUM-008 includes choosing a current patched runtime before deployment; the local host currently has SDK 8.0.100/runtime 8.0.0.
+Limitations: no production availability/rate-limit policy or SLA is established; there is no cache, retry/backoff, publisher, monograph ingestion or clinical review. Status eligibility is a future catalogue-publication decision, not a filter on raw source metadata. Source reuse/monograph rights, accessibility and reviewed patient-language content remain HUM-003/HUM-007 decisions. AI-007 retains source coverage/operational follow-up. HUM-008 includes choosing a current patched runtime before deployment; historical verification used SDK 8.0.100/runtime 8.0.0. Current verification is recorded in the [runtime upgrade](phase2d-0-dotnet10-upgrade.md).
 
 Phase 2A implementation was committed/pushed after Product Owner approval. Accepted ADRs are unchanged; Phase 2B remains uncommitted pending its separate review.
 
 ### Package restoration evidence
 
-The approved restore explicitly used `https://api.nuget.org/v3/index.json`. Direct test dependencies are xUnit 2.8.0, xunit.runner.visualstudio 2.8.0 (test discovery/execution), Microsoft.NET.Test.Sdk 17.6.0 and Microsoft.AspNetCore.Mvc.Testing 8.0.0. They built and ran successfully against net8.0. No production project has a NuGet PackageReference or resolved NuGet package dependency; runtime code uses the .NET/ASP.NET shared framework only.
+Historical Phase 2A evidence (preserved; current test-host version is in the runtime upgrade): the approved restore explicitly used `https://api.nuget.org/v3/index.json`. Direct test dependencies are xUnit 2.8.0, xunit.runner.visualstudio 2.8.0 (test discovery/execution), Microsoft.NET.Test.Sdk 17.6.0 and Microsoft.AspNetCore.Mvc.Testing 8.0.0. They built and ran successfully against net8.0. No production project has a NuGet PackageReference or resolved NuGet package dependency; runtime code uses the .NET/ASP.NET shared framework only.
 
 Package-cache provenance was checked: 49 unique resolved test packages reported nuget.org; the remaining transitive System.Reflection.Metadata 1.6.0 came from Microsoft's Visual Studio offline cache. Its cached archive SHA-512 was verified against the official nuget.org package download and matched. The initial no-restore build failed with NETSDK1004 because restore assets did not exist; after the explicit restoration approval there were no restore, compilation or test failures.
 

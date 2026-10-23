@@ -14,7 +14,7 @@ The planned starting point is a modular monolith: one ASP.NET Core API and a Rea
 
 ## Planned technology
 
-- Backend: C# / ASP.NET Core Web API
+- Backend: C# / ASP.NET Core Web API on .NET 10; SDK 10.0.402 pinned in `global.json`
 - Frontend: React + TypeScript
 - Database and ORM: PostgreSQL + Entity Framework Core
 - API: REST over HTTPS with OpenAPI documentation
@@ -26,9 +26,9 @@ The exact-DIN source-metadata backend and a minimal React/TypeScript lookup inte
 
 ## Development status
 
-The [continuous integration workflow](docs/continuous-integration.md) is prepared locally for review: backend Release build/tests and frontend typecheck/lint/build/tests on pull requests targeting `main` and pushes to `main`. Hosted execution remains unverified until an approved commit/push.
+Phase 2C and its [continuous integration workflow](docs/continuous-integration.md) were merged through PR #1 with passing hosted checks. The [Phase 2D-0 runtime upgrade](docs/phase2d-0-dotnet10-upgrade.md) is a separate uncommitted change awaiting review; its .NET 10 hosted execution is not yet verified. PostgreSQL remains planning only.
 
-**Phase 2B — first React medication lookup, in the working tree for review.** The committed Phase 2A backend has 53 passing mocked tests and verified live DPD lookups. The React interface adds exact-DIN input, metadata display and safe request states. See [Windows backend/frontend startup and verification](docs/phase2b-frontend.md) and the [API contract](docs/phase2a-backend.md). No database schema, authentication, QR flow, patient instructions or reviewed clinical publication is implemented. No Phase 2B commit or push is authorized yet.
+**Implemented:** the public exact-DIN metadata API, React lookup interface and synthetic Phase 2C authorization foundation. Phase 2C and CI were merged in PR #1. See [current status](docs/project-status.md), [Windows startup](docs/phase2b-frontend.md) and the [API contract](docs/phase2a-backend.md). No database schema, authentication, protected API, QR flow, patient instructions or reviewed clinical publication is implemented.
 
 ## Planned modules
 

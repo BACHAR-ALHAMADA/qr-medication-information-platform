@@ -12,3 +12,5 @@
 Phase 2C review (2026-10-22): the synthetic authorization foundation is new approved implementation, not a corrective fix. The initial foundation added no runtime bug fix; subsequent pre-commit review corrections are recorded in FIX-005/FIX-006 above. Verification and limitations are recorded in the [foundation evidence](../docs/phase2c-identity-tenancy-design.md#implemented-synthetic-foundation).
 
 CI follow-up (2026-10-22): new verification automation only; no application fix or new FIX identifier is claimed. [CI documentation](../docs/continuous-integration.md) records local checks and hosted-run limits.
+
+Phase 2D-0 is an approved runtime maintenance upgrade, not a new application bug fix; no new FIX identifier is claimed. The [upgrade record](../docs/phase2d-0-dotnet10-upgrade.md) distinguishes compatibility changes from the preserved PostgreSQL proposal and records actual verification results.
