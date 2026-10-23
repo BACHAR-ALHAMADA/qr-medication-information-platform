@@ -36,3 +36,7 @@ This is a starting point for design discussion, not a completed security assessm
 - Conduct a structured threat-modeling session after workflows and deployment are specified.
 - Define abuse cases, security ownership, incident response, backup access, and security monitoring expectations.
 - Research applicable legal and regulatory obligations with qualified stakeholders; none are asserted here.
+
+## Phase 2C identity/tenant design supplement
+
+The [threats and planned acceptance tests](../phase2c-identity-tenancy-design.md#threats-and-planned-acceptance-tests) extend this initial model for forged tenant selectors, object-reference substitution, branch bypass, multi-membership role union, stale contexts, RLS/pool contamination, invitation replay, privilege escalation, revocation races and audit leakage. T-013 now has 61 passing synthetic authorization cases; provider, invitation, database/pool, audit and transactional-race scenarios remain planned. See the [implemented subset](../phase2c-identity-tenancy-design.md#implemented-synthetic-foundation). Identity, isolation and applicable operations/privacy choices remain unresolved.

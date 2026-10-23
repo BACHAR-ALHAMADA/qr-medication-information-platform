@@ -1,6 +1,6 @@
 ﻿# Bugs
 
-No open bugs are currently recorded. Documentation scope ambiguity BUG-001 was corrected; see [FIX-001](FIXES.md). Phase 2A source-metadata implementation and test verification status are recorded in [backend documentation](../docs/phase2a-backend.md); an environment/package approval block is not an application bug.
+No open bugs remain after the approved review corrections below. The initial Phase 2C implementation review on 2026-10-22 found no additional confirmed application defect; the later pre-commit review identified BUG-005/BUG-006. A pre-existing local API process locked default build outputs, so verification used separate ignored output directories. This environment condition is not recorded as an application bug. Documentation scope ambiguity BUG-001 was corrected; see [FIX-001](FIXES.md). Phase 2A source-metadata implementation and test verification status are recorded in [backend documentation](../docs/phase2a-backend.md); an environment/package approval block is not an application bug.
 
 | ID | Finding | Status / trace |
 |---|---|---|
@@ -8,3 +8,7 @@ No open bugs are currently recorded. Documentation scope ambiguity BUG-001 was c
 | BUG-002 | During Phase 2B review, the loading live region was inside an aria-busy results region, which could defer screen-reader announcements until loading ended. | Corrected by FIX-002; F-003, REQ-003, T-012. Busy state now applies to the form; loading announcements remain outside it. |
 | BUG-003 | Initial Phase 2B DIN placeholder color had calculated contrast 4.36:1 against white, below the 4.5:1 normal-text design check. | Corrected by FIX-003; F-003, REQ-003, T-012. It now uses the darker muted-text token, approximately 5.58:1. |
 | BUG-004 | Phase 2B documentation retained outdated current-Node, T-011 and Phase 2A approval wording, and its file inventory incorrectly described the combined working tree. | Corrected by FIX-004 on 2026-10-22; T-011/T-012, HUM-013. Historical evidence is retained; human completion is not assumed. |
+| BUG-005 | Medium: delegation method/result and ADR wording could be mistaken for full recipient authorization although only actor scope was checked. | Corrected by FIX-005 on 2026-10-22; ADR-004, REQ-006, T-013. No deployed grant mutation or endpoint existed. |
+| BUG-006 | Low: authorization regressions lacked focused branch/revocation/cancellation/failure coverage, and the deterministic interleaving test had unbounded waits without guaranteed release. | Corrected by FIX-006 on 2026-10-22; T-013, REQ-006. Current coverage and bounded synchronization are recorded in the foundation evidence. |
+
+CI implementation review (2026-10-22): no additional confirmed application defect was found. Local `npm ci` encountered a Windows native-binding file lock; isolated installation and checks passed. This environment condition is not an application bug; see [CI verification](../docs/continuous-integration.md#local-reproduction-and-verification).

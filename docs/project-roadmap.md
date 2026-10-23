@@ -2,7 +2,7 @@
 
 Status: Proposed sequence within documentation-led planning; no delivery dates, approved MVP feature set, or implementation authorization.
 
-Subsequent Product Owner instructions authorized Phase 2A exact-DIN source lookup (committed as `a4d2e29`) and Phase 2B's English React metadata screen (uncommitted). Those narrow approvals supersede the planning-only status for those slices, not for the broader MVP or catalogue-to-QR proposal below. See [backend](phase2a-backend.md) and [frontend](phase2b-frontend.md) for implemented scope and checks. Name search, QR generation, publishing, authentication and persistence remain outside Phase 2B.
+Subsequent Product Owner instructions authorized Phase 2A exact-DIN source lookup (committed as `a4d2e29`) and Phase 2B's English React metadata screen (committed as `9ac2766`). Those narrow approvals supersede the planning-only status for those slices, not for the broader MVP or catalogue-to-QR proposal below. See [backend](phase2a-backend.md) and [frontend](phase2b-frontend.md) for implemented scope and checks. Name search, QR generation, publishing, authentication and persistence remain outside Phase 2B.
 
 | Stage | Outcome / exit evidence | Dependencies |
 |---|---|---|
@@ -53,3 +53,7 @@ Fixture storage behind an Application-facing read interface is a candidate demon
 6. Read-only use cases follow module boundaries with focused Domain/Application unit coverage and API integration checks when implementation begins; no tenant writes or external APIs exist in the slice (T-007). A manual phone scan and documented configurations supplement automated checks.
 
 HUM-001 must approve scope, fixture/reference policy and acceptance; HUM-002 must choose demonstration languages and accessibility targets; HUM-003 must approve fixture/review-state conventions. AI-004 will reconcile the approved scope before code. Separate HUM-009 authorization is needed for recruitment/data collection; HUM-012 is needed for impact evaluation beyond simulated readiness checks. The demonstration cannot establish comprehension gains, medical accuracy, paper savings or integration compatibility.
+
+## Phase 2C
+
+Core organization/membership/branch/capability decisions and the synthetic authorization foundation were approved on 2026-10-22 in [ADR-004](decisions/ADR-004-organization-authorization-foundation.md). The [foundation is implemented locally for review](phase2c-identity-tenancy-design.md#implemented-synthetic-foundation), with 61 new xUnit cases and existing backend/frontend regressions passing. Provider selection/integration, database isolation implementation, invitations, audit storage and any protected workspace remain separately gated under HUM-001/HUM-005/HUM-006/HUM-007/HUM-008. No commit or push is authorized.

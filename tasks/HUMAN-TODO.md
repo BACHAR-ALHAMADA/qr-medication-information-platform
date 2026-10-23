@@ -20,6 +20,8 @@ All entries are open / Decision Required. Do not mark complete without human con
 
 ## Responsibility boundaries
 
+HUM-014: Product Owner review of the [CI workflow](../docs/continuous-integration.md), its eventual commit/push and first hosted results is pending. Repository Actions policy/first-contributor approvals remain owner-controlled if GitHub requests them. Decide separately whether the named `Backend` and `Frontend` checks become merge requirements; no branch protection or repository settings are changed here. CI implementation approval does not approve production deployment. This item is open; no existing human item is closed.
+
 - HUM-002 selects languages, accessibility targets and validation criteria; HUM-009 arranges participants, facilitators, accommodations and authorized research-data handling against those needs.
 - HUM-003 owns content/source selection and medical/language review arrangements; HUM-007 arranges qualified legal/privacy review, including applicable reuse rights and regulatory constraints.
 - HUM-008 defines the operating model and operational responsibilities; HUM-007 investigates applicable legal/privacy constraints on that model. Neither substitutes for the other.
@@ -42,4 +44,17 @@ The Product Owner explicitly approved the first exact-DIN read-only DPD backend 
 
 ## Phase 2B authorization
 
-The Product Owner approved only an exact-DIN React/TypeScript interface connected to the existing metadata API, necessary maintained frontend dependencies, safe local proxy configuration and frontend checks. That confirms another limited HUM-001 sub-scope; broader MVP, multilingual clinical content, QR, patient-specific access, authentication and persistence remain unapproved. Phase 2A was committed/pushed after explicit approval; Phase 2B must remain uncommitted pending review. HUM-013 records the development runtime prerequisite; AI-008 records unavailable real-browser QA. Existing human decisions remain open unless individually confirmed.
+The Product Owner approved only an exact-DIN React/TypeScript interface connected to the existing metadata API, necessary maintained frontend dependencies, safe local proxy configuration and frontend checks. That confirms another limited HUM-001 sub-scope; broader MVP, multilingual clinical content, QR, patient-specific access, authentication and persistence remain unapproved. Phase 2A was committed/pushed after explicit approval; Phase 2B was subsequently committed/pushed as `9ac2766` after explicit approval. HUM-013 records the development runtime prerequisite; AI-008 records unavailable real-browser QA. Existing human decisions remain open unless individually confirmed.
+
+## Phase 2C approved subset and remaining inputs
+
+On 2026-10-22 the Product Owner explicitly approved the [ADR-004 core model](../docs/decisions/ADR-004-organization-authorization-foundation.md) and synthetic implementation: independent pharmacy organizations as tenants, branches within each organization, separate multi-memberships, explicit current organization/branch grants, deny-by-default membership capabilities, separated platform/pharmacy/clinical authority, no cross-organization privilege union, self-elevation or unauthorized delegation, and unchanged anonymous DIN lookup. This confirms those bounded HUM-001/HUM-005/HUM-006 subdecisions only; no whole tracker entry is closed.
+
+- HUM-001: the synthetic foundation and tests are authorized; protected APIs, dashboards, clinical actions and F-006 remain excluded. Product Owner implementation review is pending; no staging, commit or push is authorized.
+- HUM-005: approve named role mappings, organization-wide scope, administrative delegation, recipient onboarding/qualification, bootstrap/last-admin recovery and emergency policy before those operations. Current rules grant no role defaults and cannot delegate administration. Select named provider, MFA/session/recovery, invitation policy and measurable provider-disable bound before integration.
+- HUM-006: organization/branch tenancy and multi-membership are approved; onboarding/ownership verification, Audit ownership, persistence privileges and actual isolation mechanism remain open. PostgreSQL application scoping plus RLS remains preferred pending separate implementation review.
+- HUM-007/HUM-008: staff/provider/audit privacy, collection/retention/deletion, operating/session ownership, audit integrity/failure, hosting and backup/restore requirements remain open before affected implementation.
+
+OIDC/BFF remains the preferred authentication direction pending separate implementation review. The [remaining gates](../docs/phase2c-identity-tenancy-design.md#minimum-product-owner-decisions-and-gates) do not authorize accounts, procurement, migrations, dependencies or a protected workspace.
+
+Product Owner approved the three pre-commit review corrections on 2026-10-22. The result is explicitly actor delegation-scope evaluation only: recipient existence, organization membership, status and actual grant execution are unverified and unimplemented. Recipient eligibility and grant execution policy remain HUM-005 Decision Required before any later implementation. Review of the corrected synthetic foundation is pending; no whole human item, including HUM-013, is closed. No staging, commit or push is authorized.
