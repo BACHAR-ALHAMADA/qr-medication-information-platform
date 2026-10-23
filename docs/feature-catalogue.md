@@ -1,6 +1,6 @@
 # Feature catalogue
 
-Full features below remain unimplemented. Phase 2A explicitly approves only a small exact-DIN source-metadata lookup supporting F-001/F-004; its implementation and test status are in [backend documentation](phase2a-backend.md). That approval does not approve QR flows, editorial publication or the full MVP. Release priorities and broader MVP inclusion await HUM-001; product principles do not automatically approve individual features. Criteria below remain proposed feature-level review criteria. REQ IDs are defined in [requirements](product-requirements.md); T IDs in [testing](testing-strategy.md).
+Full features below remain unimplemented. Phase 2A approves the exact-DIN source-metadata backend; Phase 2B adds its English React lookup interface supporting F-001/F-003/F-004. Their implemented scope and checks are in [backend](phase2a-backend.md) and [frontend](phase2b-frontend.md) documentation. Neither slice approves QR flows, name search, reviewed medical translations, editorial publication or the full MVP. Release priorities and broader MVP inclusion await HUM-001; product principles do not automatically approve individual features. Criteria below remain proposed feature-level review criteria. REQ IDs are defined in [requirements](product-requirements.md); T IDs in [testing](testing-strategy.md).
 
 ## F-001 — Public QR medication information
 

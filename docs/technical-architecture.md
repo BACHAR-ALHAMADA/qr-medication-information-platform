@@ -1,6 +1,6 @@
 # Technical architecture overview
 
-Status: Existing architecture direction preserved. Phase 2A adds a read-only source-metadata API and mocked test projects in the working tree; validation status is in [backend documentation](phase2a-backend.md). No frontend, persistence model or deployment is implemented.
+Status: Existing architecture direction preserved. Phase 2A's committed read-only source-metadata API and tests are documented in [backend documentation](phase2a-backend.md). Phase 2B adds an uncommitted React/TypeScript exact-DIN metadata interface; see [frontend architecture and verification](phase2b-frontend.md). No persistence model or deployment is implemented.
 
 ## Accepted decisions
 
@@ -33,3 +33,5 @@ No accepted ADR conflicts with the approved discovery principles. Existing patie
 ## Phase 2A implementation boundary
 
 Application owns the exact-DIN lookup contract and result records. Infrastructure owns the DPD adapter, configuration validation and HTTP normalization. The API endpoint invokes Application contracts; only the host composition root references Infrastructure for service registration. No Domain dependency is needed for this metadata-only slice and no persistence or business-rule layer is fabricated. [Backend details](phase2a-backend.md) describe the single endpoint, source/provenance contract and safe failure behavior. Tests use mocked HTTP and in-process hosting, not live API calls.
+
+Phase 2B's Vite development proxy sends same-origin `/api` requests to a configured loopback backend; ASP.NET CORS and existing host/DPD-origin validation are unchanged. React renders validated metadata as text and does not call Health Canada directly. No frontend dependency is added to the backend or its solution, and no shared persistence is introduced.

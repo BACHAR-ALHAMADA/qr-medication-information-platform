@@ -4,6 +4,8 @@
 
 The platform is intended to serve a public medication information page and, in future approved scope after a patient verification step, private instructions for a specific patient-medication assignment. Staff workflows will support authorized professionals and organizations. Those experiences remain planned. Phase 2A adds only a read-only DPD source-metadata lookup backend; see [implementation and verification status](../phase2a-backend.md).
 
+Phase 2B adds a narrow English React exact-DIN product-metadata page connected to that backend; [frontend documentation](../phase2b-frontend.md) distinguishes implemented behavior from future reviewed patient guidance, QR and private workflows. The existing architecture boundaries remain unchanged.
+
 ## Shape
 
 Start with a modular monolith: an ASP.NET Core REST API, a React + TypeScript web client, and PostgreSQL accessed through Entity Framework Core. Keep module responsibilities explicit and use contracts for cross-module operations. Deploy as one application initially; separate modules only when operational evidence justifies it.

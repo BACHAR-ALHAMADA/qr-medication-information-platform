@@ -22,11 +22,11 @@ The planned starting point is a modular monolith: one ASP.NET Core API and a Rea
 - Containers and version control: Docker and Git
 - Testing: xUnit plus integration and security testing
 
-Most technologies remain planned; only the minimal DPD source-metadata backend described below has been added. PostgreSQL/EF Core, staff identity, containers and frontend integration are not implemented.
+The exact-DIN source-metadata backend and a minimal React/TypeScript lookup interface are implemented. PostgreSQL/EF Core, staff identity and containers remain planned and unimplemented.
 
 ## Development status
 
-**Phase 2A — first DPD backend slice, in the working tree for review.** A read-only exact-DIN metadata endpoint and mocked automated tests have been added; the .NET 8 build passed with zero warnings/errors and all 53 mocked tests passed. See [local startup and endpoint contract](docs/phase2a-backend.md). No frontend, database schema, authentication, QR flow, patient instructions or reviewed clinical publication is implemented.
+**Phase 2B — first React medication lookup, in the working tree for review.** The committed Phase 2A backend has 53 passing mocked tests and verified live DPD lookups. The React interface adds exact-DIN input, metadata display and safe request states. See [Windows backend/frontend startup and verification](docs/phase2b-frontend.md) and the [API contract](docs/phase2a-backend.md). No database schema, authentication, QR flow, patient instructions or reviewed clinical publication is implemented. No Phase 2B commit or push is authorized yet.
 
 ## Planned modules
 
@@ -56,7 +56,7 @@ infrastructure/                 Planned environment-specific infrastructure spac
 
 ## Product discovery
 
-Product discovery, requirements and UX/UI planning remain documented alongside the current Phase 2A metadata-only backend work. The initial target market is Manitoba, Canada. Calm mobile-first design, simple UX with progressive disclosure, multilingual accessibility, and RTL support are core product principles. Patient-specific instructions remain a future capability until explicitly approved; existing security requirements remain mandatory whenever introduced.
+Product discovery, requirements and UX/UI planning remain documented alongside the current Phase 2B metadata-only lookup work. The initial target market is Manitoba, Canada. Calm mobile-first design, simple UX with progressive disclosure, multilingual accessibility, and RTL support are core product principles; this milestone's interface is English-only. Patient-specific instructions remain a future capability until explicitly approved; existing security requirements remain mandatory whenever introduced.
 
 Phase 1B documents a standalone central reviewed catalogue, pharmacist information finding without full-description authoring, and no-account public QR reads. Patient understanding, inclusion, avoidable-paper reduction where permitted, and future digital healthcare efficiency are objectives to evaluate, not demonstrated benefits. See [integration strategy](docs/integration-strategy.md), [pilot and impact evaluation](docs/pilot-and-impact-evaluation.md), and the [proposed public demonstration](docs/project-roadmap.md#proposed-next-milestone--public-catalogue-to-qr-demonstration). No implementation, PMS connection or real-world pilot is authorized by these plans.
 

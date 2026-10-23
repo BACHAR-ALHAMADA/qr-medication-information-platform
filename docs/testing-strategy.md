@@ -1,6 +1,6 @@
 # Testing and validation strategy
 
-Status: Phase 2A adds executable mocked HTTP unit/API integration tests for the DPD slice; 45 unit and 8 API integration tests passed after approved restoration. The remaining catalogue below describes planned coverage, not a claim that every test exists or passes. Use synthetic patient data and no production secrets. See [backend verification](phase2a-backend.md).
+Status: Phase 2A has 45 passing mocked unit and 8 API integration tests for the DPD slice. Phase 2B has 28 passing frontend tests, with build/typecheck, zero-warning lint and zero-vulnerability audit results in [frontend verification](phase2b-frontend.md). The remaining catalogue below describes planned coverage, not a claim that every test exists or passes. Use synthetic patient data and no production secrets. See [backend verification](phase2a-backend.md).
 
 | ID | Planned coverage | Trace / method |
 |---|---|---|
@@ -15,6 +15,7 @@ Status: Phase 2A adds executable mocked HTTP unit/API integration tests for the 
 | T-009 | Future approved connector contracts, identifier mapping/version drift, ambiguous/unknown products, external input validation, authorization revocation, tenant boundaries and outage fallback | F-007, REQ-011; vendor-supported synthetic contract tests only after HUM-011; no API access or conformance claim assumed |
 | T-010 | Stage-specific impact protocol, comprehension/translation checks, accessible tasks, comparable workflow timing, paper baseline/denominators/fallback accounting and minimized research records | F-008, REQ-012; [evaluation plan](pilot-and-impact-evaluation.md); no outcome or participant collection implied |
 | T-011 | DPD source adapter: exact DIN/code association, language forwarding, ingredient units, object/array/null/empty handling, multiple ingredients, no-match, partial failure, timeouts/cancellation, HTTP errors, malformed response and fixed nonpublication flags | F-001/F-004, REQ-001/REQ-004/REQ-010; mocked unit/API test projects exist under tests/Unit and tests/Integration. All 53 mocked tests passed; see [backend verification](phase2a-backend.md). No live dependency in deterministic tests. |
+| T-012 | Exact-DIN React screen: labels/keyboard submission/focus, leading zeros, empty/loading/invalid/not-found/unavailable/retry, stale-response cancellation, safe source metadata/link validation, text-only rendering, timeout and safe configurable route prefix | F-001/F-003/F-004, REQ-001/REQ-002/REQ-003/REQ-004/REQ-010; [frontend scope and verification](phase2b-frontend.md). Deterministic Vitest/Testing Library tests mock fetch. Live proxy HTTP checks are separate; real-browser/mobile/screen-reader QA is pending AI-008. |
 
 ## Discovery validation
 

@@ -2,10 +2,13 @@
 
 Status: Proposed sequence within documentation-led planning; no delivery dates, approved MVP feature set, or implementation authorization.
 
+Subsequent Product Owner instructions authorized Phase 2A exact-DIN source lookup (committed as `a4d2e29`) and Phase 2B's English React metadata screen (uncommitted). Those narrow approvals supersede the planning-only status for those slices, not for the broader MVP or catalogue-to-QR proposal below. See [backend](phase2a-backend.md) and [frontend](phase2b-frontend.md) for implemented scope and checks. Name search, QR generation, publishing, authentication and persistence remain outside Phase 2B.
+
 | Stage | Outcome / exit evidence | Dependencies |
 |---|---|---|
-| Current: Phase 1 foundation and discovery | Existing architecture/security principles preserved; vision, candidate features, research questions and traceability documented | Product Owner review of this documentation diff |
-| Current subphase: Phase 1B strategy | Standalone central-catalogue direction, future integration boundaries, inclusive evaluation and conditional sustainability measures documented | Review [integration](integration-strategy.md) and [impact plan](pilot-and-impact-evaluation.md); HUM-011/HUM-012 remain open |
+| Completed documentation foundation: Phase 1 | Existing architecture/security principles preserved; vision, candidate features, research questions and traceability documented | Documentation milestone approved/committed; broader feature scope remains open |
+| Completed strategy documentation: Phase 1B | Standalone central-catalogue direction, future integration boundaries, inclusive evaluation and conditional sustainability measures documented | [Integration](integration-strategy.md) and [impact plan](pilot-and-impact-evaluation.md) preserved; HUM-011/HUM-012 remain open |
+| Current narrow implementation: Phase 2B | English exact-DIN React metadata screen connected to the committed Phase 2A API | Build/lint/tests and live proxy checks passed; [frontend review](phase2b-frontend.md) pending, real-browser QA tracked in AI-008 |
 | Product and UX discovery | Validated needs, pharmacist task evidence, language/accessibility priorities, tested concepts and recorded limitations | HUM-002, HUM-009, HUM-010; AI-001; T-002/T-003 |
 | Content and operating-model research | Source/reviewer/translation approach and qualified regulatory/privacy findings for a defined model | HUM-003, HUM-007, HUM-008; AI-003 |
 | Scope and design approval | Explicit MVP inclusion/exclusion, measurable acceptance criteria, required decisions and residual risks reviewed | HUM-001 and relevant dependencies; AI-004 |

@@ -1,6 +1,6 @@
 # Phase 2A — Exact-DIN source metadata backend
 
-Status: Implementation in the working tree for Product Owner review. The .NET 8 build succeeded with zero warnings/errors; all 53 mocked automated tests passed (45 unit, 8 API integration). This is a development source-lookup capability, not a reviewed public medication catalogue or patient guidance service. The Phase 1C documentation was committed and pushed separately as `c31ac78`.
+Status: Phase 2A was committed and pushed as `a4d2e29` after explicit Product Owner approval. The .NET 8 build succeeded with zero warnings/errors; all 53 mocked automated tests passed (45 unit, 8 API integration). This is a development source-lookup capability, not a reviewed public medication catalogue or patient guidance service. Phase 1C documentation was committed separately as `c31ac78`; subsequent uncommitted frontend work is documented in [Phase 2B](phase2b-frontend.md).
 
 ## Scope and architecture
 
@@ -62,7 +62,7 @@ Automated fixtures use a fictional product and mocked HTTP; tests cover exact ma
 
 Limitations: no production availability/rate-limit policy or SLA is established; there is no cache, retry/backoff, publisher, monograph ingestion or clinical review. Status eligibility is a future catalogue-publication decision, not a filter on raw source metadata. Source reuse/monograph rights, accessibility and reviewed patient-language content remain HUM-003/HUM-007 decisions. AI-007 retains source coverage/operational follow-up. HUM-008 includes choosing a current patched runtime before deployment; the local host currently has SDK 8.0.100/runtime 8.0.0.
 
-The implementation awaits Product Owner approval for commit and push. Accepted ADRs are unchanged.
+Phase 2A implementation was committed/pushed after Product Owner approval. Accepted ADRs are unchanged; Phase 2B remains uncommitted pending its separate review.
 
 ### Package restoration evidence
 

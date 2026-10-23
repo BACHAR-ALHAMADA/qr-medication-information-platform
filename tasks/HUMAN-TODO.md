@@ -16,6 +16,7 @@ All entries are open / Decision Required. Do not mark complete without human con
 | HUM-010 | Validate buyer/funder/operator, adoption needs and sustainable content/support costs; decide business direction. | [Business discovery](../docs/business-model.md), HUM-001 |
 | HUM-011 | Identify an actual PMS vendor/use case and authorize any outreach/access; confirm interface/version, sandbox, mapping terms, partner/commercial rights, fees and support obligations before integration design commitments. | F-007, REQ-011, REG-007, T-009; [integration strategy](../docs/integration-strategy.md). Future integration only; standalone work is not blocked. |
 | HUM-012 | Approve stage-specific evaluation protocol, measures/targets, paper eligibility/baseline/denominators, safety stop criteria and any later pilot site/operating permissions. No real-patient collection is approved. | F-008, REQ-012, REG-002, T-010; [impact plan](../docs/pilot-and-impact-evaluation.md). Coordinate HUM-003/HUM-007/HUM-008 and HUM-009; no recruitment or pilot approval implied. |
+| HUM-013 | Use a supported Node runtime (recommended Node 24 LTS) in the Windows development environment before running the maintained frontend tools. Node.js 24.22.0 is currently active (2026-10-22). Historical verification on 2026-10-17 encountered system Node 22.11 below tool requirements and used a checksum-verified portable Node 24.22.0 without changing the system installation. This item remains open pending explicit human confirmation. | [Windows startup guide](../docs/phase2b-frontend.md), T-012; choose/install a supported runtime or use an approved portable environment. No human completion is assumed. |
 
 ## Responsibility boundaries
 
@@ -33,8 +34,12 @@ All entries are open / Decision Required. Do not mark complete without human con
 
 ## Phase 2A scope authorization and remaining actions
 
-The Product Owner explicitly approved the first exact-DIN read-only DPD backend and automated mocked tests, plus committing/pushing the six Phase 1C documentation files. This confirms only that sub-scope of HUM-001; broader MVP/publication decisions remain open. Implementation must remain uncommitted for review. No private data, persistence, frontend, summaries or translations are authorized.
+The Product Owner explicitly approved the first exact-DIN read-only DPD backend and automated mocked tests, plus committing/pushing the six Phase 1C documentation files. This confirms only that sub-scope of HUM-001; broader MVP/publication decisions remain open. That initial authorization required the implementation to remain uncommitted for review and excluded private data, persistence, frontend, summaries and translations. Phase 2A was subsequently committed/pushed as `a4d2e29` after explicit approval; the later Phase 2B authorization below separately permits its narrow frontend scope.
 
 - The Product Owner explicitly approved required test-only package restoration after the earlier automatic-review block. Restore/build succeeded and all 53 mocked tests passed (see [backend status](../docs/phase2a-backend.md)); this resolves only that restore authorization, not broader deployment/MVP decisions.
 - HUM-008: choose a current supported patched .NET runtime/SDK before deployment; installed development tools are SDK 8.0.100/runtime 8.0.0. Local verification does not establish production readiness.
 - HUM-003/HUM-007 reuse, medical publication and monograph rights decisions remain open. No human task is marked wholly complete by this implementation authorization.
+
+## Phase 2B authorization
+
+The Product Owner approved only an exact-DIN React/TypeScript interface connected to the existing metadata API, necessary maintained frontend dependencies, safe local proxy configuration and frontend checks. That confirms another limited HUM-001 sub-scope; broader MVP, multilingual clinical content, QR, patient-specific access, authentication and persistence remain unapproved. Phase 2A was committed/pushed after explicit approval; Phase 2B must remain uncommitted pending review. HUM-013 records the development runtime prerequisite; AI-008 records unavailable real-browser QA. Existing human decisions remain open unless individually confirmed.
