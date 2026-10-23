@@ -21,7 +21,7 @@ Approval status, release priority, and implementation status are separate fields
 | REQ-003 | Multilingual accessibility, RTL, large text, and screen reader needs shape design from the beginning | Approved Product Owner principle, 2026-10-17; language list and validation targets pending HUM-002 | F-003 / T-003 |
 | REQ-004 | Distinguish provenance, content revisions, and medically reviewed translations | Product direction; workflow awaits HUM-003 | F-004 / T-004 |
 | REQ-005 | Private instructions require separate verification and server authorization; QR possession alone is insufficient | Mandatory existing security principle, ADR-003 | F-006 / T-006 |
-| REQ-006 | Protected staff operations require verified tenant membership and least privilege | Mandatory existing security guidance | F-002, F-006 / T-005, T-006 |
+| REQ-006 | Protected staff operations require verified tenant membership and least privilege | Mandatory existing security guidance; bounded organization/branch/capability model approved 2026-10-22 in [ADR-004](decisions/ADR-004-organization-authorization-foundation.md), synthetic T-013 subset implemented | F-002, F-006 / T-005, T-006 |
 | REQ-007 | Collect and expose only purpose-bound data; avoid sensitive telemetry | Mandatory existing privacy guidance | All applicable features / T-005 |
 | REQ-008 | Keep modular monolith boundaries and the planned PostgreSQL stack | Accepted ADR-001 and ADR-002 | All future implementation / T-007 |
 | REQ-009 | Use synthetic patient data only in design, research materials, and testing | Approved project constraint | All / T-008 |

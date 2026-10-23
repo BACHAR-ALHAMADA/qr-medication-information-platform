@@ -1,6 +1,6 @@
 # Technical architecture overview
 
-Status: Existing architecture direction preserved. Phase 2A's committed read-only source-metadata API and tests are documented in [backend documentation](phase2a-backend.md). Phase 2B adds an uncommitted React/TypeScript exact-DIN metadata interface; see [frontend architecture and verification](phase2b-frontend.md). No persistence model or deployment is implemented.
+Status: Existing architecture direction preserved. Phase 2A's committed read-only source-metadata API and tests are documented in [backend documentation](phase2a-backend.md). Phase 2B provides the committed React/TypeScript exact-DIN metadata interface (`9ac2766`); see [frontend architecture and verification](phase2b-frontend.md). No persistence model or deployment is implemented.
 
 ## Accepted decisions
 
@@ -35,3 +35,7 @@ No accepted ADR conflicts with the approved discovery principles. Existing patie
 Application owns the exact-DIN lookup contract and result records. Infrastructure owns the DPD adapter, configuration validation and HTTP normalization. The API endpoint invokes Application contracts; only the host composition root references Infrastructure for service registration. No Domain dependency is needed for this metadata-only slice and no persistence or business-rule layer is fabricated. [Backend details](phase2a-backend.md) describe the single endpoint, source/provenance contract and safe failure behavior. Tests use mocked HTTP and in-process hosting, not live API calls.
 
 Phase 2B's Vite development proxy sends same-origin `/api` requests to a configured loopback backend; ASP.NET CORS and existing host/DPD-origin validation are unchanged. React renders validated metadata as text and does not call Health Canada directly. No frontend dependency is added to the backend or its solution, and no shared persistence is introduced.
+
+## Phase 2C identity and tenant proposal
+
+The [core model and synthetic implementation](phase2c-identity-tenancy-design.md#implemented-synthetic-foundation) are approved under [ADR-004](decisions/ADR-004-organization-authorization-foundation.md). Organizations Domain owns immutable membership/branch grants and pure policy; Organizations Application uses the explicit Identity Application current-user contract and organization snapshot reader. Synthetic readers are test-only. The API has no dependency or registration for this slice. OIDC/BFF and PostgreSQL application scoping plus RLS remain preferred directions pending separate reviews; no provider, schema, protected API or dashboard is implemented. ADR-001 through ADR-003 are unchanged.

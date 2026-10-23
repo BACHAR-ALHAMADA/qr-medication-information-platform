@@ -89,3 +89,7 @@ Full features below remain unimplemented. Phase 2A approves the exact-DIN source
 - **Proposed acceptance:** An approved protocol distinguishes synthetic demonstration, usability research and any later pharmacy pilot; defines baseline/denominators and accounts for fallback/reprints without claiming unobserved outcomes.
 - **Testing:** Planned T-010; relevant T-002/T-003/T-004/T-008.
 - **Priority / status:** Evaluation strategy requested; research execution, tooling and real-world pilot await separate approvals; unimplemented.
+
+## Phase 2C dependency design for F-002
+
+[ADR-004](decisions/ADR-004-organization-authorization-foundation.md) approves the bounded organization/membership/branch/capability model and synthetic authorization foundation supporting REQ-006/REQ-008/REQ-009. The [implemented subset and evidence](phase2c-identity-tenancy-design.md#implemented-synthetic-foundation) distinguish 61 executable T-013 cases from later planned integration coverage. Full F-002 workflows, role mappings, provider/persistence/lifecycle implementation and release priority remain unapproved; F-006 remains future scope. No protected endpoint or dashboard exists.

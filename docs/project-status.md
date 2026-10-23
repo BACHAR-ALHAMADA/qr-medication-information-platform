@@ -4,7 +4,7 @@ Last updated: 2026-10-22
 
 ## Current phase
 
-**Phase 2B — first React medication lookup interface.** Phase 2A backend is committed/pushed as `a4d2e29` with 53 passing mocked tests and successful live verification. The Product Owner approved a narrow English-only React/TypeScript exact-DIN interface, safe local proxy and necessary frontend tools/tests. Phase 2B is in the working tree for review and must not be committed/pushed yet. Clinical publication, private patient data and the broader MVP remain future scope. Accepted ADRs and mandatory privacy/security principles are unchanged.
+**Phase 2B — first React medication lookup interface.** Phase 2A backend is committed/pushed as `a4d2e29` with 53 passing mocked tests and successful live verification. The Product Owner approved a narrow English-only React/TypeScript exact-DIN interface, safe local proxy and necessary frontend tools/tests. Phase 2B was committed/pushed as `9ac2766` after explicit approval. The current working implementation is the bounded Phase 2C synthetic foundation described below; it remains uncommitted for review. Clinical publication, private patient data and the broader MVP remain future scope. Accepted ADRs and mandatory privacy/security principles are unchanged.
 
 ## Implemented
 
@@ -18,7 +18,7 @@ Last updated: 2026-10-22
 ## Not implemented
 
 - Reviewed clinical catalogue publication, name search, QR workflows, approved translations and audio.
-- Authentication, authorization enforcement, patient verification, or QR generation/resolution.
+- Authentication, deployed authorization enforcement, patient verification, or QR generation/resolution; synthetic authorization rules are described below.
 - Database schema, EF Core model, migrations, or data.
 - Dashboards, PMS/FHIR integrations, deployment or patient-facing medical content.
 
@@ -50,6 +50,10 @@ Phase 1B added [integration strategy](integration-strategy.md) (HUM-011/AI-005) 
 
 Phase 1C explicitly authorizes read-only public DPD research; it does not authorize an implemented government/PMS connection. [Research findings and proposed backend plan](health-canada-dpd-research.md) record three successful product-data lookups, official-page monograph references, response-shape and data gaps, and outstanding rights/operations questions. At the Phase 1C research stage, AI-007 and planned T-011 tracked follow-up and no executable tests existed. Subsequently, Phase 2A implemented T-011 with 53 passing mocked backend tests; T-001 through T-010 remain planned coverage. No API client, imported patient-facing content, schema, dependency installation, commit or push was created during this research.
 
-The paragraph above records the completed Phase 1C research scope. The later Phase 2A instruction explicitly authorizes the minimal live DPD metadata backend and its tests, as detailed in [Phase 2A backend documentation](phase2a-backend.md). It does not approve publication, patient data, persistence or the full public QR prototype. Phase 2A subsequently received explicit commit/push approval and is recorded at `a4d2e29`. Phase 2B selective staging is now authorized for final review; its commit/push still requires separate approval.
+The paragraph above records the completed Phase 1C research scope. The later Phase 2A instruction explicitly authorizes the minimal live DPD metadata backend and its tests, as detailed in [Phase 2A backend documentation](phase2a-backend.md). It does not approve publication, patient data, persistence or the full public QR prototype. Phase 2A subsequently received explicit commit/push approval and is recorded at `a4d2e29`. Phase 2B subsequently received explicit commit/push approval and was committed/pushed as `9ac2766`; Phase 2C remains uncommitted.
 
 Finalization checks on 2026-10-22 with active Node.js 24.22.0: frontend production build, standalone TypeScript check, zero-warning lint and 28 frontend tests passed; all 53 backend tests passed without package restoration. Historical npm audit/live-DPD evidence above was not rerun. Manual browser and assistive-technology QA remains pending AI-008; the [manual checklist](phase2b-frontend.md#manual-browser-qa-checklist-ai-008--t-012) is ready. HUM-013 remains open pending explicit human confirmation.
+
+## Phase 2C design review
+
+The [core model](decisions/ADR-004-organization-authorization-foundation.md) and bounded synthetic implementation were explicitly approved on 2026-10-22. [Implementation and evidence](phase2c-identity-tenancy-design.md#implemented-synthetic-foundation): three dependency-free Domain/Application projects, test-only in-memory readers and 61 new authorization cases. All 114 backend tests and all 28 frontend tests passed; frontend build/typecheck/lint passed. An existing running API locked normal backend outputs; alternate ignored build outputs were used successfully without stopping it. No authentication, protected API, database, invitation workflow, audit store or dashboard is implemented. Provider/BFF and PostgreSQL application scoping plus RLS remain preferred directions awaiting separate implementation review. Review stop: no staging, commit, push or new scope.

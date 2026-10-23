@@ -1,7 +1,7 @@
 # Project guidance
 
 ## Purpose and status
-QR Medication Information Platform is intended to let a patient scan a medication QR code, view public medication information, and—after a verification step—view private instructions assigned to them. Phase 2A provides a minimal read-only DPD product-metadata backend; Phase 2B adds an exact-DIN React lookup interface for review. QR flows, patient-specific functionality and clinical publication remain unimplemented. Consult `docs/project-status.md` for actual verification status; do not imply planned capabilities are implemented.
+QR Medication Information Platform is intended to let a patient scan a medication QR code, view public medication information, and—after a verification step—view private instructions assigned to them. Phase 2A provides a minimal read-only DPD product-metadata backend; Phase 2B adds an exact-DIN React lookup interface. Phase 2C adds only a synthetic Domain/Application authorization foundation for review; it has no protected API, login or persistence. QR flows, patient-specific functionality and clinical publication remain unimplemented. Consult `docs/project-status.md` for actual verification status; do not imply planned capabilities are implemented.
 
 ## Architecture and technology
 - Begin as a modular monolith using C# / ASP.NET Core Web API, React + TypeScript, PostgreSQL, and Entity Framework Core.

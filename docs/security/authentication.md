@@ -18,3 +18,7 @@ Use HTTPS, secure secret management, rate limits, generic responses that limit e
 
 - Select identity provider and define staff account lifecycle, MFA, recovery, and session policy.
 - Select patient verification method based on usability, threat model, and privacy review.
+
+## Phase 2C proposal for review
+
+The [identity design](../phase2c-identity-tenancy-design.md#authentication-recommendation-and-options) recommends OIDC code + PKCE through the ASP.NET backend, with an SPA alternative, provider operating options and proposed MFA/session/recovery policies. All choices await HUM-005/HUM-008 and applicable HUM-007 review. No provider, credentials or login implementation is introduced.

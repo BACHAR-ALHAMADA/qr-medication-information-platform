@@ -16,3 +16,9 @@ Check authorization in application use cases and ensure persistence queries are 
 
 - Define role/permission matrix and emergency-access policy.
 - Decide whether database row-level security supplements application-level tenant scoping.
+
+## Phase 2C proposal for review
+
+The [approved core model](../decisions/ADR-004-organization-authorization-foundation.md) is implemented only as pure rules and Application contracts with synthetic tests. Organization tenancy, membership-scoped capabilities, explicit branch grants, current-state/revision checks, no privilege union and bounded actor delegation-scope evaluation are verified in the [synthetic subset](../phase2c-identity-tenancy-design.md#implemented-synthetic-foundation). No protected route, authenticated principal, full role mapping or persistence enforcement exists. OIDC/BFF, RLS and lifecycle proposals remain separately gated.
+
+`EvaluateActorDelegationScopeAsync` returns only `ActorDelegationScopeEvaluation.IsActorScopeAllowed`. It does not check candidate recipient existence, organization membership or status, and does not authorize or execute a grant. See [ADR-004](../decisions/ADR-004-organization-authorization-foundation.md#bounded-implementation-choices).

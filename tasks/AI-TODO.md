@@ -1,6 +1,6 @@
 ﻿# AI TODO
 
-IDs are stable. These are documentation/design follow-ups, not authorization to implement application features. All remain pending; no task is claimed complete.
+IDs are stable. These are documentation/design follow-ups, not authorization to implement application features. Broader tasks remain pending; completed bounded substeps are recorded below without closing whole tasks.
 
 Phase 2A separately authorizes the minimal exact-DIN adapter and mocked tests; implementation status is in [backend documentation](../docs/phase2a-backend.md). The relevant AI-004 scope reconciliation is recorded there; the backend build and 53 mocked tests now pass. Broader scope, rights and operational follow-ups, including AI-007, remain open.
 
@@ -14,3 +14,11 @@ Phase 2A separately authorizes the minimal exact-DIN adapter and mocked tests; i
 | AI-006 | Prepare a reviewable evaluation protocol/measurement worksheet separating synthetic, usability and future pilot evidence, including paper baselines/fallback accounting and safety stop rules. | HUM-012 for measures/go-no-go, HUM-009 for recruitment/data collection, HUM-002/HUM-003/HUM-007 as relevant; F-008, REQ-012, T-010. Preparation may precede final decisions; no participant activity, real-patient data or tooling implementation is authorized. |
 | AI-007 | Resolve DPD operational/contract gaps: usage limits and refresh policy, combination/liquid/missing-record cases, French monograph coverage and approved source-page/PDF association process; refine deterministic adapter tests. | [Phase 1C evidence and plan](../docs/health-canada-dpd-research.md), F-004, T-011. Coordinate HUM-003/HUM-007 rights and HUM-008 operations; no vendor outreach or adapter implementation without approval. Public read-only product probes are authorized for Phase 1C research; no patient data. |
 | AI-008 | Complete Phase 2B real-browser visual/keyboard QA at narrow mobile widths and enlarged text/zoom; inspect RTL shell layout without claiming translated content, and document assistive-technology findings where available. | T-012, F-003, REQ-003; [frontend verification limits](../docs/phase2b-frontend.md). No enabled in-app/Chrome browser surface was available in this session. Existing DOM tests and proxy checks do not replace this QA; participant recruitment remains HUM-009. |
+
+## Phase 2C completed subset and follow-up
+
+AI-004 bounded reconciliation completed on 2026-10-22: approved model recorded in [ADR-004](../docs/decisions/ADR-004-organization-authorization-foundation.md), F-002/REQ-006/T-013 and status records updated; synthetic foundation implemented with 61 passing new xUnit cases. Existing 53 backend and 28 frontend tests and frontend build/typecheck/lint passed. This does not complete AI-004 for future scope.
+
+AI-002 remains pending for selected provider/session and persistence design. Broader AI-004 reconciliation and integration work must wait for the specific HUM-005/HUM-006/HUM-007/HUM-008 decisions and separate authorization. Real RLS/pooling, provider revocation, transactional races, invitation and audit-storage tests remain necessary later; they are not established by synthetic fixtures. AI-008 manual browser QA remains pending. No further implementation, staging, commit or push is authorized.
+
+AI-004 review-correction substep completed on 2026-10-22: BUG-005/FIX-005 and BUG-006/FIX-006 clarify actor-only scope evaluation and add focused regressions with bounded synchronization. All 61 authorization cases and 53 existing backend tests passed. Reader failures propagate as exceptions rather than successful decisions; future transports must handle them safely. No further feature scope or whole-task completion is implied.
