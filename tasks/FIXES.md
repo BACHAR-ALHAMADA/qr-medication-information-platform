@@ -10,3 +10,5 @@
 | FIX-006 | Added focused positive/negative regressions; cancellation is checked before the actor-scope wrong-action return. Bounded interleaving waits and guaranteed release/cancellation/observation in `finally` prevent unbounded coordination hangs. | BUG-006, T-013; 61 authorization cases plus 53 existing backend cases passed, none skipped. [Evidence](../docs/phase2c-identity-tenancy-design.md#pre-commit-review-corrections). Date: 2026-10-22. |
 
 Phase 2C review (2026-10-22): the synthetic authorization foundation is new approved implementation, not a corrective fix. The initial foundation added no runtime bug fix; subsequent pre-commit review corrections are recorded in FIX-005/FIX-006 above. Verification and limitations are recorded in the [foundation evidence](../docs/phase2c-identity-tenancy-design.md#implemented-synthetic-foundation).
+
+CI follow-up (2026-10-22): new verification automation only; no application fix or new FIX identifier is claimed. [CI documentation](../docs/continuous-integration.md) records local checks and hosted-run limits.

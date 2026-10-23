@@ -26,6 +26,8 @@ The exact-DIN source-metadata backend and a minimal React/TypeScript lookup inte
 
 ## Development status
 
+The [continuous integration workflow](docs/continuous-integration.md) is prepared locally for review: backend Release build/tests and frontend typecheck/lint/build/tests on pull requests targeting `main` and pushes to `main`. Hosted execution remains unverified until an approved commit/push.
+
 **Phase 2B — first React medication lookup, in the working tree for review.** The committed Phase 2A backend has 53 passing mocked tests and verified live DPD lookups. The React interface adds exact-DIN input, metadata display and safe request states. See [Windows backend/frontend startup and verification](docs/phase2b-frontend.md) and the [API contract](docs/phase2a-backend.md). No database schema, authentication, QR flow, patient instructions or reviewed clinical publication is implemented. No Phase 2B commit or push is authorized yet.
 
 ## Planned modules

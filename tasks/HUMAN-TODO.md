@@ -20,6 +20,8 @@ All entries are open / Decision Required. Do not mark complete without human con
 
 ## Responsibility boundaries
 
+HUM-014: Product Owner review of the [CI workflow](../docs/continuous-integration.md), its eventual commit/push and first hosted results is pending. Repository Actions policy/first-contributor approvals remain owner-controlled if GitHub requests them. Decide separately whether the named `Backend` and `Frontend` checks become merge requirements; no branch protection or repository settings are changed here. CI implementation approval does not approve production deployment. This item is open; no existing human item is closed.
+
 - HUM-002 selects languages, accessibility targets and validation criteria; HUM-009 arranges participants, facilitators, accommodations and authorized research-data handling against those needs.
 - HUM-003 owns content/source selection and medical/language review arrangements; HUM-007 arranges qualified legal/privacy review, including applicable reuse rights and regulatory constraints.
 - HUM-008 defines the operating model and operational responsibilities; HUM-007 investigates applicable legal/privacy constraints on that model. Neither substitutes for the other.

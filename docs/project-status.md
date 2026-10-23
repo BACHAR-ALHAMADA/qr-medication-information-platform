@@ -2,6 +2,8 @@
 
 Last updated: 2026-10-22
 
+CI follow-up (2026-10-22): [GitHub Actions configuration](continuous-integration.md) is implemented locally and validated for review; T-014 distinguishes local Release/backend/frontend checks from the first hosted run, which is still pending. No CI-task commit/push, deployment, repository protection change or new application feature is authorized yet.
+
 ## Current phase
 
 **Phase 2B — first React medication lookup interface.** Phase 2A backend is committed/pushed as `a4d2e29` with 53 passing mocked tests and successful live verification. The Product Owner approved a narrow English-only React/TypeScript exact-DIN interface, safe local proxy and necessary frontend tools/tests. Phase 2B was committed/pushed as `9ac2766` after explicit approval. The current working implementation is the bounded Phase 2C synthetic foundation described below; it remains uncommitted for review. Clinical publication, private patient data and the broader MVP remain future scope. Accepted ADRs and mandatory privacy/security principles are unchanged.
