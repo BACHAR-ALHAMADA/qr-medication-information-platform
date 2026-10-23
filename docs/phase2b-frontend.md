@@ -16,7 +16,7 @@ Current environment (2026-10-22): Node.js 24.22.0 is active. Historical verifica
 
 ## Start both applications on Windows in VS Code
 
-Open the repository folder in VS Code. Use two integrated PowerShell terminals. First verify `node --version` is Node 24 LTS (or a supported version satisfying package.json) and the .NET 8 SDK is installed. If PowerShell blocks `npm.ps1`, use `npm.cmd` as below; no execution-policy change is needed. HUM-013 remains open pending explicit human confirmation, despite Node.js 24.22.0 being active in the current environment. The historical portable verification runtime was not a tracked dependency or a permanent system installation.
+Open the repository folder in VS Code. Use two integrated PowerShell terminals. First verify `node --version` is Node 24 LTS (or a supported version satisfying package.json) and the .NET SDK 10.0.402 pinned by root `global.json` is available (see the [runtime upgrade](phase2d-0-dotnet10-upgrade.md)). If PowerShell blocks `npm.ps1`, use `npm.cmd` as below; no execution-policy change is needed. HUM-013 remains open pending explicit human confirmation, despite Node.js 24.22.0 being active in the current environment. The historical portable verification runtime was not a tracked dependency or a permanent system installation.
 
 Terminal 1, repository root:
 

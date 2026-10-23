@@ -42,3 +42,7 @@ The broader [scenario matrix](phase2c-identity-tenancy-design.md#threats-and-pla
 ## T-014 — continuous integration
 
 The [CI workflow](continuous-integration.md) is implemented locally for review. It automates T-011/T-012/T-013's existing backend/frontend suites on pull requests targeting `main` and pushes to `main`. Local Release restore/build and all 114 backend tests passed; isolated `npm ci`, TypeScript, lint/build and all 28 frontend tests passed. Standalone actionlint validated workflow syntax and GitHub Actions semantics; unavailable ShellCheck/Pyflakes integrations were disabled. No hosted Ubuntu execution is claimed. Tests remain synthetic/mocked, with no live DPD, running API, production database or application secrets required. First hosted evidence remains pending AI-009/HUM-014 after commit/push approval.
+
+## T-016 - .NET 10 runtime compatibility regression
+
+Bounded Phase 2D-0 verification reruns existing T-011/T-012/T-013 suites rather than adding mirrored tests: restore, Release build, all backend tests, frontend TypeScript/lint/build/tests, workflow validation and package advisory review. Exact results and limits are recorded in the [runtime upgrade](phase2d-0-dotnet10-upgrade.md). No real PostgreSQL T-015 tests are implemented by this upgrade.

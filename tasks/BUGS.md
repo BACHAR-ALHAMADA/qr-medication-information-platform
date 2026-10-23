@@ -12,3 +12,5 @@ No open bugs remain after the approved review corrections below. The initial Pha
 | BUG-006 | Low: authorization regressions lacked focused branch/revocation/cancellation/failure coverage, and the deterministic interleaving test had unbounded waits without guaranteed release. | Corrected by FIX-006 on 2026-10-22; T-013, REQ-006. Current coverage and bounded synchronization are recorded in the foundation evidence. |
 
 CI implementation review (2026-10-22): no additional confirmed application defect was found. Local `npm ci` encountered a Windows native-binding file lock; isolated installation and checks passed. This environment condition is not an application bug; see [CI verification](../docs/continuous-integration.md#local-reproduction-and-verification).
+
+Phase 2D-0 runtime review: .NET 10 compatibility is tracked in [T-016 evidence](../docs/phase2d-0-dotnet10-upgrade.md). No new application defect has been established by the runtime retargeting itself; retained historical .NET 8 evidence is not a current runtime recommendation.

@@ -57,3 +57,7 @@ HUM-001 must approve scope, fixture/reference policy and acceptance; HUM-002 mus
 ## Phase 2C
 
 Core organization/membership/branch/capability decisions and the synthetic authorization foundation were approved on 2026-10-22 in [ADR-004](decisions/ADR-004-organization-authorization-foundation.md). The [foundation is implemented locally for review](phase2c-identity-tenancy-design.md#implemented-synthetic-foundation), with 61 new xUnit cases and existing backend/frontend regressions passing. Provider selection/integration, database isolation implementation, invitations, audit storage and any protected workspace remain separately gated under HUM-001/HUM-005/HUM-006/HUM-007/HUM-008. No commit or push is authorized.
+
+## Phase 2D-0 runtime prerequisite
+
+The Product Owner separately approved the bounded .NET 10 upgrade before persistence. See the [runtime upgrade record](phase2d-0-dotnet10-upgrade.md). This approval supersedes only the runtime-choice gate in the preserved Phase 2D proposal; database scope, isolation, packages, Docker and migrations remain unapproved. No database or authentication implementation is included.
