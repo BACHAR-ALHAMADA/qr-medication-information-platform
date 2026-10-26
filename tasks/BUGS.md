@@ -1,4 +1,4 @@
-﻿# Bugs
+# Bugs
 
 No open bugs remain after the approved review corrections below. The initial Phase 2C implementation review on 2026-10-22 found no additional confirmed application defect; the later pre-commit review identified BUG-005/BUG-006. A pre-existing local API process locked default build outputs, so verification used separate ignored output directories. This environment condition is not recorded as an application bug. Documentation scope ambiguity BUG-001 was corrected; see [FIX-001](FIXES.md). Phase 2A source-metadata implementation and test verification status are recorded in [backend documentation](../docs/phase2a-backend.md); an environment/package approval block is not an application bug.
 
@@ -14,3 +14,7 @@ No open bugs remain after the approved review corrections below. The initial Pha
 CI implementation review (2026-10-22): no additional confirmed application defect was found. Local `npm ci` encountered a Windows native-binding file lock; isolated installation and checks passed. This environment condition is not an application bug; see [CI verification](../docs/continuous-integration.md#local-reproduction-and-verification).
 
 Phase 2D-0 runtime review: .NET 10 compatibility is tracked in [T-016 evidence](../docs/phase2d-0-dotnet10-upgrade.md). No new application defect has been established by the runtime retargeting itself; retained historical .NET 8 evidence is not a current runtime recommendation.
+
+| ID | Finding | Status / trace |
+|---|---|---|
+| BUG-007 | Security-test harness: SET ROLE from a superuser session retained the privileged session identity, so it could not establish that a nonprivileged caller cannot assume the revision-maintainer role. No runtime role or protected API existed. | Corrected by FIX-007; local PostgreSQL schema/revision T-015 subset, 2026-10-25. |

@@ -1,13 +1,14 @@
 # Project status
 
-Last updated: 2026-10-22
-
-CI follow-up (2026-10-22): [GitHub Actions configuration](continuous-integration.md) is implemented locally and validated for review; T-014 distinguishes local Release/backend/frontend checks from the first hosted run, which is still pending. No CI-task commit/push, deployment, repository protection change or new application feature is authorized yet.
+Last updated: 2026-10-26 (America/Winnipeg)
 
 ## Current phase
 
-**Phase 2B — first React medication lookup interface.** Phase 2A backend is committed/pushed as `a4d2e29` with 53 passing mocked tests and successful live verification. The Product Owner approved a narrow English-only React/TypeScript exact-DIN interface, safe local proxy and necessary frontend tools/tests. Phase 2B was committed/pushed as `9ac2766` after explicit approval. The current working implementation is the bounded Phase 2C synthetic foundation described below; it remains uncommitted for review. Clinical publication, private patient data and the broader MVP remain future scope. Accepted ADRs and mandatory privacy/security principles are unchanged.
+**Phase 2D local PostgreSQL foundation — end-of-day review/publication.** Seven application tables, EF migrations, monotonic revision triggers, separated roles and FORCE RLS on six tables are implemented for LOCAL DEVELOPMENT AND TESTING ONLY. A trusted synthetic harness uses parameterized transaction-local context; no production actor binding, live runtime reader adapter or protected endpoint exists. See [current evidence and limitations](phase2d-1c-rls-tenant-context.md).
 
+Local Release builds passed with zero warnings/errors; 106 unit, 8 mocked/in-process API and 59 PostgreSQL tests passed (173 total; zero failed/skipped). Existing hosted Backend/Frontend CI does not run PostgreSQL integration tests. New hosted results must be reported independently after the Draft PR runs.
+
+The Product Owner authorized reviewed Phase 2D commits, a non-force feature-branch push and a Draft PR targeting main; no merge or new feature scope is authorized. The earlier Phase 2A/2B/2C and CI evidence below is historical. Clinical publication, private patient data and the broader MVP remain future scope.
 ## Implemented
 
 - Project foundation and documentation.
@@ -21,7 +22,7 @@ CI follow-up (2026-10-22): [GitHub Actions configuration](continuous-integration
 
 - Reviewed clinical catalogue publication, name search, QR workflows, approved translations and audio.
 - Authentication, deployed authorization enforcement, patient verification, or QR generation/resolution; synthetic authorization rules are described below.
-- Database schema, EF Core model, migrations, or data.
+- Production persistence deployment, live authorization reader adapters and runtime identity binding; local schema/migrations/RLS are implemented as described above.
 - Dashboards, PMS/FHIR integrations, deployment or patient-facing medical content.
 
 ## Decisions required / TODO
@@ -60,6 +61,27 @@ Finalization checks on 2026-10-22 with active Node.js 24.22.0: frontend producti
 
 The [core model](decisions/ADR-004-organization-authorization-foundation.md) and bounded synthetic implementation were explicitly approved on 2026-10-22. [Implementation and evidence](phase2c-identity-tenancy-design.md#implemented-synthetic-foundation): three dependency-free Domain/Application projects, test-only in-memory readers and 61 new authorization cases. All 114 backend tests and all 28 frontend tests passed; frontend build/typecheck/lint passed. An existing running API locked normal backend outputs; alternate ignored build outputs were used successfully without stopping it. No authentication, protected API, database, invitation workflow, audit store or dashboard is implemented. Provider/BFF and PostgreSQL application scoping plus RLS remain preferred directions awaiting separate implementation review. Review stop: no staging, commit, push or new scope.
 
+## Phase 2D proposal
+
+Phase 2C and CI were squash-merged in PR #1 as `0f3fb2749cab6809cbc9907fcc07ee9c1e8ad475`; the reviewed feature head had passing hosted Backend/Frontend checks. Current planning branch is `feature/postgresql-tenant-isolation`. The [persistence and RLS plan](phase2d-postgresql-tenant-isolation-plan.md) is unapproved documentation, not a database implementation. T-015 is planned only. No installation, container, schema, migrations, package addition, application change, commit or push was performed for this planning task. Earlier Phase 2C review-stop wording above records the historical pre-merge state.
+
 ## Phase 2D-0 runtime upgrade - current review state
 
 The bounded .NET 10 prerequisite is authorized and implemented in the working tree; see [versions, verification and scope separation](phase2d-0-dotnet10-upgrade.md). All eight projects target net10.0, root global.json pins SDK 10.0.402, and CI reads that pin. ASP.NET integration-test hosting is the only direct package upgrade. Historical .NET 8/Phase 2B/Phase 2C evidence above is retained. PostgreSQL, EF Core, RLS and authentication remain unimplemented; the original Phase 2D proposal remains unchanged and unapproved for persistence. No staging, commit or push is authorized.
+
+## Phase 2D-1 safety review — 2026-10-25
+
+Current branch: feature/postgresql-foundation; .NET 10 prerequisite is merged. Database implementation stopped because Docker was unavailable. No PostgreSQL/EF/RLS implementation added. Restore and Release build passed (zero warnings/errors); 114 existing backend tests passed, zero failed/skipped. See [session evidence](phase2d-1-safety-review.md) for preserved work, tooling, decisions and verification limits. Earlier review-state statements above are historical.
+
+## Phase 2D-1A local PostgreSQL checkpoint - 2026-10-25
+
+The Product Owner authorized local development PostgreSQL setup only and confirmed Docker installation. Pinned PostgreSQL 18.6 is running and healthy on 127.0.0.1:55432 with a persistent named volume and ignored local administration credentials; authenticated TCP SQL verification passed. See [setup, exact commands and evidence](phase2d-1a-local-postgresql.md). No schema, EF adapters/migrations, RLS or application wiring exists. Earlier Docker-blocker statements are historical; Phase 2D remains incomplete. HUM-006 architecture decisions and later persistence approvals remain open. Stop for review; no staging/commit/push or whole-task closure.
+## Phase 2D-1B schema decision gate - 2026-10-25
+
+Bounded EF/schema/migration/constraint-test work is authorized, but the request explicitly reserves unresolved architectural decisions. HUM-006 cross-module identity FK exception and revision triggers versus constrained writer remain unresolved; complete seven-table migration/test work stopped before implementation. Selected metadata-compatible EF Core 10.0.13 and Npgsql provider/driver 10.0.3, without installation or real-DB stack verification. Existing 114 backend tests passed; PostgreSQL is healthy with zero application tables. No new database tests or schema changes. See [decision options and evidence](phase2d-1b-schema-review.md). AI-010 resumes after these explicit outcomes. No whole human item closed; all existing work, stash and backups preserved.
+## Phase 2D-1B approved foundation implemented - 2026-10-25
+
+The Product Owner explicitly approved the restrictive Identity FK exception and database-owned revision triggers; see [ADR-005](decisions/ADR-005-postgresql-foundation-integrity.md). Separate module EF infrastructure and one offline migration now create the seven-table schema locally, with tenant-consistent constraints and hardened revision-maintainer privileges. EF 10.0.13/Npgsql 10.0.3 restore/build and local migration passed; 27 real PostgreSQL tests plus all 114 existing backend tests passed (141 total; zero failed/skipped). See [implementation, commands and limits](phase2d-1b-postgresql-foundation.md). Earlier decision-blocker statements are historical for these two approved subdecisions. No runtime adapters or RLS were added; remaining HUM-006 isolation/context/bootstrap and later runtime gates remain open. No whole human task is closed. Stop for review, without staging/commit/push.
+## Phase 2D-1C local-only RLS/context checkpoint - 2026-10-25
+
+Explicit Product Owner approval now covers local RLS, role separation, transaction-local context and narrowly self-scoped bootstrap; see [ADR-006](decisions/ADR-006-local-postgresql-rls-context.md). A second local migration applies six ENABLE/FORCE tables and eight reviewed policies with distinct owner/migrator/setup/reader/maintainer roles. A trusted synthetic harness uses parameterized read-only Repeatable Read scopes; production actor authentication is absent. All 59 PostgreSQL and 114 existing backend tests passed (173 total; zero failed/skipped). Read-pool reuse/cancellation and snapshot revocation limits are verified, including the accepted context-forgery threat demonstration. See [commands, policy/privilege review and limitations](phase2d-1c-rls-tenant-context.md). Earlier no-RLS statements are historical. No API/frontend/Domain/Application changes, live reader adapters or startup migrations. Stop for review; no stage/commit/push or whole human task closure.
