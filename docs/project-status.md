@@ -1,6 +1,8 @@
 # Project status
 
-Last updated: 2026-10-26 (America/Winnipeg)
+Last updated: 2026-11-03 (America/Winnipeg)
+
+Current checkpoint: PostgreSQL CI integration is implemented and uncommitted for review. Fresh disposable bootstrap through both migrations and separate migrator authentication passed; all 173 backend and 28 frontend tests passed locally. Workflow validation passed. Hosted PostgreSQL CI and independent restore/recovery remain unverified; production authentication/tenant isolation are not established. See [current evidence and review gate](phase2d-postgresql-ci.md). Earlier entries below retain their historical checkpoint scope.
 
 ## Current phase
 

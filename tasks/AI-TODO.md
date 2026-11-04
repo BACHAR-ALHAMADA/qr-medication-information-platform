@@ -2,6 +2,8 @@
 
 IDs are stable. These are documentation/design follow-ups, not authorization to implement application features. Broader tasks remain pending; completed bounded substeps are recorded below without closing whole tasks.
 
+2026-11-03 AI-009/AI-010 bounded update: [PostgreSQL CI](../docs/phase2d-postgresql-ci.md) now bootstraps a fresh disposable database and runs all 59 PostgreSQL cases alongside existing checks. All 173 backend and 28 frontend tests passed locally. After separately approved commit/push, inspect all three hosted jobs before recording success. Independent restore/recovery remains unimplemented; arrange HUM-008 synthetic recovery scope/ownership before that exercise. Broader AI-010/runtime work remains deferred. No whole task is closed.
+
 Phase 2A separately authorizes the minimal exact-DIN adapter and mocked tests; implementation status is in [backend documentation](../docs/phase2a-backend.md). The relevant AI-004 scope reconciliation is recorded there; the backend build and 53 mocked tests now pass. Broader scope, rights and operational follow-ups, including AI-007, remain open.
 
 | ID | Necessary follow-up | Dependency / trace |

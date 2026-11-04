@@ -8,8 +8,12 @@ CREATE ROLE qr_setup LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOREPLI
 CREATE ROLE qr_reader LOGIN NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT NOREPLICATION NOBYPASSRLS;
 GRANT qr_platform_owner TO qr_migrator WITH INHERIT FALSE, SET TRUE;
 ALTER ROLE qr_reader SET default_transaction_read_only = on;
-REVOKE CONNECT, TEMPORARY ON DATABASE qr_medication_dev FROM PUBLIC;
-GRANT CONNECT ON DATABASE qr_medication_dev TO qr_platform_owner,qr_migrator,qr_setup,qr_reader;
+DO $database_privileges$
+BEGIN
+ EXECUTE format('REVOKE CONNECT, TEMPORARY ON DATABASE %I FROM PUBLIC', current_database());
+ EXECUTE format('GRANT CONNECT ON DATABASE %I TO qr_platform_owner,qr_migrator,qr_setup,qr_reader', current_database());
+END
+$database_privileges$;
 REVOKE CREATE ON SCHEMA public FROM PUBLIC;
 REVOKE ALL ON SCHEMA foundation,identity,organizations FROM PUBLIC;
 GRANT USAGE ON SCHEMA foundation,identity,organizations TO qr_reader;

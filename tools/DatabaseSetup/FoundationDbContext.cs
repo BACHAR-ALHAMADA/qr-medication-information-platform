@@ -21,8 +21,21 @@ public sealed class DesignFactory : IDesignTimeDbContextFactory<FoundationDbCont
 }
 public static class LocalDatabase
 {
+    public static bool IsCi => Environment.GetEnvironmentVariable("QR_DATABASE_MODE") == "ci";
+    private static string Required(string name) => Environment.GetEnvironmentVariable(name)
+        is { Length: > 0 } value ? value : throw new InvalidOperationException("Missing disposable database configuration.");
+    private static NpgsqlConnectionStringBuilder CiConnection(string role, string password) => new()
+    {
+        Host="127.0.0.1", Port=int.Parse(Required("QR_DATABASE_PORT")), Database="qr_medication_ci",
+        Username=role, Password=password, IncludeErrorDetail=false, Timeout=10, CommandTimeout=30
+    };
     public static string ConnectionString()
     {
+        if (Environment.GetEnvironmentVariable("QR_DATABASE_MODE") is { Length: > 0 } mode && mode != "ci")
+            throw new InvalidOperationException("Unknown database configuration mode.");
+        if (IsCi) return CiConnection("qr_ci_admin", Required("QR_DATABASE_ADMIN_PASSWORD")).ConnectionString;
+        if (Environment.GetEnvironmentVariable("CI") == "true")
+            throw new InvalidOperationException("CI requires explicit disposable database mode.");
         var root = new DirectoryInfo(Directory.GetCurrentDirectory());
         while (root != null && !File.Exists(Path.Combine(root.FullName, "global.json"))) root = root.Parent;
         if (root == null) throw new InvalidOperationException("Run from the repository.");
@@ -38,6 +51,7 @@ public static class LocalDatabase
     public static string RoleConnectionString(string role)
     {
         if (role is not ("qr_reader" or "qr_setup" or "qr_migrator")) throw new ArgumentException("Unknown local role.");
+        if (IsCi) return CiConnection(role, Required("QR_DATABASE_" + role.ToUpperInvariant() + "_PASSWORD")).ConnectionString;
         var values = File.ReadAllLines(RoleFile()).Where(line => line.Contains('=') && !line.StartsWith('#'))
             .Select(line => line.Split('=', 2)).ToDictionary(pair => pair[0], pair => pair[1]);
         return new NpgsqlConnectionStringBuilder(ConnectionString())
@@ -52,8 +66,8 @@ public static class LocalDatabase
     }
     public static async Task ProvisionLocalRolePasswordsAsync()
     {
-        var path=RoleFile();
-        if (!File.Exists(path))
+        var path=IsCi ? null : RoleFile();
+        if (path != null && !File.Exists(path))
         {
             var lines = new[] {"qr_reader","qr_setup","qr_migrator"}.Select(role =>
                 role + "=" + Convert.ToHexString(System.Security.Cryptography.RandomNumberGenerator.GetBytes(32)));

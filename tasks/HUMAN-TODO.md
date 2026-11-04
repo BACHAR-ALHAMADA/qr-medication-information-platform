@@ -2,6 +2,8 @@
 
 All entries are open / Decision Required. Do not mark complete without human confirmation. Documentation approval does not approve MVP features. IDs are stable.
 
+2026-11-03 HUM-008/HUM-014 bounded follow-up: the Product Owner conditionally authorized one scoped commit/normal push after final checks of the [PostgreSQL CI result](../docs/phase2d-postgresql-ci.md); assess hosted checks with PR #3 remaining draft. Confirm synthetic restore/recovery ownership and scope; fresh bootstrap does not prove recovery. Read-only investigation confirmed the recorded temporary backup directory is empty; its historical file copies/manifest remain unverified. The separate planning stash and its six tracked files plus untracked plan are readable and preserved. Locate/confirm any still-required file backup. Local credentials were preserved. No human item is marked complete.
+
 | ID | Owner decision or action | Trace / timing |
 |---|---|---|
 | HUM-001 | Product Owner: approve explicit MVP inclusions/exclusions, public QR semantics, release priorities and measurable acceptance criteria after discovery. F-006 stays future scope until this decision. | [Catalogue](../docs/feature-catalogue.md), [roadmap](../docs/project-roadmap.md); before implementation planning |

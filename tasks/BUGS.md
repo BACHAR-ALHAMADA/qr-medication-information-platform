@@ -18,3 +18,4 @@ Phase 2D-0 runtime review: .NET 10 compatibility is tracked in [T-016 evidence](
 | ID | Finding | Status / trace |
 |---|---|---|
 | BUG-007 | Security-test harness: SET ROLE from a superuser session retained the privileged session identity, so it could not establish that a nonprivileged caller cannot assume the revision-maintainer role. No runtime role or protected API existed. | Corrected by FIX-007; local PostgreSQL schema/revision T-015 subset, 2026-10-25. |
+| BUG-008 | The RLS migration hard-coded `qr_medication_dev` in database CONNECT/TEMPORARY privileges, preventing bootstrap in a separately named disposable CI database. | Corrected by FIX-008 on 2026-11-03; T-015, [CI bootstrap evidence](../docs/phase2d-postgresql-ci.md). |

@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Foundation.PersistenceTests;
 
-// Explicit local-only suite, excluded from the database-free generic solution/CI job.
+// Explicit synthetic suite: local development or the isolated PostgreSQL CI job.
 public sealed class SchemaTests
 {
     private const string A = "10000000-0000-0000-0000-000000000001";
