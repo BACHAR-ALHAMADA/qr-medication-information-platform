@@ -2,6 +2,8 @@
 
 All entries are open / Decision Required. Do not mark complete without human confirmation. Documentation approval does not approve MVP features. IDs are stable.
 
+2026-11-03 HUM-008 bounded authorization/evidence: the Product Owner authorized a LOCAL-ONLY synthetic database backup/restore exercise, now [verified with 59 passing restored-database tests](../docs/phase2d-backup-restore.md). End-of-day authorization permits publishing only the reviewed documentation; local artifact custody remains unchanged. Password recovery, operating retention/off-host recovery and measurable recovery objectives remain owner decisions before operational use. The former planning-file backup remains unverified/empty; the separate stash is preserved. Hosted CI passed all three jobs; PR #3 remains draft/unmerged. No whole human item is complete. Subsequent end-of-day authorization permits one documentation-only commit/push, with PR #3 remaining draft.
+
 2026-11-03 HUM-008/HUM-014 bounded follow-up: the Product Owner conditionally authorized one scoped commit/normal push after final checks of the [PostgreSQL CI result](../docs/phase2d-postgresql-ci.md); assess hosted checks with PR #3 remaining draft. Confirm synthetic restore/recovery ownership and scope; fresh bootstrap does not prove recovery. Read-only investigation confirmed the recorded temporary backup directory is empty; its historical file copies/manifest remain unverified. The separate planning stash and its six tracked files plus untracked plan are readable and preserved. Locate/confirm any still-required file backup. Local credentials were preserved. No human item is marked complete.
 
 | ID | Owner decision or action | Trace / timing |

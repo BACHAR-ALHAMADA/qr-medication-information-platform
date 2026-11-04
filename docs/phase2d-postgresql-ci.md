@@ -1,5 +1,7 @@
 # Phase 2D PostgreSQL CI integration
 
+Later checkpoint, 2026-11-03: commit `3b27aed0fecdf58e2468c5582d82a82e2f456fe0` was approved/pushed; [hosted run 41752327866](https://github.com/BACHAR-ALHAMADA/qr-medication-information-platform/actions/runs/41752327866) passed all three jobs with 173 backend and 28 frontend tests. The following uncommitted-review statements preserve the earlier checkpoint. The separately authorized [local backup/restore result](phase2d-backup-restore.md) now provides bounded empty-synthetic-baseline recovery evidence, including 59 passing tests against the restore. Broader recovery remains unverified; PR #3 remains draft.
+
 Date: 2026-11-03 (America/Winnipeg). Status: implemented and locally verified; uncommitted review gate. Authority: explicit Product Owner request for disposable PostgreSQL CI. Trace: T-014/T-015, AI-009/AI-010, HUM-008/HUM-014, ADR-005/ADR-006. Scope remains synthetic testing only.
 
 ## Safety checkpoint

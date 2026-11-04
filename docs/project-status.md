@@ -2,7 +2,7 @@
 
 Last updated: 2026-11-03 (America/Winnipeg)
 
-Current checkpoint: PostgreSQL CI integration is implemented and uncommitted for review. Fresh disposable bootstrap through both migrations and separate migrator authentication passed; all 173 backend and 28 frontend tests passed locally. Workflow validation passed. Hosted PostgreSQL CI and independent restore/recovery remain unverified; production authentication/tenant isolation are not established. See [current evidence and review gate](phase2d-postgresql-ci.md). Earlier entries below retain their historical checkpoint scope.
+Current checkpoint: PostgreSQL CI commit `3b27aed0fecdf58e2468c5582d82a82e2f456fe0` is pushed; [hosted run 41752327866](https://github.com/BACHAR-ALHAMADA/qr-medication-information-platform/actions/runs/41752327866) passed Backend, Frontend and PostgreSQL (173 backend and 28 frontend tests). A separately authorized [local backup/restore exercise](phase2d-backup-restore.md) restored the development database's empty synthetic baseline plus globals into a new cluster, matched schema/security metadata and passed all 59 PostgreSQL tests against the restore. End-of-day authorization permits one documentation-only commit/push of the recovery evidence; no additional development or PR merge is authorized. Broader recovery/production authentication/tenant isolation remain unverified. PR #3 remains draft/unmerged. See [CI evidence](phase2d-postgresql-ci.md). Earlier entries below retain their historical checkpoint scope.
 
 ## Current phase
 
