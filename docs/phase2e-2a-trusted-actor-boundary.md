@@ -1,0 +1,67 @@
+# Phase 2E-2A: trusted actor identity boundary
+
+Date: 2026-11-11 (America/Winnipeg). Status: focused security review and regression reruns passed; conditional commit/push/Draft publication authorized, with hosted results pending at this checkpoint. Authority: explicit Product Owner Phase 2E-2A instruction. Trace: F-002, REQ-006/REQ-007/REQ-008/REQ-009, T-013/T-015, AI-002/AI-010, HUM-005/HUM-008, ADR-004 through ADR-006. No provider or authentication deployment decision is made.
+
+## Starting point and scope
+
+Fetched `origin/main`, verified merge `c5bbad285812c8f981a67e9ae2b36ace1e715adf` and [post-merge main CI run 43113883586](https://github.com/BACHAR-ALHAMADA/qr-medication-information-platform/actions/runs/43113883586) with all three jobs passing. Created `feature/trusted-actor-boundary` from that exact commit. Initial tree contained only untracked `docs/NEXT-SESSION.md`. Credential/handoff/recovery-file hashes match the prior checkpoint; the existing safety stash remains `c6cbf3cdeb80ee26866769434d20c06b76a042e1`. The historical empty planning-backup directory is not evidence of a usable backup. No local artifact was removed or replaced.
+
+Only Identity Application contracts/coordination and synthetic tests are added. Existing PostgreSQL readers/session, StaffAuthorization, Domain policies, API, frontend, migrations, roles and RLS remain unchanged. No new dependency, persistent mapping, provider adapter, middleware or protected endpoint is introduced.
+
+## Contracts and trust
+
+- `ExternalPrincipalKey` holds exact issuer and subject strings. Its public construction validates only shape, never authentication. HTTPS issuer syntax excludes userinfo/query/fragment; strings are not trimmed, case-folded or normalized. Subject remains an opaque stable identifier. Matching uses record/string ordinal equality, preserving issuer/subject distinctions.
+- `ValidatedAuthentication` has an internal constructor, immutable principal and no public issuance method. `IValidatedAuthenticationSource.ReadCurrentAsync` is a trusted invocation-scoped source contract with no caller identity argument. A future approved adapter must establish actual protocol/session validation before producing evidence; this phase implements none of it. `ClaimsPrincipal.IsAuthenticated` alone is not accepted as validation proof.
+- `IExternalStaffIdentityResolver` is owned by Identity and accepts validation evidence, not email or an internal actor GUID. Its trusted output reports Missing, Unique or Ambiguous, echoes the external key, and supplies current staff identity only for a unique mapping. The boundary denies null/unknown/ambiguous/mismatched results, missing staff, disabled staff and zero internal IDs. No automatic user creation or email fallback occurs. There is no production resolver or database proof that a mapped staff row exists yet; synthetic implementations simulate that contract.
+- `AuthenticatedActorBoundary.ResolveCurrentAsync` takes only a cancellation token. It calls the configured source and resolver, checks cancellation after each await, then creates an identity-only `AuthenticatedActorContext`. The actor context has no public constructor/setters and carries no organization, branch or capability authority. Exceptions propagate without a fallback actor.
+- Organization and branch IDs remain candidate selectors for unchanged StaffAuthorization checks. A synthetic positive/negative composition test proves that resolving an actor neither bypasses membership checks nor changes tenant/branch semantics.
+
+Evidence construction is internal to trusted Identity Application code; the source interface supplies evidence but does not enforce cryptographic provenance. The only issuance friend assembly is the existing `MedicationCatalogue.UnitTests` test assembly. Synthetic fixtures construct evidence there explicitly; API/Infrastructure assemblies receive no issuance access. Future adapter placement and issuance access require a reviewed implementation design. No public `FromGuid`, `FromClaims` or `isValidated=true` shortcut is added. The old `TrustedSyntheticActor.FromTrustedHarness` stays unchanged and is not a conversion path from this actor context into PostgreSQL runtime sessions.
+
+Nonpublic construction is an assembly/composition safeguard, not a cryptographic credential or sandbox against hostile in-process code, reflection or a forged trusted dependency. Identity Application and the test friend assembly are trusted. A future adapter must verify the approved issuer, signature/keys, intended audience, protocol/session validity and required flow protections using maintained libraries; a future mapping resolver must correctly establish existing internal identity and current enabled state. No real authentication is achieved by implementing these interfaces with caller-supplied data.
+
+## Lifetime, concurrency and privacy
+
+The boundary keeps no current-user field, singleton actor, positive mapping cache or tenant state. Dependencies must be invocation-scoped or correctly concurrency-safe. Each call re-reads source and mapping; deterministic bounded interleaving tests use separate invocation sources and verify identities cannot exchange through shared boundary state. Cancellation before, during and after dependency completion cannot issue an actor. An internal context is evidence from that lookup, not a reusable bearer credential or future-operation authorization; later sensitive operations still need current transactional authorization.
+
+Issuer/subject and internal staff IDs would be personal identity references in real use. Here all values are synthetic and in-memory only. Only the exact mapping key, resolution outcome and staff enabled flag are handled; no email/profile/token/password or patient attributes are collected. No persistence/retention policy is invented. Identity-object diagnostic strings omit the identifiers, and the boundary logs nothing. Public properties still contain identifiers for their defined purpose; callers must not serialize or log whole identity graphs. Provider data handling, retention, recovery and legal/privacy applicability remain HUM-005/HUM-007/HUM-008 decisions.
+
+## Verification
+
+All checks executed locally on 2026-11-11 using installed SDK 10.0.402 and existing packages:
+
+| Check | Actual result |
+|---|---|
+| Solution Release build | Passed; zero warnings/errors |
+| Backend tests | 152 unit + 8 API = **160 passed** (114 existing + 46 new), zero failed/skipped |
+| Persistence/setup Release build | Passed; zero warnings/errors |
+| Real PostgreSQL regression suite | **110 passed**, zero failed/skipped |
+| Frontend TypeScript / zero-warning lint / production build | Passed |
+| Frontend tests | **28 passed** |
+| Combined tests | **298 passed**, zero failed/skipped |
+
+New coverage: one valid mapped enabled user; unvalidated caller email/GUID/tenant/branch or fabricated authenticated ClaimsPrincipal cannot enter the public boundary; no public evidence/context issuance or JSON deserialization; exact issuer/subject collision and normalization negatives; missing, disabled, zero-ID, duplicate/ambiguous and mismatched mappings; invalid key shape; cancellation before entry, after source, during resolver and after resolver; source/resolver failures; repeated enabled-state checks; bounded concurrent invocation interleaving; independent positive/negative tenant/branch authorization; identifier-minimized diagnostic strings.
+
+The unvalidated-claims cases exercise absence of an accepted caller-input path and no resolver invocation. They do not simulate cryptographic token validation. Test-friend reflection/JSON checks protect the current API shape, not every possible serializer or hostile reflection. No real-provider, live-account, token-validation, browser or protected-API success is claimed. The initial 38-case subset passed; additional coverage brought the new total to 46, with no failing run. Existing real PostgreSQL tests remain unchanged.
+
+Commands: solution and persistence `dotnet build ... --configuration Release --no-restore`, followed by their `dotnet test ... --configuration Release --no-build --no-restore --verbosity minimal` invocations. From `frontend/`: `npm.cmd exec --no -- tsc --noEmit`, `npm.cmd run lint`, `npm.cmd run build`, `npm.cmd test`. No package install or fresh advisory audit. This pre-publication record contains local results only; hosted execution must be verified separately on the published head.
+
+## Provider decision comparison — proposal only
+
+Researched official documentation on 2026-11-11. Operational rankings and suitability below are engineering assessments, not verified vendor compliance, contractual guarantees or cost quotes. No account, installation, vendor contact or provider selection occurred. OIDC uses the exact issuer/subject pair as the stable identity key; email is not a substitute ([OIDC Core claim stability](https://openid.net/specs/openid-connect-core-1_0.html#ClaimStability)).
+
+| Approach | Operations and security responsibility | Cost considerations | Future multi-pharmacy fit |
+|---|---|---|---|
+| Managed B2B identity service, e.g. Auth0 Organizations | Lower provider hosting burden; application still owns validation, tenant mapping, membership authorization, recovery configuration and incident integration | MAU/subscription, organization/enterprise-connection limits, MFA/log/support features; obtain a scenario-specific quote | Explicit business organizations and federated connections can represent different pharmacies; provider organization membership must not replace application tenant checks. See [Organizations](https://auth0.com/docs/manage-users/organizations) and [pricing](https://auth0.com/pricing). |
+| Microsoft Entra workforce/B2B or External ID, depending on operating model | Managed service with tenant/federation/account-lifecycle configuration; decide workforce guest versus customer identity model and required assurance/features first | Workforce licensing versus External ID MAU/add-ons varies by model; subscriptions and operational ownership still required | Worth comparing if pharmacies have existing enterprise directories; validate federation and multi-membership behavior in the selected model rather than assuming all Entra products are equivalent. See [External ID pricing/model](https://learn.microsoft.com/en-us/entra/external-id/external-identities-pricing). |
+| Self-managed OIDC provider, e.g. Keycloak | Highest direct responsibility for TLS, patching, keys, database backups, availability, monitoring, MFA/recovery and failover | Infrastructure, staff time, on-call and optional support; compare total operating cost rather than license cost alone | Configurable identity federation/realm design needs a proof of concept; provider realms must not silently redefine the platform's approved pharmacy tenant boundaries. See [production operations](https://www.keycloak.org/server/configuration-production) and [availability](https://www.keycloak.org/high-availability/introduction). |
+
+HUM-005/HUM-008 Decision Required: owner and assurance/recovery policy, same-origin BFF versus other approved client topology, named provider/model, expected users/pharmacies/enterprise connections, exact issuer allowlist and stable subject/account linking, session/revocation bounds, pricing/support requirements and incident responsibility. HUM-007 covers data location, retention and qualified privacy/legal review. The previously preferred OIDC/BFF direction remains unselected for implementation. A BFF and a provider are separate choices.
+
+## Next slice and review gate
+
+After review, first record provider/model and identity-mapping decisions and design the trusted adapter issuance path. Approve any minimal mapping storage/migration and nonproduction provider exercise separately. Then implement only an approved validation-source adapter plus Identity-owned exact mapping resolver, with invalid issuer/audience/signature/expired-session and disabled/unknown mapping negatives. Do not wire public request IDs to the synthetic factory or treat interface/type names as proof of authentication.
+
+Recipient eligibility remains separate: define existing enabled recipient identity, active same-organization membership and any qualification/onboarding rules before a new lookup boundary. Current self-only RLS cannot read arbitrary recipients; any new mechanism needs separate privacy/privilege review. No delegation execution follows from actor resolution or actor-only scope evaluation. Transaction-local context forgery, snapshot revocation and sensitive-write/audit limits from ADR-006 remain unchanged.
+
+Publication review, 2026-11-11: the Product Owner conditionally authorized selective staging, one scoped feature commit, normal push and a separate Draft PR after review and regressions pass. Focused review found no unresolved security defect or public caller-input issuance path within the documented trusted-assembly model. All 46 new tests were reviewed; both Release builds, 160 backend, 110 PostgreSQL and 28 frontend tests plus frontend checks passed again, with zero failures/skips. All 156 shareable files were scanned: zero actual local credential matches, private-key/token pattern matches or binaries. No implementation correction or provider choice was needed. Stop after publishing and assessing hosted CI; do not merge or mark ready, and do not close whole human tasks.

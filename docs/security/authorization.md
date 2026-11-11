@@ -1,5 +1,7 @@
 # Authorization
 
+2026-11-11 Phase 2E-2A: [trusted actor boundary](../phase2e-2a-trusted-actor-boundary.md) now coordinates nonpublic validation evidence and an Identity-owned exact issuer/subject mapping contract. Evidence construction is internal to trusted Identity Application code, with access granted only to the synthetic test friend assembly; current issuers are test fixtures. The source interface supplies evidence to the boundary; it does not cryptographically enforce provenance. No production adapter or public issuance shortcut exists. Email, request actor/tenant GUIDs and `ClaimsPrincipal.IsAuthenticated` alone do not establish identity. Missing/ambiguous/mismatched/disabled mappings deny. Actor contexts carry identity only; existing tenant/capability checks and recipient-eligibility gates remain mandatory. Nonpublic types are composition safeguards, not protection against malicious in-process code, and no actual authentication is implemented by this slice.
+
 Authorization is server-side and applies to every operation that reads or changes protected data. Hiding UI elements is not a security boundary.
 
 ## Planned model

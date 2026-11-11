@@ -11,3 +11,5 @@ Initial classification for design; validate categories and handling with privacy
 | Secrets | Credentials, signing keys, QR tokens, verification factors | Dedicated secret handling; never commit or log |
 
 Classification does not determine legal status. TODO: review terminology and obligations with qualified privacy and legal stakeholders before production.
+
+Phase 2E-2A: external issuer/subject keys and internal staff identifiers are identity references requiring purpose-bound personal-data handling if real staff are introduced. Current [actor-boundary fixtures](../phase2e-2a-trusted-actor-boundary.md) are synthetic and in-memory only, collect no email/profile/token/patient data, add no persistence and log nothing. Identity diagnostic strings omit identifiers; whole-object serialization/logging is not authorized. Future provider/mapping retention, data location and access rules require HUM-005/HUM-007/HUM-008 review.
