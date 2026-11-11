@@ -1,4 +1,4 @@
-﻿# Fixes
+# Fixes
 
 | ID | Corrective change | Verification / trace |
 |---|---|---|
@@ -14,3 +14,8 @@ Phase 2C review (2026-10-22): the synthetic authorization foundation is new appr
 CI follow-up (2026-10-22): new verification automation only; no application fix or new FIX identifier is claimed. [CI documentation](../docs/continuous-integration.md) records local checks and hosted-run limits.
 
 Phase 2D-0 is an approved runtime maintenance upgrade, not a new application bug fix; no new FIX identifier is claimed. The [upgrade record](../docs/phase2d-0-dotnet10-upgrade.md) distinguishes compatibility changes from the preserved PostgreSQL proposal and records actual verification results.
+
+| ID | Corrective change | Verification / trace |
+|---|---|---|
+| FIX-007 | Replaced the privileged-session SET ROLE probe with transaction-local SESSION AUTHORIZATION to a nonprivileged test-only role; role assumption, direct definer-function calls, trigger disabling, schema creation and revision-column writes are rejected. Corrected RESTRICT SQLSTATE expectations and isolated the ownership-trigger test from FK failure ordering. | BUG-007; all 27 PostgreSQL tests and 114 existing backend tests passed; [evidence](../docs/phase2d-1b-postgresql-foundation.md). Date: 2026-10-25. |
+| FIX-008 | Apply the same database privileges to `current_database()` using server-side `%I` identifier quoting; synchronize the review SQL. Existing migration IDs and policies remain intact. | BUG-008; fresh `qr_medication_ci` bootstrap, separate migrator login and all 59 PostgreSQL tests passed. No corrective migration is needed for already initialized `qr_medication_dev`. [Evidence](../docs/phase2d-postgresql-ci.md). Date: 2026-11-03. |

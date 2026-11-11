@@ -30,6 +30,73 @@ jobs:
       - name: Test backend
         run: dotnet test MedicationInformationPlatform.sln --configuration Release --no-build --no-restore --verbosity normal
 
+  postgresql:
+    name: PostgreSQL integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    services:
+      postgres:
+        image: postgres:18.6-bookworm@sha256:bbf83594798e144bff365a9c191c5d779f181fb3135902064ab8ff11918020fc
+        env:
+          POSTGRES_DB: qr_medication_ci
+          POSTGRES_USER: qr_ci_admin
+          # Linux supplies a random initial password without exposing it in service logs.
+          # Rotate through the container-local administrative socket before TCP setup.
+          POSTGRES_PASSWORD_FILE: /proc/sys/kernel/random/uuid
+          POSTGRES_HOST_AUTH_METHOD: scram-sha-256
+          POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256
+        ports:
+          - 5432/tcp
+        options: >-
+          --health-cmd "pg_isready -h 127.0.0.1 -U qr_ci_admin -d qr_medication_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 12
+    env:
+      QR_DATABASE_MODE: ci
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Set up .NET SDK 10
+        uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - name: Generate disposable database credentials
+        env:
+          POSTGRES_CONTAINER: ${{ job.services.postgres.id }}
+          POSTGRES_PORT: ${{ job.services.postgres.ports['5432'] }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "QR_DATABASE_PORT=$POSTGRES_PORT" >> "$GITHUB_ENV"
+          for role in ADMIN QR_READER QR_SETUP QR_MIGRATOR; do
+            password="$(openssl rand -hex 32)"
+            echo "::add-mask::$password"
+            echo "QR_DATABASE_${role}_PASSWORD=$password" >> "$GITHUB_ENV"
+            if [ "$role" = ADMIN ]; then
+              # Hex-only generated input; no secrets in process arguments or SQL diagnostics.
+              printf "SET log_statement='none'; SET log_min_error_statement='panic'; SET log_parameter_max_length_on_error=0; ALTER ROLE qr_ci_admin PASSWORD '%s';\n" "$password" |
+                docker exec -i "$POSTGRES_CONTAINER" psql -X -q -v ON_ERROR_STOP=1 -U qr_ci_admin -d qr_medication_ci
+            fi
+          done
+      - name: Restore PostgreSQL integration suite and setup tool
+        run: dotnet restore tests/Persistence/Foundation.PersistenceTests.csproj --source https://api.nuget.org/v3/index.json
+      - name: Build PostgreSQL integration suite and setup tool
+        run: dotnet build tests/Persistence/Foundation.PersistenceTests.csproj --configuration Release --no-restore
+      - name: Bootstrap fresh database through both EF migrations
+        run: dotnet run --project tools/DatabaseSetup --configuration Release --no-build --no-restore -- ci-bootstrap
+      - name: Verify separate migrator connection
+        run: dotnet run --project tools/DatabaseSetup --configuration Release --no-build --no-restore -- apply
+      - name: Verify bootstrap rejects an existing schema
+        shell: bash
+        run: |
+          if dotnet run --project tools/DatabaseSetup --configuration Release --no-build --no-restore -- ci-bootstrap; then
+            echo 'Bootstrap unexpectedly accepted an existing schema.' >&2
+            exit 1
+          fi
+      - name: Test PostgreSQL schema and RLS
+        run: dotnet test tests/Persistence/Foundation.PersistenceTests.csproj --configuration Release --no-build --no-restore --verbosity minimal
+
   frontend:
     name: Frontend
     runs-on: ubuntu-24.04

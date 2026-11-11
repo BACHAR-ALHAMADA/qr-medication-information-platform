@@ -1,6 +1,6 @@
 # Project roadmap
 
-Status: Proposed sequence within documentation-led planning; no delivery dates, approved MVP feature set, or implementation authorization.
+Status: Proposed broader product sequence, with the separately approved local Phase 2D foundation implemented. No broader MVP delivery dates or production deployment are approved.
 
 Subsequent Product Owner instructions authorized Phase 2A exact-DIN source lookup (committed as `a4d2e29`) and Phase 2B's English React metadata screen (committed as `9ac2766`). Those narrow approvals supersede the planning-only status for those slices, not for the broader MVP or catalogue-to-QR proposal below. See [backend](phase2a-backend.md) and [frontend](phase2b-frontend.md) for implemented scope and checks. Name search, QR generation, publishing, authentication and persistence remain outside Phase 2B.
 
@@ -58,6 +58,12 @@ HUM-001 must approve scope, fixture/reference policy and acceptance; HUM-002 mus
 
 Core organization/membership/branch/capability decisions and the synthetic authorization foundation were approved on 2026-10-22 in [ADR-004](decisions/ADR-004-organization-authorization-foundation.md). The [foundation is implemented locally for review](phase2c-identity-tenancy-design.md#implemented-synthetic-foundation), with 61 new xUnit cases and existing backend/frontend regressions passing. Provider selection/integration, database isolation implementation, invitations, audit storage and any protected workspace remain separately gated under HUM-001/HUM-005/HUM-006/HUM-007/HUM-008. No commit or push is authorized.
 
+## Phase 2D local foundation
+
+The bounded PostgreSQL foundation is implemented for local development/testing: seven-table EF schema, revision triggers, separated database roles, FORCE RLS on six tables and a trusted synthetic tenant-context harness. See [current implementation and limits](phase2d-1c-rls-tenant-context.md), [ADR-005](decisions/ADR-005-postgresql-foundation-integrity.md) and [ADR-006](decisions/ADR-006-local-postgresql-rls-context.md). Local verification passed 59 PostgreSQL tests and 114 existing backend tests. The original [proposal](phase2d-postgresql-tenant-isolation-plan.md) is historical planning; its broader adapters, recovery and CI matrix is not fully implemented.
+
+The Product Owner authorized end-of-day reviewed commits, a non-force push of feature/postgresql-foundation and a Draft PR to main. No merge, production deployment, authentication, runtime authorization reader, protected route or patient functionality is authorized. Existing hosted CI covers the database-free Backend and Frontend jobs, not the PostgreSQL suite.
+
 ## Phase 2D-0 runtime prerequisite
 
-The Product Owner separately approved the bounded .NET 10 upgrade before persistence. See the [runtime upgrade record](phase2d-0-dotnet10-upgrade.md). This approval supersedes only the runtime-choice gate in the preserved Phase 2D proposal; database scope, isolation, packages, Docker and migrations remain unapproved. No database or authentication implementation is included.
+The separately approved .NET 10 prerequisite is merged; see the [runtime record](phase2d-0-dotnet10-upgrade.md). Later local schema and RLS approvals supersede the historical planning-only gates only for their bounded scope. Production identity binding, runtime composition, disposable-database CI and recovery remain separate work.

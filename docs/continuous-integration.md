@@ -1,6 +1,8 @@
 # Continuous integration
 
-The [CI workflow](../.github/workflows/ci.yml) was merged through PR #1; the .NET 10 runtime update is uncommitted for review. It runs on pull requests targeting `main` (including draft PR updates) and pushes to `main`. It does not run on standalone feature-branch pushes without an applicable pull request. The original .NET 8 workflow passed hosted Backend/Frontend checks before the Phase 2C squash merge. No hosted pass is claimed for the .NET 10 update. Trace: T-011/T-012/T-013/T-014.
+Current checkpoint, 2026-11-03: the uncommitted [CI workflow](../.github/workflows/ci.yml) adds an independent PostgreSQL integration job with a digest-pinned PostgreSQL 18.6 service, disposable bootstrap through both migrations, separate roles and all 59 PostgreSQL tests. Backend retains 114 database-free tests; Frontend checks remain unchanged. All 173 backend and 28 frontend tests passed locally. See [setup, verification and security limits](phase2d-postgresql-ci.md). Hosted verification awaits separately approved commit/push; no hosted pass is claimed for this change. Permissions and triggers remain unchanged; no developer database or repository secrets are required. Trace: T-014/T-015.
+
+The sections below preserve historical CI preparation evidence and describe the former two-job workflow; their no-service and pending-runtime statements are historical. Current service details and limitations are in the linked Phase 2D record.
 
 ## Jobs and tools
 
