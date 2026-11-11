@@ -26,6 +26,8 @@ The exact-DIN source-metadata backend and React/TypeScript lookup interface are 
 
 ## Development status
 
+Current 2026-11-11: PR #4 is merged as `c5bbad2` with passing post-merge CI. [Phase 2E-2A](docs/phase2e-2a-trusted-actor-boundary.md) adds provider-neutral identity contracts and controlled actor resolution for review, tested only with synthetic sources/mappings. Local verification passed 160 backend, 110 PostgreSQL and 28 frontend tests. No real authentication adapter, provider, login, persistent identity mapping or protected endpoint exists. Earlier Phase 2E-1 counts below retain that milestone's scope.
+
 Phase 2D was merged through PR #3 as `88c83f1`; post-merge hosted Backend, Frontend and PostgreSQL CI passed. [Phase 2E-1](docs/phase2e-1-postgresql-readers.md) adds PostgreSQL-backed authorization readers for review, composed only in a trusted synthetic harness. Local verification passed 114 backend, 110 PostgreSQL and 28 frontend tests.
 
 **Implemented:** the public exact-DIN metadata API, React lookup interface, synthetic authorization rules and local PostgreSQL foundation. See [current status](docs/project-status.md), [Windows startup](docs/phase2b-frontend.md) and the [API contract](docs/phase2a-backend.md). No production actor binding, authentication, protected API, QR flow, patient instructions or reviewed clinical publication is implemented. Transaction-local database settings do not authenticate a user.
