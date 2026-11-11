@@ -20,5 +20,7 @@ API → Application contracts/use cases → Domain. Infrastructure implements ap
 
 ## Open questions
 
+Local implementation checkpoint, 2026-11-11: [Phase 2E-1](../phase2e-1-postgresql-readers.md) adds an Identity-owned staff reader and Organizations-owned access reader behind the existing Application interfaces. Only Infrastructure depends on Npgsql and the shared PostgreSQL session; Application/Domain remain unchanged. Both readers receive the same caller-owned read-only transaction, and the trusted synthetic test harness composes them with `StaffAuthorization`. Identity reads only its user table; Organizations reads only its organization/membership/grant tables. The ADR-005 physical FK remains a narrow migration-only exception. There is no API composition, production actor binding or protected operation.
+
 - Decision Required: exact ownership of patient identity and organization records.
 - Decision Required: whether Audit is a module or a cross-cutting application service after workflows are defined.

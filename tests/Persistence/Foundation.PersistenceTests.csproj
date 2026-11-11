@@ -6,4 +6,6 @@
 <PackageReference Include="xunit.runner.visualstudio" Version="2.8.0" PrivateAssets="all" />
 <ProjectReference Include="../../tools/DatabaseSetup/DatabaseSetup.csproj" />
 <ProjectReference Include="../../src/Infrastructure/PostgreSql/PostgreSql.Infrastructure.csproj" />
+<ProjectReference Include="../../src/Modules/Identity/Infrastructure/Identity.Infrastructure.csproj" />
+<ProjectReference Include="../../src/Modules/Organizations/Infrastructure/Organizations.Infrastructure.csproj" />
 </ItemGroup></Project>

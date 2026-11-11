@@ -22,13 +22,13 @@ The planned starting point is a modular monolith: one ASP.NET Core API and a Rea
 - Containers and version control: Docker and Git
 - Testing: xUnit plus integration and security testing
 
-The exact-DIN source-metadata backend and a minimal React/TypeScript lookup interface are implemented. PostgreSQL/EF Core, staff identity and containers remain planned and unimplemented.
+The exact-DIN source-metadata backend and React/TypeScript lookup interface are implemented. PostgreSQL/EF Core schema, revision triggers, RLS and synthetic database testing are implemented for local development only. Staff authentication remains unimplemented.
 
 ## Development status
 
-Phase 2C and its [continuous integration workflow](docs/continuous-integration.md) were merged through PR #1 with passing hosted checks. The [Phase 2D-0 runtime upgrade](docs/phase2d-0-dotnet10-upgrade.md) is a separate uncommitted change awaiting review; its .NET 10 hosted execution is not yet verified. PostgreSQL remains planning only.
+Phase 2D was merged through PR #3 as `88c83f1`; post-merge hosted Backend, Frontend and PostgreSQL CI passed. [Phase 2E-1](docs/phase2e-1-postgresql-readers.md) adds PostgreSQL-backed authorization readers for review, composed only in a trusted synthetic harness. Local verification passed 114 backend, 110 PostgreSQL and 28 frontend tests.
 
-**Implemented:** the public exact-DIN metadata API, React lookup interface and synthetic Phase 2C authorization foundation. Phase 2C and CI were merged in PR #1. See [current status](docs/project-status.md), [Windows startup](docs/phase2b-frontend.md) and the [API contract](docs/phase2a-backend.md). No database schema, authentication, protected API, QR flow, patient instructions or reviewed clinical publication is implemented.
+**Implemented:** the public exact-DIN metadata API, React lookup interface, synthetic authorization rules and local PostgreSQL foundation. See [current status](docs/project-status.md), [Windows startup](docs/phase2b-frontend.md) and the [API contract](docs/phase2a-backend.md). No production actor binding, authentication, protected API, QR flow, patient instructions or reviewed clinical publication is implemented. Transaction-local database settings do not authenticate a user.
 
 ## Planned modules
 

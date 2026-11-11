@@ -4,4 +4,8 @@
 <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.13" />
 <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.3" />
 <PackageReference Include="Npgsql" Version="10.0.3" />
+</ItemGroup>
+<ItemGroup>
+<ProjectReference Include="../Application/Organizations.Application.csproj" />
+<ProjectReference Include="../../../Infrastructure/PostgreSql/PostgreSql.Infrastructure.csproj" />
 </ItemGroup></Project>

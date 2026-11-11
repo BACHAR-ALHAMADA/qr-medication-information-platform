@@ -1,16 +1,18 @@
 # Project status
 
-Last updated: 2026-11-03 (America/Winnipeg)
+Last updated: 2026-11-11 (America/Winnipeg)
+
+Current checkpoint: PR #3 merged as `88c83f1e2af593ce6ffccae6937859cb7e6c535d`; [post-merge main CI](https://github.com/BACHAR-ALHAMADA/qr-medication-information-platform/actions/runs/43109234429) passed all three jobs. The separately authorized [Phase 2E-1 readers](phase2e-1-postgresql-readers.md) are implemented locally on `feature/postgresql-authorization-readers` for review. Both readers share one read-only Repeatable Read session and compose with unchanged `StaffAuthorization` only in synthetic tests. Local Release builds passed with zero warnings/errors; **114 backend + 110 PostgreSQL = 224 backend cases**, plus **28 frontend tests**, passed with zero failed/skipped. Frontend typecheck/lint/build passed. No production actor binding, API wiring, schema/RLS/role changes or patient scope. The Product Owner conditionally authorized a reviewed commit, normal push and Draft PR after security review and regression passes; hosted publication results remain pending at this checkpoint. Earlier checkpoint statements below are historical.
 
 Current checkpoint: PostgreSQL CI commit `3b27aed0fecdf58e2468c5582d82a82e2f456fe0` is pushed; [hosted run 41752327866](https://github.com/BACHAR-ALHAMADA/qr-medication-information-platform/actions/runs/41752327866) passed Backend, Frontend and PostgreSQL (173 backend and 28 frontend tests). A separately authorized [local backup/restore exercise](phase2d-backup-restore.md) restored the development database's empty synthetic baseline plus globals into a new cluster, matched schema/security metadata and passed all 59 PostgreSQL tests against the restore. End-of-day authorization permits one documentation-only commit/push of the recovery evidence; no additional development or PR merge is authorized. Broader recovery/production authentication/tenant isolation remain unverified. PR #3 remains draft/unmerged. See [CI evidence](phase2d-postgresql-ci.md). Earlier entries below retain their historical checkpoint scope.
 
 ## Current phase
 
-**Phase 2D local PostgreSQL foundation — end-of-day review/publication.** Seven application tables, EF migrations, monotonic revision triggers, separated roles and FORCE RLS on six tables are implemented for LOCAL DEVELOPMENT AND TESTING ONLY. A trusted synthetic harness uses parameterized transaction-local context; no production actor binding, live runtime reader adapter or protected endpoint exists. See [current evidence and limitations](phase2d-1c-rls-tenant-context.md).
+**Phase 2E-1 PostgreSQL readers — reviewed for conditional Draft publication.** Seven application tables, EF migrations, revision triggers, separated roles and FORCE RLS on six tables remain the merged Phase 2D foundation. Identity/Organizations readers now exist in their Infrastructure modules and are exercised through a trusted synthetic harness only. See [current implementation, verification and limits](phase2e-1-postgresql-readers.md). Production actor binding, protected endpoints and API registration remain absent.
 
-Local Release builds passed with zero warnings/errors; 106 unit, 8 mocked/in-process API and 59 PostgreSQL tests passed (173 total; zero failed/skipped). Existing hosted Backend/Frontend CI does not run PostgreSQL integration tests. New hosted results must be reported independently after the Draft PR runs.
+Current local Release builds passed with zero warnings/errors; 106 unit, 8 mocked/in-process API and 110 PostgreSQL tests passed (224 total; zero failed/skipped). Hosted CI has a separate PostgreSQL integration job, but no hosted pass is claimed for Phase 2E-1 publication at this checkpoint.
 
-The Product Owner authorized reviewed Phase 2D commits, a non-force feature-branch push and a Draft PR targeting main; no merge or new feature scope is authorized. The earlier Phase 2A/2B/2C and CI evidence below is historical. Clinical publication, private patient data and the broader MVP remain future scope.
+The Product Owner confirmed the Phase 2D merge, authorized Phase 2E-1 implementation/testing, and subsequently authorized conditional reviewed commit/push/Draft PR delivery. Do not merge; report actual hosted results separately. The earlier Phase 2A/2B/2C/2D and CI evidence below is historical. Clinical publication, private patient data and the broader MVP remain future scope.
 ## Implemented
 
 - Project foundation and documentation.
@@ -24,7 +26,7 @@ The Product Owner authorized reviewed Phase 2D commits, a non-force feature-bran
 
 - Reviewed clinical catalogue publication, name search, QR workflows, approved translations and audio.
 - Authentication, deployed authorization enforcement, patient verification, or QR generation/resolution; synthetic authorization rules are described below.
-- Production persistence deployment, live authorization reader adapters and runtime identity binding; local schema/migrations/RLS are implemented as described above.
+- Production persistence deployment, API authorization-reader composition and runtime identity binding; local schema/migrations/RLS and synthetic-only database readers are implemented as described above.
 - Dashboards, PMS/FHIR integrations, deployment or patient-facing medical content.
 
 ## Decisions required / TODO

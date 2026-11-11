@@ -16,10 +16,17 @@ public sealed class ReadOnlyTenantSession : IAsyncDisposable
 {
     public NpgsqlConnection Connection { get; }
     public NpgsqlTransaction Transaction { get; }
+    public Guid ActorId { get; }
+    public Guid OrganizationId { get; }
+    public Guid BranchId { get; }
     private bool completed;
     private bool disposed;
-    private ReadOnlyTenantSession(NpgsqlConnection connection,NpgsqlTransaction transaction)
-        { Connection=connection;Transaction=transaction; }
+    private ReadOnlyTenantSession(NpgsqlConnection connection,NpgsqlTransaction transaction,
+        Guid actorId, Guid organizationId, Guid branchId)
+    {
+        Connection=connection;Transaction=transaction;
+        ActorId=actorId;OrganizationId=organizationId;BranchId=branchId;
+    }
 
     public static async Task<ReadOnlyTenantSession> OpenAsync(NpgsqlDataSource dataSource,TrustedSyntheticActor actor,
         Guid candidateOrganization,Guid candidateBranch,CancellationToken cancellationToken=default)
@@ -31,7 +38,7 @@ public sealed class ReadOnlyTenantSession : IAsyncDisposable
         try
         {
             var transaction=await connection.BeginTransactionAsync(IsolationLevel.RepeatableRead,cancellationToken);
-            scope=new(connection,transaction);
+            scope=new(connection,transaction,actor.Id,candidateOrganization,candidateBranch);
             await using var readOnly=new NpgsqlCommand("SET TRANSACTION READ ONLY",connection,transaction);
             await readOnly.ExecuteNonQueryAsync(cancellationToken);
             // Reject accidental administrative/migration datasource wiring in this local foundation.
@@ -52,6 +59,26 @@ public sealed class ReadOnlyTenantSession : IAsyncDisposable
             if (scope != null) await scope.DisposeAsync(); else await connection.DisposeAsync();
             throw;
         }
+    }
+    /// <summary>
+    /// Checks the original synthetic scope and its current descriptive database context.
+    /// This is not authentication. Use one session sequentially within one harness invocation.
+    /// </summary>
+    public async ValueTask<bool> MatchesScopeAsync(Guid actorId, Guid organizationId, Guid branchId,
+        CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        if (disposed || completed || actorId != ActorId || organizationId != OrganizationId || branchId != BranchId)
+            return false;
+        await using var command = new NpgsqlCommand("""
+            SELECT foundation.context_uuid('app.actor_id')=$1
+               AND foundation.context_uuid('app.organization_id')=$2
+               AND foundation.context_uuid('app.branch_id')=$3
+            """, Connection, Transaction);
+        command.Parameters.AddWithValue(actorId);
+        command.Parameters.AddWithValue(organizationId);
+        command.Parameters.AddWithValue(branchId);
+        return Equals(await command.ExecuteScalarAsync(cancellationToken), true);
     }
     public async Task CommitAsync(CancellationToken cancellationToken=default)
     {

@@ -25,6 +25,8 @@ The [approved core model](../decisions/ADR-004-organization-authorization-founda
 
 ## Phase 2D isolation proposal
 
+Later authorized extension, 2026-11-11: [Phase 2E-1](../phase2e-1-postgresql-readers.md) implements both module-owned readers against the same `ReadOnlyTenantSession`, composed only in synthetic tests with unchanged Application/Domain checks. The session retains the original actor/organization/branch and readers reject argument or database-context mismatch, completed/disposed scopes and unknown mapped codes. Reads remain parameterized and SELECT-only; no policy/role/schema change or API registration. This is a guard against accidental scope substitution under trusted composition, not authentication or protection against arbitrary SQL using compromised credentials. Existing snapshots can retain pre-revocation authority; new transactions observe changes. Actor-only delegation does not establish recipient eligibility. Earlier proposal/checkpoint wording below is historical; production identity and write/audit gates remain open.
+
 The [persistence proposal](../phase2d-postgresql-tenant-isolation-plan.md) preserves current Domain/Application contracts and separates current self-membership bootstrap from validated access. RLS supplements application checks under a trusted context setter; arbitrary SQL using runtime credentials can alter custom actor/tenant settings, so this is not protection against a fully compromised app identity. Transaction-local context, nonowner read roles, explicit privileged setup and revision-maintenance boundaries, and real PostgreSQL tests require approval before implementation. No RLS enforcement or database role is implemented.
 
 ## Local PostgreSQL integrity checkpoint - 2026-10-25
