@@ -26,6 +26,8 @@ The exact-DIN source-metadata backend and React/TypeScript lookup interface are 
 
 ## Development status
 
+Phase 2E-2C implements the approved [ADR-007](docs/decisions/ADR-007-hybrid-authentication-identity-mapping.md) two-table Identity mapping and exact resolver under a privileged disposable synthetic harness only. [Evidence and limits](docs/phase2e-2c-identity-mapping-foundation.md): 160 backend, 177 PostgreSQL and 28 frontend tests pass locally. PR #5 is merged; this synthetic slice passed final local security review and is authorized for conditional Draft PR delivery. No real provider, runtime bootstrap or identity workflow is implemented. Auth0 remains preferred for evaluation only; the [design](docs/phase2e-2b-identity-mapping-design.md) and [provider comparison](docs/phase2e-2b-provider-comparison.md) preserve future gates.
+
 Current 2026-11-11: PR #4 is merged as `c5bbad2` with passing post-merge CI. [Phase 2E-2A](docs/phase2e-2a-trusted-actor-boundary.md) adds provider-neutral identity contracts and controlled actor resolution for review, tested only with synthetic sources/mappings. Local verification passed 160 backend, 110 PostgreSQL and 28 frontend tests. No real authentication adapter, provider, login, persistent identity mapping or protected endpoint exists. Earlier Phase 2E-1 counts below retain that milestone's scope.
 
 Phase 2D was merged through PR #3 as `88c83f1`; post-merge hosted Backend, Frontend and PostgreSQL CI passed. [Phase 2E-1](docs/phase2e-1-postgresql-readers.md) adds PostgreSQL-backed authorization readers for review, composed only in a trusted synthetic harness. Local verification passed 114 backend, 110 PostgreSQL and 28 frontend tests.

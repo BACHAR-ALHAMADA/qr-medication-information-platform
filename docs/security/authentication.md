@@ -1,5 +1,7 @@
 # Authentication
 
+2026-11-11 approved direction: hybrid managed local identities and later enterprise federation, with application-owned identity/authorization; Auth0 preferred for evaluation only. [Accepted ADR-007](../decisions/ADR-007-hybrid-authentication-identity-mapping.md) prohibits automatic email/client-GUID/domain linking. [Phase 2E-2C](../phase2e-2c-identity-mapping-foundation.md) persists exact mappings only on fresh disposable synthetic PostgreSQL with privileged test-only resolution. Database rows do not authenticate anyone; no real token validation, provider, login, runtime bootstrap or API registration exists. Provenance/assurance, linking/recovery, session revocation and least-privileged runtime lookup remain separate gates. Earlier proposals below are historical where superseded.
+
 ## Staff
 
 Staff authentication is planned to use an established OpenID Connect / OAuth 2.0 identity provider. The application should validate issued tokens using supported libraries and provider metadata, map identities to application memberships, and avoid storing or handling passwords unless a later documented decision requires it.

@@ -1,6 +1,8 @@
-﻿# Human TODO
+# Human TODO
 
 All entries are open / Decision Required. Do not mark complete without human confirmation. Documentation approval does not approve MVP features. IDs are stable.
+
+2026-11-11 HUM-005/HUM-006/HUM-008 bounded approval: Product Owner confirmed PR #5 merged and approved ADR-007, two Identity mapping tables/safeguards, one forward migration and exact resolver, initially only on fresh disposable synthetic PostgreSQL. [Phase 2E-2C](../docs/phase2e-2c-identity-mapping-foundation.md) passed final local security review; conditional selective commit, normal push and Draft PR are authorized, with hosted CI verification pending. No merge is authorized. Further approvals: migration to preserved development DB; least-privileged runtime bootstrap; provider evaluation/validation/provenance/assurance; write/audit, provisioning/link/recovery/unlink authority and last-identity policy; MFA/session/revocation targets; HUM-007/HUM-008 retention/erasure, residency/contracts/budget. Auth0 remains preferred for evaluation only. No live workflow, provider integration or whole human-item completion.
 
 2026-11-11 bounded HUM-005/HUM-008 update: Product Owner authorized [Phase 2E-2A provider-neutral actor contracts and synthetic tests](../docs/phase2e-2a-trusted-actor-boundary.md) after PR #4 merge, with no real provider integration. A subsequent instruction conditionally authorizes reviewed selective staging, one scoped commit, normal push and a Draft PR after security review and regressions pass; those local checks passed. No merge is authorized. Review the implemented boundary and decision comparison; choose provider/model, trusted adapter/issuer/account mapping, MFA/recovery/session bounds, operating owner and cost/support constraints before integration. Any mapping persistence and recipient lookup require separate approval. No provider, schema change, grant execution, production readiness or whole human-item completion is implied.
 

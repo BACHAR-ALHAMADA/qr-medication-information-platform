@@ -16,6 +16,8 @@ API is the transport boundary. BuildingBlocks should contain only small, stable 
 
 ## Dependency direction
 
+Phase 2E-2C implements two Identity-owned issuer/mapping tables and an exact resolver querying only Identity data. Provider organization/domain claims do not replace Organizations membership or grants. [ADR-007](../decisions/ADR-007-hybrid-authentication-identity-mapping.md) preserves accepted boundaries and the single ADR-005 FK exception. External-to-internal bootstrap cannot reuse the existing actor-self reader: the [implementation](../phase2e-2c-identity-mapping-foundation.md) accepts only privileged disposable synthetic sessions, grants existing runtime roles no new access and has no API registration. Least-privileged runtime lookup remains separately gated.
+
 Phase 2E-2A keeps external identity resolution and actor construction in Identity Application using framework-independent BCL contracts, with no provider, database or HTTP dependency. The trusted validation source and mapping resolver are interfaces only; synthetic implementations live in tests. No change to Organizations rules, PostgreSQL readers or API composition. See [boundary contract and future adapter gates](../phase2e-2a-trusted-actor-boundary.md).
 
 API → Application contracts/use cases → Domain. Infrastructure implements application/domain-facing interfaces. Module-to-module calls use explicit contracts, avoiding direct dependencies on another module's storage. Shared abstractions should not obscure ownership.

@@ -25,6 +25,8 @@ Record each result with the test ID, scenario, artifact/version, configuration/l
 
 ## When implementation is approved
 
+**T-017 — external identity mapping persistence (bounded synthetic subset implemented):** [Phase 2E-2C](phase2e-2c-identity-mapping-foundation.md) adds 67 real PostgreSQL cases, for 177 passing persistence tests including all 110 existing regressions. Exact keys/byte bounds, FKs, tombstones/revisions, inactive states, concurrency/rollback, cancellation/physical reuse, actor composition and privilege denial are executable. All 160 backend and 28 frontend tests also pass locally. Hosted evidence applies only to the merged baseline. Provider validation, linking/invitation assurance, enterprise-route policy and production runtime access remain unimplemented; see the [design matrix](phase2e-2b-identity-mapping-design.md#planned-t-017-real-postgresql-matrix).
+
 Add deterministic xUnit tests for Domain/Application behavior and integration tests for API/persistence boundaries. Include authorization, tenant isolation, QR access, input validation, and leakage tests. Verify isolation against the chosen persistence mechanism, not only mocked services. Keep medical correctness review distinct from software correctness.
 
 Before any pilot, resolve applicable content, privacy/security, accessibility, and operations decisions; revisit the threat model and document actual results and residual issues. Tooling and exact checks follow approved implementation scope. Phase 2A restored only required test-package dependencies; production projects use the shared .NET/ASP.NET framework without NuGet package dependencies.

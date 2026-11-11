@@ -4,17 +4,21 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 try
 {
-    if (args.Length != 1 || args[0] is not ("script" or "rls-script" or "apply" or "bootstrap" or "ci-bootstrap"))
-        throw new ArgumentException("Use script, rls-script, bootstrap, ci-bootstrap or apply.");
+    if (args.Length != 1 || args[0] is not ("script" or "rls-script" or "mapping-script" or "apply" or "bootstrap" or "ci-bootstrap"))
+        throw new ArgumentException("Use script, rls-script, mapping-script, bootstrap, ci-bootstrap or apply.");
     var bootstrap=args[0] is "bootstrap" or "ci-bootstrap";
-    if (LocalDatabase.IsCi != (args[0]=="ci-bootstrap") && args[0] != "apply")
+    if (bootstrap && LocalDatabase.IsCi != (args[0]=="ci-bootstrap"))
         throw new InvalidOperationException("Use the explicit bootstrap command for this environment.");
     var connectionString=args[0]=="apply" ? LocalDatabase.RoleConnectionString("qr_migrator") : LocalDatabase.ConnectionString();
     await using var context=LocalDatabase.CreateContext(connectionString);
-    if (args[0] is "script" or "rls-script")
-        Console.Write(context.GetService<IMigrator>().GenerateScript(args[0]=="rls-script" ? "20261026033754_InitialFoundation" : null));
+    if (args[0] is "script" or "rls-script" or "mapping-script")
+        Console.Write(context.GetService<IMigrator>().GenerateScript(
+            args[0]=="mapping-script" ? "20261026040035_TenantRowSecurity" : args[0]=="rls-script" ? "20261026033754_InitialFoundation" : null,
+            args[0]=="rls-script" ? "20261026040035_TenantRowSecurity" : null));
     else
     {
+        if (!LocalDatabase.IsCi)
+            throw new InvalidOperationException("Identity mapping migration is restricted to an explicitly configured disposable CI database pending separate development-database review.");
         if (args[0]=="ci-bootstrap")
         {
             await context.Database.OpenConnectionAsync();

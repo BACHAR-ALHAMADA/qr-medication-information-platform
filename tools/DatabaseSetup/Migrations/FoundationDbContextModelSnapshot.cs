@@ -22,6 +22,54 @@ namespace DatabaseSetup.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("AuthenticationIssuer", b =>
+                {
+                    b.Property<Guid>("issuer_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTime>("created_at")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("statement_timestamp()");
+
+                    b.Property<bool>("is_enabled")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("issuer")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .UseCollation("C");
+
+                    b.Property<long>("revision")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("bigint")
+                        .HasDefaultValue(1L);
+
+                    b.Property<DateTime>("updated_at")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("statement_timestamp()");
+
+                    b.HasKey("issuer_id");
+
+                    b.HasIndex("issuer")
+                        .IsUnique();
+
+                    b.ToTable("authentication_issuers", "identity", t =>
+                        {
+                            t.HasCheckConstraint("ck_issuer_id", "issuer_id <> '00000000-0000-0000-0000-000000000000'::uuid");
+
+                            t.HasCheckConstraint("ck_issuer_revision", "revision > 0");
+
+                            t.HasCheckConstraint("ck_issuer_value", "octet_length(issuer) BETWEEN 1 AND 1024 AND issuer ~* '^https://[^/?#@[:space:]]+(/[^?#[:space:]]*)?$' AND issuer !~ U&'[\\0001-\\0020\\007F-\\00A0\\1680\\2000-\\200A\\2028\\2029\\202F\\205F\\3000]'");
+                        });
+                });
+
             modelBuilder.Entity("Branch", b =>
                 {
                     b.Property<Guid>("organization_id")
@@ -93,6 +141,65 @@ namespace DatabaseSetup.Migrations
                         new
                         {
                             capability_code = "delegation.scope.evaluate"
+                        });
+                });
+
+            modelBuilder.Entity("ExternalStaffIdentity", b =>
+                {
+                    b.Property<Guid>("mapping_id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasDefaultValueSql("gen_random_uuid()");
+
+                    b.Property<DateTime>("created_at")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("statement_timestamp()");
+
+                    b.Property<Guid>("issuer_id")
+                        .HasColumnType("uuid");
+
+                    b.Property<long>("revision")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("bigint")
+                        .HasDefaultValue(1L);
+
+                    b.Property<string>("state")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("text")
+                        .HasDefaultValue("disabled");
+
+                    b.Property<string>("subject")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .UseCollation("C");
+
+                    b.Property<DateTime>("updated_at")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("statement_timestamp()");
+
+                    b.Property<Guid>("user_id")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("mapping_id");
+
+                    b.HasIndex("user_id");
+
+                    b.HasIndex("issuer_id", "subject")
+                        .IsUnique();
+
+                    b.ToTable("external_staff_identities", "identity", t =>
+                        {
+                            t.HasCheckConstraint("ck_mapping_ids", "mapping_id <> '00000000-0000-0000-0000-000000000000'::uuid AND issuer_id <> '00000000-0000-0000-0000-000000000000'::uuid AND user_id <> '00000000-0000-0000-0000-000000000000'::uuid");
+
+                            t.HasCheckConstraint("ck_mapping_revision", "revision > 0");
+
+                            t.HasCheckConstraint("ck_mapping_state", "state IN ('active','disabled','unlinked')");
+
+                            t.HasCheckConstraint("ck_mapping_subject", "octet_length(subject) BETWEEN 1 AND 1024 AND subject !~ U&'[\\0001-\\001F\\007F-\\009F]' AND btrim(subject, U&'\\0020\\00A0\\1680\\2000\\2001\\2002\\2003\\2004\\2005\\2006\\2007\\2008\\2009\\200A\\2028\\2029\\202F\\205F\\3000') <> ''");
                         });
                 });
 
@@ -216,6 +323,21 @@ namespace DatabaseSetup.Migrations
                     b.HasOne("Membership", null)
                         .WithMany()
                         .HasForeignKey("organization_id", "user_id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ExternalStaffIdentity", b =>
+                {
+                    b.HasOne("AuthenticationIssuer", null)
+                        .WithMany()
+                        .HasForeignKey("issuer_id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("StaffUser", null)
+                        .WithMany()
+                        .HasForeignKey("user_id")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

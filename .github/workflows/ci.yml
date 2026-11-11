@@ -83,7 +83,7 @@ jobs:
         run: dotnet restore tests/Persistence/Foundation.PersistenceTests.csproj --source https://api.nuget.org/v3/index.json
       - name: Build PostgreSQL integration suite and setup tool
         run: dotnet build tests/Persistence/Foundation.PersistenceTests.csproj --configuration Release --no-restore
-      - name: Bootstrap fresh database through both EF migrations
+      - name: Bootstrap fresh database through all reviewed EF migrations
         run: dotnet run --project tools/DatabaseSetup --configuration Release --no-build --no-restore -- ci-bootstrap
       - name: Verify separate migrator connection
         run: dotnet run --project tools/DatabaseSetup --configuration Release --no-build --no-restore -- apply

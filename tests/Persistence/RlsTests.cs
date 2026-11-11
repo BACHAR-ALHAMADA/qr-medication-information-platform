@@ -157,7 +157,7 @@ public sealed class RlsTests(RlsFixture fixture) : IClassFixture<RlsFixture>
         await using var reader=await fixture.Reader.OpenConnectionAsync();
         Assert.True(await Scalar<bool>(reader,"SELECT NOT rolsuper AND NOT rolbypassrls AND NOT rolcreatedb AND NOT rolcreaterole AND NOT rolreplication FROM pg_roles WHERE rolname=current_user"));
         Assert.Equal(0L,await Scalar<long>(reader,"SELECT count(*) FROM pg_class WHERE relowner=current_user::regrole AND relnamespace IN ('identity'::regnamespace,'organizations'::regnamespace)"));
-        Assert.Equal(6L,await Scalar<long>(reader,"SELECT count(*) FROM pg_class WHERE relnamespace IN ('identity'::regnamespace,'organizations'::regnamespace) AND relkind='r' AND relrowsecurity AND relforcerowsecurity"));
+        Assert.Equal(8L,await Scalar<long>(reader,"SELECT count(*) FROM pg_class WHERE relnamespace IN ('identity'::regnamespace,'organizations'::regnamespace) AND relkind='r' AND relrowsecurity AND relforcerowsecurity"));
         Assert.False(await Scalar<bool>(reader,"SELECT has_table_privilege(current_user,'foundation.\"__EFMigrationsHistory\"','SELECT')"));
         await using var migrator=new NpgsqlConnection(LocalDatabase.RoleConnectionString("qr_migrator"));
         await migrator.OpenAsync();
