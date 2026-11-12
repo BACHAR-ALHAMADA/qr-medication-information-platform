@@ -1,5 +1,7 @@
 # Project roadmap
 
+Phase 3B bounded update (2026-11-11): approved [synthetic four-step pharmacist QR wizard](phase3b-pharmacist-qr-wizard.md) is implemented and verified locally only. It reuses Aster/Pebble public fixtures, with EN/AR/FR/RTL preview and QR/copy/download/print. It does not implement the broader pharmacist workspace or clinical publication milestone. Owner review of the new wizard on a physical iPhone and printer remains pending; final review and repeat verification passed; conditional selective commit/push/Draft PR delivery is authorized. No hosting, merge, ready-for-review action or Phase 3C is authorized.
+
 Phase 3A bounded approval/update (2026-11-11): the Product Owner authorized and the agent implemented the [local fictional public QR demonstration](phase3a-public-qr-demonstration.md), including EN/AR/FR and RTL, without clinical instructions, authentication, private data or database changes. This supersedes approval-pending statements below only for that narrow slice. It is not the full reviewed catalogue, pharmacist workspace or clinical publication milestone. Local tests and browser evidence pass; owner-reported physical-iPhone validation passed 7/7 checks. Conditional Draft PR delivery is authorized; qualified language and broader accessibility review remain.
 
 Status: Proposed broader product sequence, with the separately approved local Phase 2D foundation implemented. No broader MVP delivery dates or production deployment are approved.
