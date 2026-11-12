@@ -13,6 +13,8 @@ app.Use(async (context, next) =>
     await next(context);
 });
 app.MapGet("/api/medications/{din}", MedicationEndpoint.LookupAsync);
+app.MapGet("/api/demo/products", PublicDemonstrationEndpoint.List);
+app.MapGet("/api/demo/references/{reference}", PublicDemonstrationEndpoint.Resolve);
 app.Run();
 
 public partial class Program { }

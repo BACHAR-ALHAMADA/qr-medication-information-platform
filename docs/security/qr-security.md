@@ -1,5 +1,7 @@
 # QR security
 
+Phase 3A implements [public fictional demonstration references](../phase3a-public-qr-demonstration.md), separate from future patient bearer tokens. Payloads contain only the frontend origin, an opaque public fixture reference and a supported language. No personal/tenant/staff information, clinical instructions or secret is encoded. The demo has no private API dependencies and no persistent expiry/revocation service; unknown/withdrawn/expired fixtures deny safely. Future private-token principles below remain unchanged.
+
 ## Token contents
 
 Patient-specific QR codes must contain only an opaque, cryptographically random, high-entropy, non-guessable identifier (typically in a URL). Never encode a patient name, medication, dose, health number, tenant details, database key, or other sensitive information. Public product references must not grant access to patient records.

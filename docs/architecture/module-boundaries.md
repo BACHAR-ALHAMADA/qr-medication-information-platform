@@ -1,5 +1,7 @@
 # Module boundaries
 
+Phase 3A: [fictional public fixtures and lookup](../phase3a-public-qr-demonstration.md) belong to MedicationCatalogue Application. API handlers expose only explicit public demonstration DTO fields; React's `/demo` surface consumes only `/api/demo` and generates QR matrices locally. No cross-module storage access or dependency on Identity, Organizations, tenant context or PostgreSQL is introduced. Existing DIN transport/lookup behavior remains separate.
+
 The modules below are planned bounded areas in one deployable application. A module owns its business rules and persistence behavior; other modules use explicit application contracts rather than reaching into its tables or internals.
 
 | Module | Responsibility | Key boundary |

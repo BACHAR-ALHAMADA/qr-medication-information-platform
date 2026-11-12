@@ -1,5 +1,9 @@
 # AI TODO
 
+2026-11-11 AI-004 bounded Phase 3A milestone: approved [local fictional public QR demo](../docs/phase3a-public-qr-demonstration.md) implemented with 174 backend, 177 PostgreSQL and 41 frontend tests passing; browser, independent QR decode and bounded accessibility checks pass. Owner-reported physical-iPhone validation passed 7/7 checks for both products and EN/AR/FR/RTL. Final review and all 392 tests reran successfully; conditional Draft PR delivery is authorized. AI-008 retains broader screen-reader/zoom and qualified language/accessibility review; no whole task closure or clinical readiness claim.
+
+AI-011: remediate the confirmed existing development-tool dependency advisories (BUG-010) in a scoped maintenance slice; review compatible happy-dom and ESLint/minimatch updates, rerun suites and full audit. Do not use an automatic force fix or silently downgrade tooling. Runtime dependency audit for Phase 3A is clear.
+
 IDs are stable. These are documentation/design follow-ups, not authorization to implement application features. Broader tasks remain pending; completed bounded substeps are recorded below without closing whole tasks.
 
 2026-11-11 AI-002/AI-010 mapping subset: [Phase 2E-2C](../docs/phase2e-2c-identity-mapping-foundation.md) implements approved ADR-007 tables and exact resolver, privileged disposable synthetic only. 160 backend, 177 PostgreSQL (67 new T-017), 28 frontend tests and builds/checks pass. Design backup/safe transition verified; original DB and local artifacts preserved. Final security review and full local reruns passed; conditional reviewed commit/push/Draft delivery is authorized, with hosted verification pending. Later technical work requires separate runtime bootstrap and validation-source provenance/assurance approval; nonempty mapping recovery remains needed before operational use. No provider/link/invitation/delegation implementation or whole-task closure.

@@ -1,0 +1,41 @@
+.demo-app { --ink: #183d38; --teal: #146253; --paper: #f5f6f1; color: var(--ink); background: var(--paper); min-height: 100vh; font-family: system-ui, -apple-system, 'Segoe UI', Tahoma, sans-serif; line-height: 1.65; }
+.demo-app * { box-sizing: border-box; }
+.demo-app a { color: #145d50; text-underline-offset: .2em; }
+.demo-app :focus-visible { outline: 3px solid #905200; outline-offset: 4px; }
+.demo-header { max-width: 1100px; margin-inline: auto; padding: 22px 24px; display: flex; gap: 20px; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+.demo-brand { font-size: 1.05rem; font-weight: 750; display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.demo-brand span { font-size: 2rem; }
+.demo-language { display: flex; gap: 12px; align-items: center; font-size: .9rem; }
+.demo-app select { font: inherit; color: var(--ink); background: white; border: 1px solid #768e85; border-radius: 9px; min-height: 48px; padding: 10px 14px; max-width: 100%; }
+.demo-disclaimer { position: sticky; top: 0; z-index: 2; padding: 12px 24px; background: #fff0cd; color: #573800; border-block: 1px solid #c9a65b; font-size: .9rem; text-align: center; }
+.demo-main { max-width: 1020px; padding: 36px 24px 64px; margin-inline: auto; }
+.demo-intro { max-width: 760px; margin-block-end: 32px; }
+.demo-eyebrow { text-transform: uppercase; letter-spacing: .08em; font-weight: 750; font-size: .78rem; color: #42645a; }
+.demo-app[dir=rtl] .demo-eyebrow { letter-spacing: normal; }
+.demo-intro h1 { font-size: clamp(2rem, 5vw, 3.3rem); line-height: 1.2; letter-spacing: -.035em; margin-block: 14px 18px; font-weight: 650; }
+.demo-intro > p:last-child { color: #42645a; font-size: 1.1rem; max-width: 650px; }
+.demo-grid { display: grid; gap: 24px; grid-template-columns: 1fr 1fr; }
+.demo-card { background: #fff; border: 1px solid #d6ded6; border-radius: 20px; padding: 28px; box-shadow: 0 8px 25px #193e3506; min-width: 0; }
+.demo-card h2 { font-size: 1.25rem; line-height: 1.4; margin-block: 0 18px; }
+.demo-card form { display: grid; gap: 12px; }
+.demo-card form label { font-size: .9rem; font-weight: 600; }
+.demo-app button, .demo-open { min-height: 48px; padding: 12px 18px; font: inherit; font-weight: 650; background: var(--teal); color: #fff; border: 0; border-radius: 10px; cursor: pointer; }
+.demo-app button:hover { background: #104a40; }
+.demo-app button:disabled { background: #e1e6df; color: #536159; cursor: default; }
+.demo-muted { color: #53665b; font-size: .88rem; }
+.demo-pack { margin-top: 28px; border-radius: 12px; background: #e8eee1; padding: 22px; position: relative; min-height: 145px; overflow: hidden; display: grid; align-content: space-between; }
+.demo-pack > span:first-child { font-size: .7rem; letter-spacing: .12em; font-weight: 800; }
+.demo-pack strong { max-width: 75%; z-index: 1; line-height: 1.4; }
+.demo-pack-orbit { position: absolute; inline-size: 120px; block-size: 120px; border: 18px solid #abc5a4; border-radius: 50%; inset-inline-end: -16px; top: 30px; }
+.demo-qr-card { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.demo-qr-card p { color: #53665b; font-size: .95rem; margin-block-start: 0; }
+.demo-qr { width: 250px; max-width: 100%; height: auto; margin-block: 8px 22px; }
+.demo-open { color: #fff !important; display: inline-flex; align-items: center; justify-content: center; text-decoration: none; width: 100%; }
+.demo-url { overflow-wrap: anywhere; font-size: .75rem !important; margin-block: 16px 0 !important; }
+.demo-qr-placeholder { margin-block: auto; font-size: 9rem; color: #c7d4c8; line-height: 1.6; }
+.demo-reader { max-width: 760px; font-size: 1.15rem; }
+.demo-reader hr { border: 0; border-top: 1px solid #d6ded6; margin-block: 28px; }
+.demo-footer { border-top: 1px solid #d6ded6; padding: 24px; text-align: center; font-size: .85rem; }
+.demo-skip { position: fixed; top: -100px; inset-inline-start: 12px; z-index: 4; background: #fff; padding: 10px; }
+.demo-skip:focus { top: 10px; }
+@media (max-width: 650px) { .demo-grid { grid-template-columns: 1fr; } .demo-main { padding: 24px 16px 40px; } .demo-header { padding: 16px; gap: 12px; } .demo-card { padding: 22px; } .demo-language { width: 100%; justify-content: space-between; } .demo-disclaimer { padding: 10px 16px; } }

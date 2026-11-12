@@ -1,5 +1,7 @@
 # Project roadmap
 
+Phase 3A bounded approval/update (2026-11-11): the Product Owner authorized and the agent implemented the [local fictional public QR demonstration](phase3a-public-qr-demonstration.md), including EN/AR/FR and RTL, without clinical instructions, authentication, private data or database changes. This supersedes approval-pending statements below only for that narrow slice. It is not the full reviewed catalogue, pharmacist workspace or clinical publication milestone. Local tests and browser evidence pass; owner-reported physical-iPhone validation passed 7/7 checks. Conditional Draft PR delivery is authorized; qualified language and broader accessibility review remain.
+
 Status: Proposed broader product sequence, with the separately approved local Phase 2D foundation implemented. No broader MVP delivery dates or production deployment are approved.
 
 Subsequent Product Owner instructions authorized Phase 2A exact-DIN source lookup (committed as `a4d2e29`) and Phase 2B's English React metadata screen (committed as `9ac2766`). Those narrow approvals supersede the planning-only status for those slices, not for the broader MVP or catalogue-to-QR proposal below. See [backend](phase2a-backend.md) and [frontend](phase2b-frontend.md) for implemented scope and checks. Name search, QR generation, publishing, authentication and persistence remain outside Phase 2B.

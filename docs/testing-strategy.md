@@ -1,5 +1,7 @@
 # Testing and validation strategy
 
+**T-018 — fictional public QR demonstration:** implemented [Phase 3A evidence](phase3a-public-qr-demonstration.md). Fourteen new API cases cover exact public resolution, all languages, explicit field non-leakage, unavailable/withdrawn/expired fixtures, invalid language and read-only HTTP behavior; 13 frontend cases cover selection/real SVG output, keyboard submission, language/RTL/disclaimers, safe errors/retry, response validation, stale responses, timeout and abort. Totals: 174 backend, 177 unchanged PostgreSQL and 41 frontend tests pass locally. Independent screenshot QR decoding, live browser/proxy and bounded axe checks supplement these tests; the Product Owner reports 7/7 physical-iPhone checks passed for both products and EN/AR/FR/RTL. Screen-reader certification and qualified linguistic/clinical review are not claimed. Prior milestones below remain historical evidence.
+
 Status: Phase 2A has 45 passing mocked unit and 8 API integration tests for the DPD slice. Phase 2B has 28 passing frontend tests, with build/typecheck, zero-warning lint and zero-vulnerability audit results in [frontend verification](phase2b-frontend.md). The remaining catalogue below describes planned coverage, not a claim that every test exists or passes. Use synthetic patient data and no production secrets. See [backend verification](phase2a-backend.md).
 
 | ID | Planned coverage | Trace / method |

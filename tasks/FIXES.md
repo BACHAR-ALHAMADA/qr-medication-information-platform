@@ -1,5 +1,7 @@
 # Fixes
 
+Phase 3A (2026-11-11) is new approved fictional public-demo implementation, not a corrective fix. No new FIX identifier is claimed. Development dependency findings remain open as BUG-010/AI-011; no audit remediation is claimed.
+
 | ID | Corrective change | Verification / trace |
 |---|---|---|
 | FIX-001 | Clarified future private-capability scope in authentication and data-minimization guidance; separated scope approval from mandatory verification and authorization. | BUG-001, F-006, HUM-001; [authentication](../docs/security/authentication.md), [minimization](../docs/privacy/data-minimization.md). Documentation review preserves ADR-003; no runtime behavior or tests changed. Date: 2026-10-17. |
