@@ -3,17 +3,13 @@ import type { FormEvent } from 'react'
 import { messages } from './messages'
 import type { Language } from './messages'
 import { PublicQr } from './PublicQr'
+import { PublicContent } from './PublicContent'
+import { publicDemoUrl, validProduct, validReference } from './publicDemo'
+import type { DemoProduct } from './publicDemo'
+export type { DemoProduct } from './publicDemo'
 import './demo.css'
 
-export type DemoProduct = { reference: string; name: string; language: Language; description: string; disclaimer: string; contentStatus: string }
 type View = { kind: 'loading' } | { kind: 'error' | 'missing' } | { kind: 'ready'; products: DemoProduct[] }
-const validReference = (value: string) => /^[a-f0-9]{32}$/.test(value)
-function validProduct(value: unknown, language: Language): value is DemoProduct {
-  if (!value || typeof value !== 'object') return false
-  const p = value as Partial<DemoProduct>
-  return typeof p.reference === 'string' && validReference(p.reference) && p.language === language
-    && p.contentStatus === 'fictional-unreviewed' && [p.name, p.description, p.disclaimer].every(v => typeof v === 'string' && v.length > 0)
-}
 
 export function DemoApp({ reference }: { reference?: string }) {
   const [language, setLanguage] = useState<Language>(() => {
@@ -56,7 +52,7 @@ export function DemoApp({ reference }: { reference?: string }) {
   useEffect(() => { if (generated) resultHeading.current?.focus() }, [generated])
   function changeLanguage(value: Language) { setView({ kind: 'loading' }); setLanguage(value) }
   function generate(event: FormEvent) { event.preventDefault(); if (view.kind === 'ready' && view.products.some(p => p.reference === selected)) setGenerated(selected) }
-  const url = generated ? new URL(`/demo/${generated}?language=${language}`, window.location.origin).href : ''
+  const url = generated ? publicDemoUrl(generated, language) : ''
 
   return <div className="demo-app" lang={language} dir={language === 'ar' ? 'rtl' : 'ltr'}>
     <a className="demo-skip" href="#demo-main">{t.skip}</a>
@@ -80,7 +76,7 @@ export function DemoApp({ reference }: { reference?: string }) {
         <section className="demo-card demo-qr-card"><h2 ref={resultHeading} tabIndex={-1}>{t.qrTitle}</h2><p>{t.scan}</p>
           {url ? <><PublicQr url={url} label={t.qrAlt} /><a className="demo-open" href={url}>{t.open}</a><p className="demo-url" dir="ltr">{url}</p></>
             : <div className="demo-qr-placeholder" aria-hidden="true">▦</div>}
-        </section></div> : <article className="demo-card demo-reader"><p className="demo-eyebrow">{t.status}</p><h2>{t.about}</h2><p>{view.products[0].description}</p><hr /><h2>{t.safe}</h2><p>{t.detail}</p><p><a href={`/demo?language=${language}`}>{t.back}</a></p></article>)}
+        </section></div> : <article className="demo-card demo-reader"><PublicContent product={view.products[0]} /><p><a href={`/demo?language=${language}`}>{t.back}</a></p></article>)}
     </main><footer className="demo-footer"><p>{t.notice}</p><a href="/">{t.din}</a></footer>
   </div>
 }

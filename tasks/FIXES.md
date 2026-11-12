@@ -1,5 +1,7 @@
 # Fixes
 
+Phase 3B (2026-11-11) is new approved synthetic wizard functionality, with shared public content/QR helpers, not a maintenance bug-fix release. No new FIX identifier or BUG-010 remediation is claimed. [Verification and limitations](../docs/phase3b-pharmacist-qr-wizard.md); final review required no product-code fixes; conditional Draft PR delivery is authorized.
+
 Phase 3A (2026-11-11) is new approved fictional public-demo implementation, not a corrective fix. No new FIX identifier is claimed. Development dependency findings remain open as BUG-010/AI-011; no audit remediation is claimed.
 
 | ID | Corrective change | Verification / trace |
