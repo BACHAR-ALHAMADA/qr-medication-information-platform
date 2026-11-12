@@ -1,6 +1,8 @@
-﻿# AI TODO
+# AI TODO
 
 IDs are stable. These are documentation/design follow-ups, not authorization to implement application features. Broader tasks remain pending; completed bounded substeps are recorded below without closing whole tasks.
+
+2026-11-11 AI-002/AI-010 mapping subset: [Phase 2E-2C](../docs/phase2e-2c-identity-mapping-foundation.md) implements approved ADR-007 tables and exact resolver, privileged disposable synthetic only. 160 backend, 177 PostgreSQL (67 new T-017), 28 frontend tests and builds/checks pass. Design backup/safe transition verified; original DB and local artifacts preserved. Final security review and full local reruns passed; conditional reviewed commit/push/Draft delivery is authorized, with hosted verification pending. Later technical work requires separate runtime bootstrap and validation-source provenance/assurance approval; nonempty mapping recovery remains needed before operational use. No provider/link/invitation/delegation implementation or whole-task closure.
 
 2026-11-11 AI-002/AI-010 boundary subset: [Phase 2E-2A](../docs/phase2e-2a-trusted-actor-boundary.md) adds Identity-owned validated-source/exact-mapping contracts and controlled actor creation, synthetic only. 46 new cases passed; totals 160 backend, 110 PostgreSQL and 28 frontend, with builds/checks green. Provider decision comparison prepared; no provider chosen or adapter/schema/API change. Focused security review and complete regression reruns passed; conditional reviewed commit/push/Draft delivery is authorized, with hosted results pending at this checkpoint. Future source issuance design, real validation and mapping resolver depend on HUM-005/HUM-008 and separately approved storage/provider scope. Recipient eligibility/transactional grants remain separately gated; no whole AI item closed.
 

@@ -104,7 +104,8 @@ public sealed class AuthenticatedActorBoundaryTests
         Assert.Throws<NotSupportedException>(() => JsonSerializer.Deserialize<AuthenticatedActorContext>(
             "{\"UserId\":\"11111111-1111-1111-1111-111111111111\"}"));
         var friends = typeof(ValidatedAuthentication).Assembly.GetCustomAttributes<System.Runtime.CompilerServices.InternalsVisibleToAttribute>();
-        Assert.Equal("MedicationCatalogue.UnitTests", Assert.Single(friends).AssemblyName);
+        Assert.Equal(new[] { "Foundation.PersistenceTests", "MedicationCatalogue.UnitTests" },
+            friends.Select(friend => friend.AssemblyName).OrderBy(name => name, StringComparer.Ordinal));
     }
 
     [Theory]

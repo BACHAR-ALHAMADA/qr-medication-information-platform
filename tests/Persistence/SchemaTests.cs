@@ -55,16 +55,16 @@ public sealed class SchemaTests
     }
 
     [Fact]
-    public async Task ReviewedMigrationCreatesSevenTablesAndMatchesModel()
+    public async Task ReviewedMigrationsCreateNineTablesAndMatchModel()
     {
         await using var context = LocalDatabase.CreateContext(LocalDatabase.ConnectionString());
-        Assert.Equal(2, (await context.Database.GetAppliedMigrationsAsync()).Count());
+        Assert.Equal(3, (await context.Database.GetAppliedMigrationsAsync()).Count());
         Assert.Empty(await context.Database.GetPendingMigrationsAsync());
         Assert.False(context.Database.HasPendingModelChanges());
         await using var c = await Open();
-        Assert.Equal(7L, await Scalar<long>(c, "SELECT count(*) FROM information_schema.tables WHERE table_schema IN ('identity','organizations') AND table_type='BASE TABLE'"));
+        Assert.Equal(9L, await Scalar<long>(c, "SELECT count(*) FROM information_schema.tables WHERE table_schema IN ('identity','organizations') AND table_type='BASE TABLE'"));
         Assert.Equal(2L, await Scalar<long>(c, "SELECT count(*) FROM organizations.capabilities"));
-        Assert.Equal(6L, await Scalar<long>(c, "SELECT count(*) FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname IN ('identity','organizations') AND c.relrowsecurity AND c.relforcerowsecurity"));
+        Assert.Equal(8L, await Scalar<long>(c, "SELECT count(*) FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname IN ('identity','organizations') AND c.relrowsecurity AND c.relforcerowsecurity"));
         Assert.Equal(2L, await Scalar<long>(c, "SELECT count(*) FROM pg_indexes WHERE schemaname='organizations' AND indexdef LIKE '%organization_id, branch_id, user_id%' OR schemaname='organizations' AND indexdef LIKE '%user_id, organization_id%'"));
     }
 

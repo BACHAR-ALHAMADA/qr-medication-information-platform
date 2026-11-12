@@ -16,5 +16,6 @@ public static class IdentityPersistenceModel
         user.IndexerProperty<Guid>("user_id").ValueGeneratedNever();
         user.IndexerProperty<bool>("is_enabled");
         user.HasKey("user_id");
+        IdentityMappingModel.Configure(model);
     }
 }
